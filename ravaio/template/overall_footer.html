@@ -17,14 +17,14 @@
 							</li><!-- ENDIF --><li>
 							<!-- EVENT overall_footer_breadcrumb_prepend -->
 							<a href="{U_INDEX}" data-navbar-reference="index">{L_INDEX}</a>
-							<!-- EVENT overall_footer_breadcrumb_append --></li><!-- IF U_WATCH_FORUM_LINK and not S_IS_BOT --><li data-last-responsive="true">
-								<a href="{U_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}" data-ajax="toggle_link" data-toggle-class="small-icon icon-<!-- IF not S_WATCHING_FORUM -->unsubscribe<!-- ELSE -->subscribe<!-- ENDIF -->" data-toggle-text="{S_WATCH_FORUM_TOGGLE}" data-toggle-url="{U_WATCH_FORUM_TOGGLE}">{S_WATCH_FORUM_TITLE}</a>
-							</li><!-- ENDIF --><!-- EVENT overall_footer_timezone_before --><!-- IF not S_IS_BOT and S_DISPLAY_MEMBERLIST -->
-							<li data-last-responsive="true">
+							<!-- EVENT overall_footer_breadcrumb_append --></li><li>
+								<a href="{U_FAQ}" rel="help" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a>
+							</li><!-- EVENT overall_footer_timezone_before --><!-- IF not S_IS_BOT and S_DISPLAY_MEMBERLIST -->
+							<li>
 								<a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a>
-							</li><!-- ENDIF --><!-- EVENT overall_footer_teamlink_before --><!-- IF U_TEAM --><li data-last-responsive="true">
+							</li><!-- ENDIF --><!-- EVENT overall_footer_teamlink_before --><!-- IF U_TEAM --><li>
 								<a href="{U_TEAM}">{L_THE_TEAM}</a>
-							</li><!-- ENDIF --><!-- EVENT overall_footer_teamlink_after --><!-- IF U_CONTACT_US --><li data-last-responsive="true">
+							</li><!-- ENDIF --><!-- EVENT overall_footer_teamlink_after --><!-- IF U_CONTACT_US --><li>
 								<a href="{U_CONTACT_US}">{L_CONTACT_US}</a>
 							</li><!-- ENDIF --><li class="rside">
 							{S_TIMEZONE}
@@ -36,9 +36,12 @@
 
 				<!-- EVENT overall_footer_copyright_append -->
 
-				<!-- IF DEBUG_OUTPUT --><br>{DEBUG_OUTPUT}<!-- ENDIF -->
+				<!-- IF DEBUG_OUTPUT --><div id="debug-output">{DEBUG_OUTPUT}</div><!-- ENDIF -->
 
 			</div>
+
+			<!-- EVENT ra_footer_after -->
+
 		</div>
 
 		</div>
@@ -85,8 +88,8 @@
 			<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
 		</div>
 
-		<div id="darkenwrapper" data-ajax-error-title="{L_AJAX_ERROR_TITLE}" data-ajax-error-text="{L_AJAX_ERROR_TEXT}" data-ajax-error-text-abort="{L_AJAX_ERROR_TEXT_ABORT}" data-ajax-error-text-timeout="{L_AJAX_ERROR_TEXT_TIMEOUT}" data-ajax-error-text-parsererror="{L_AJAX_ERROR_TEXT_PARSERERROR}">
-			<div id="darken"></div>
+		<div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="{L_AJAX_ERROR_TITLE}" data-ajax-error-text="{L_AJAX_ERROR_TEXT}" data-ajax-error-text-abort="{L_AJAX_ERROR_TEXT_ABORT}" data-ajax-error-text-timeout="{L_AJAX_ERROR_TEXT_TIMEOUT}" data-ajax-error-text-parsererror="{L_AJAX_ERROR_TEXT_PARSERERROR}">
+			<div id="darken" class="darken"></div>
 		</div>
 
 		<div id="phpbb_alert" class="modal-bb" data-l-err="{L_ERROR}" data-l-timeout-processing-req="{L_TIMEOUT_PROCESSING_REQ}">
@@ -108,12 +111,37 @@
 		</div>
 
 		<script type="text/javascript" src="{T_JQUERY_LINK}"></script>
-		<script type="text/javascript" src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+		<script type="text/javascript" src="{T_TEMPLATE_PATH}/core.min.js?assets_version={T_ASSETS_VERSION}"></script>
 
-		<!-- INCLUDEJS forum_fn.js -->
-		<!-- INCLUDEJS ajax.js -->
-		<!-- INCLUDEJS bootstrap.js -->
-		<!-- INCLUDEJS chosen.jquery.js -->
+		<!-- INCLUDEJS forum_fn.min.js -->
+		<!-- INCLUDEJS ajax.min.js -->
+
+		<!-- IF S_COOKIE_NOTICE -->
+			<script src="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.js?assets_version={T_ASSETS_VERSION}"></script>
+			<script>
+				window.addEventListener("load", function(){
+					window.cookieconsent.initialise({
+						"palette": {
+							"popup": {
+								"background": "#0F538A"
+							},
+							"button": {
+								"background": "#E5E5E5"
+							}
+						},
+						"theme": "classic",
+						"content": {
+							"message": "{LA_COOKIE_CONSENT_MSG}",
+							"dismiss": "{LA_COOKIE_CONSENT_OK}",
+							"link": "{LA_COOKIE_CONSENT_INFO}",
+							"href": "{LA_COOKIE_CONSENT_HREF}"
+						}
+					})});
+			</script>
+		<!-- ENDIF -->
+
+		<!-- INCLUDEJS bootstrap.min.js -->
+		<!-- INCLUDEJS chosen.jquery.min.js -->
 
 		<!-- IF $RA_ATTACH -->
 			<!-- INCLUDEJS lightgallery.min.js -->
@@ -131,8 +159,17 @@
 				});
 			});
 
-			$('.dropdown-profile, .dropdown-box-big, .dropdown-mega').click(function(e) {
+			$('.dropdown-profile .w-drop, .dropdown-box-big .w-drop, .dropdown-mega .w-drop, .dropdown-box .w-drop').click(function(e) {
+				$(this).toggleClass('open');
+				$(this).next('.dropdown-box-big, .dropdown-mega, .dropdown-box').toggle();
 				e.stopPropagation();
+				e.preventDefault();
+			});
+
+			$('.dropdown-box-big').click(function(e) {
+				if ($(this).children('form')) {
+					e.stopPropagation();
+				}
 			});
 
 			$('#quick-login').on('shown.bs.modal', function () {
@@ -144,6 +181,7 @@
 			});
 
 			$('#side-toggle').click(function() {
+				$("#side-toggle").toggleClass('side-toggle');
 				$("#cp-sidebar").toggleClass('cp-sidebar-visible');
 				$("#cp-main").toggleClass('cp-sidebar-visible');
 			});
@@ -155,7 +193,59 @@
 					}); 
 				});
 			<!-- ENDIF -->
+
+			function isFileInDragNDrop(e) {
+				e.dataTransfer = e.originalEvent.dataTransfer;
+				return $.inArray('Files', e.dataTransfer.types) > -1;
+			}
+
+			$(function() {
+				phpbb.showDragNDrop = function(textarea) {
+					if ($('#message-wrap').length) {
+						$('body').on('dragenter dragover', function (e) {
+							if (isFileInDragNDrop(e)) {
+								$(textarea).parent('#message-wrap').addClass('drag-n-drop');
+							}
+						}).on('dragleave dragout dragend drop', function(e) {
+							if (isFileInDragNDrop(e)) {
+								$(textarea).parent('#message-wrap').removeClass('drag-n-drop');
+							}
+						});
+						$(textarea).on('dragenter dragover', function (e) {
+							if (isFileInDragNDrop(e)) {
+								$(textarea).parent('#message-wrap').addClass('drag-n-drop-highlight');
+							}
+						}).on('dragleave dragout dragend drop', function(e) {
+							if (isFileInDragNDrop(e)) {
+								$(textarea).parent('#message-wrap').removeClass('drag-n-drop-highlight');
+							}
+						});
+					}
+				};
+			});
 		</script>
+
+		<!-- IF S_IN_UCP or S_IN_MCP -->
+			<script>
+				$(function() {
+					var click_target;
+
+					$('#cp-menu .tab-link').on('click', function(e) {
+						e.preventDefault();
+
+						click_target = $(this);
+
+						$('#cp-menu .tab-link').each(function() {
+							if (!$(this).next('ul').hasClass('tab-content-hidden') && !click_target.is($(this))) {
+								$(this).next('ul').toggleClass('tab-content-hidden');
+							} else if (click_target.is($(this))) {
+								$(this).next('ul').toggleClass('tab-content-hidden');
+							}
+						});
+					});
+				});
+			</script>
+		<!-- ENDIF -->
 
 		<!-- IF S_PLUPLOAD --><!-- INCLUDE plupload.html --><!-- ENDIF -->
 

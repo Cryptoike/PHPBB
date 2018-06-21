@@ -2,31 +2,32 @@
 <html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
 	<head>
 		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		{META}
 		<title><!-- IF UNREAD_NOTIFICATIONS_COUNT -->({UNREAD_NOTIFICATIONS_COUNT}) <!-- ENDIF --><!-- IF not S_VIEWTOPIC and not S_VIEWFORUM -->{SITENAME} - <!-- ENDIF --><!-- IF S_IN_MCP -->{L_MCP} - <!-- ELSEIF S_IN_UCP -->{L_UCP} - <!-- ENDIF -->{PAGE_TITLE}<!-- IF S_VIEWTOPIC or S_VIEWFORUM --> - {SITENAME}<!-- ENDIF --></title>
 
 		<!-- IF S_ENABLE_FEEDS -->
 			<!-- IF S_ENABLE_FEEDS_OVERALL -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{{ path('phpbb_feed_index') }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_NEWS -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{{ path('phpbb_feed_news') }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_FORUMS -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{{ path('phpbb_feed_forums') }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_TOPICS -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{U_FEED}?mode=topics">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{{ path('phpbb_feed_topics') }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_TOPICS_ACTIVE -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{U_FEED}?mode=topics_active">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{{ path('phpbb_feed_topics_active') }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{{ path('phpbb_feed_forum', { forum_id : S_FORUM_ID } ) }}">
 			<!-- ENDIF -->
 			<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID -->
-				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}">
+				<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{{ path('phpbb_feed_topic', { topic_id : S_TOPIC_ID } ) }}">
 			<!-- ENDIF -->
 
 			<!-- EVENT overall_header_feeds -->
@@ -41,25 +42,31 @@
 			Author: Gramziu
 		-->
 
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,700italic">
-
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600">
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+		<script>
+			WebFont.load({
+				google: {
+					families: ['Open Sans:300,400,400italic,600,700,700italic']
+				},
+				custom: {
+					families: ['FontAwesome'],
+					urls: ['//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']
+				}
+			});
+		</script>
 
 		<!-- IF S_CONTENT_DIRECTION eq 'ltr' -->
-			<link rel="stylesheet" href="{T_STYLESHEET_LINK}">
+			<link rel="stylesheet" href="{T_THEME_PATH}/stylesheet.min.css?assets_version={T_ASSETS_VERSION}">
 		<!-- ELSE -->
-			<link rel="stylesheet" href="{T_THEME_PATH}/stylesheet_rtl.css?assets_version={T_ASSETS_VERSION}">
+			<link rel="stylesheet" href="{T_THEME_PATH}/stylesheet_rtl.min.css?assets_version={T_ASSETS_VERSION}">
 		<!-- ENDIF -->
 		<!-- IF not RA_ENABLE -->
-			<link rel="stylesheet" href="{T_THEME_PATH}/colors.css?assets_version={T_ASSETS_VERSION}">
+			<link rel="stylesheet" href="{T_THEME_PATH}/colors.min.css?assets_version={T_ASSETS_VERSION}">
 		<!-- ENDIF -->
-		<!-- IF S_CONTENT_DIRECTION eq 'ltr' -->
-			<link rel="stylesheet" href="{T_THEME_PATH}/responsive.css?assets_version={T_ASSETS_VERSION}">
-		<!-- ELSE -->
-			<link rel="stylesheet" href="{T_THEME_PATH}/responsive_rtl.css?assets_version={T_ASSETS_VERSION}">
+
+		<!-- IF S_COOKIE_NOTICE -->
+			<link href="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet">
 		<!-- ENDIF -->
-		<link rel="stylesheet" href="{T_THEME_PATH}/lightgallery.css?assets_version={T_ASSETS_VERSION}">
 
 		<!-- EVENT overall_header_head_append -->
 
@@ -69,6 +76,8 @@
 
 	</head>
 	<body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}">
+
+		<!-- EVENT ra_header_before -->
 
 		<div id="wrap">
 
@@ -85,7 +94,8 @@
 			<!-- EVENT overall_header_body_before -->
 
 			<a id="top" class="anchor" accesskey="t"></a>
-			<div<!-- IF not RA_ENABLE --><!-- IF $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ELSE --><!-- IF RA_SITE_DESC gt 0 and $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ENDIF -->>
+			<div<!-- IF $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF -->>
+				<!-- EVENT overall_header_headerbar_before -->
 				<div class="site-header chunk">
 					<a id="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->"<!-- IF RA_LOGO_TYPE --> class="logo_text"<!-- ENDIF -->><!-- IF RA_LOGO_TYPE -->{RA_LOGO_TEXT}<!-- ELSE -->{SITE_LOGO_IMG}<!-- ENDIF --></a>
 
@@ -95,12 +105,6 @@
 						<ul class="site-nav">
 
 							<!-- EVENT overall_header_navigation_prepend -->
-
-							<li class="re-md-r">
-								<a href="{U_FAQ}" rel="help" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a>
-							</li>
-
-							<!-- EVENT overall_header_navigation_append -->
 
 							<!-- IF U_ACP -->
 								<li class="re-md-r">
@@ -127,7 +131,7 @@
 
 								<!-- IF S_NOTIFICATIONS_DISPLAY -->
 									<li>
-										<a data-toggle="dropdown" class="w-drop" href="{U_VIEW_ALL_NOTIFICATIONS}">
+										<a data-toggle="dropdown" class="w-drop" href="{U_VIEW_ALL_NOTIFICATIONS}" id="notification_list_button">
 											<!-- IF NOTIFICATIONS_COUNT --><div class="count">{NOTIFICATIONS_COUNT}</div><!-- ENDIF -->
 											<i class="fa fa-bell"></i>
 										</a>
@@ -222,7 +226,7 @@
 							<li class="<!-- IF not S_DISPLAY_QUICK_LINKS and not S_DISPLAY_SEARCH -->hidden<!-- ENDIF -->">
 								<a data-toggle="dropdown" href="#" id="header-mini-menu"><i class="fa fa-bars"></i>
 </a>
-								<ul class="dropdown-box">
+								<ul id="more-menu" class="dropdown-box">
 									<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
 										<li id="main-search-box-md" class="re-md">
 											<form action="{U_SEARCH}" method="get">
@@ -233,11 +237,6 @@
 											</form>
 										</li>
 									<!-- ENDIF -->
-									<li class="re-md">
-										<a href="{U_FAQ}" rel="help" title="{L_FAQ_EXPLAIN}"><i class="fa fa-question"></i>{L_FAQ}</a>
-									</li>
-
-									<li class="separator re-md"></li>
 
 									<!-- EVENT navbar_header_quick_links_before -->
 
@@ -259,17 +258,20 @@
 								</ul>
 							</li>
 
+							<!-- EVENT overall_header_navigation_append -->
+
 						</ul>
 
 <ul id="breadcrumbs" class="<!-- IF S_VIEWTOPIC -->bread-topic<!-- ELSE -->bread-normal<!-- ENDIF -->"><!-- DEFINE $MICRODATA = ' itemtype="http://data-vocabulary.org/Breadcrumb" itemscope=""' --><!-- EVENT overall_header_breadcrumbs_before --><!-- IF U_SITE_HOME --><li><a href="{U_SITE_HOME}"{$MICRODATA} data-navbar-reference="home">{L_SITE_HOME}</a></li><!-- ENDIF --><!-- EVENT overall_header_breadcrumb_prepend --><li<!-- IF U_SITE_HOME --> class="crumb-solid"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h"{$MICRODATA} data-navbar-reference="index">{L_INDEX}</a></li><!-- BEGIN navlinks --><!-- EVENT overall_header_navlink_prepend --><li><a href="{navlinks.U_VIEW_FORUM}"{$MICRODATA}<!-- IF navlinks.MICRODATA --> {navlinks.MICRODATA}<!-- ENDIF -->>{navlinks.FORUM_NAME}</a></li><!-- EVENT overall_header_navlink_append --><!-- END navlinks --><!-- EVENT overall_header_breadcrumb_append --><!-- EVENT overall_header_breadcrumbs_after --></ul>
 					</nav>
 				</div>
+				<!-- EVENT overall_header_headerbar_after -->
 			</div>
 
 			<!-- EVENT overall_header_page_body_before -->
 
 			<a id="start_here" class="anchor"></a>
 
-			<div id="page-body" role="main">
+			<div id="page-body" class="page-body" role="main">
 
 				<!-- EVENT overall_header_content_before -->

@@ -53,22 +53,87 @@
 
 <!-- IF S_BBCODE_ALLOWED -->
 <div id="colour_palette" style="display: none;">
-	<div id="color_palette_placeholder" data-orientation="h" data-height="12" data-width="15" data-bbcode="true"></div>
+	<div id="color_palette_placeholder" class="color_palette_placeholder" data-orientation="h" data-height="12" data-width="15" data-bbcode="true"></div>
 </div>
 
 <!-- EVENT posting_editor_buttons_before -->
+{% spaceless %}
 <div id="format-buttons">
-	<input type="button" class="bbcode-b" accesskey="b" name="addbbcode0" value="B" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" /><input type="button" class="bbcode-i" accesskey="i" name="addbbcode2" value="i" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" /><input type="button" class="bbcode-u" accesskey="u" name="addbbcode4" value="u" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" /><!-- IF S_BBCODE_QUOTE --><input type="button" class="bbcode-quote" accesskey="q" name="addbbcode6" value="Quote" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" /><!-- ENDIF --><input type="button" class="bbcode-code" accesskey="c" name="addbbcode8" value="Code" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" /><input type="button" class="bbcode-list" accesskey="l" name="addbbcode10" value="List" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" /><input type="button" class="bbcode-list-" accesskey="o" name="addbbcode12" value="List=" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" /><input type="button" class="bbcode-asterisk" accesskey="y" name="addlistitem" value="[*]" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" /><!-- IF S_BBCODE_IMG --><input type="button" class="bbcode-img" accesskey="p" name="addbbcode14" value="Img" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" /><!-- ENDIF --><!-- IF S_LINKS_ALLOWED --><input type="button" class="bbcode-url" accesskey="w" name="addbbcode16" value="URL" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" /><!-- ENDIF --><!-- IF S_BBCODE_FLASH --><input type="button" class="bbcode-flash" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" /><!-- ENDIF --><select name="addbbcode20" class="bbcode-size" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
-		<option value="50">{L_FONT_TINY}</option>
-		<option value="85">{L_FONT_SMALL}</option>
-		<option value="100" selected="selected">{L_FONT_NORMAL}</option>
-		<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 -->
-			<option value="150">{L_FONT_LARGE}</option>
-			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 -->
-				<option value="200">{L_FONT_HUGE}</option>
+	<button type="button" class="bbcode-b" accesskey="b" name="addbbcode0" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" data-tooltip="{L_BBCODE_B_HELP}">
+		<i class="fa fa-bold" aria-hidden="true"></i>
+	</button>
+	<button type="button" class="bbcode-i" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" data-tooltip="{L_BBCODE_I_HELP}">
+		<i class="fa fa-italic" aria-hidden="true"></i>
+	</button>
+	<button type="button" class="bbcode-u" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" data-tooltip="{L_BBCODE_U_HELP}">
+		<i class="fa fa-underline" aria-hidden="true"></i>
+	</button>
+
+	<div class="spacer"></div>
+
+	<button type="button" class="bbcode-color" name="bbpalette" id="bbpalette" onclick="change_palette();" title="{L_BBCODE_S_HELP}" data-tooltip="{L_BBCODE_S_HELP}">
+		<i class="fa fa-font" aria-hidden="true"></i>
+	</button>
+	<div class="bbcode-size">
+		<button data-toggle="dropdown" title="{L_BBCODE_F_HELP}" data-tooltip="{L_BBCODE_F_HELP}" name="addbbcode20">
+			<i class="fa fa-font" aria-hidden="true"></i>
+			<i class="fa fa-font" aria-hidden="true"></i>
+		</button>
+		<ul class="dropdown-box">
+			<li data-bbcode-size="50" onclick="bbfontstyle('[size=50]', '[/size]');this.form.addbbcode20.selectedIndex = 2;"><a href="javascript:void(0)">{L_FONT_TINY}</a></li>
+			<li data-bbcode-size="85" onclick="bbfontstyle('[size=85]', '[/size]');this.form.addbbcode20.selectedIndex = 2;"><a href="javascript:void(0)">{L_FONT_SMALL}</a></li>
+			<li data-bbcode-size="100" onclick="bbfontstyle('[size=100]', '[/size]');this.form.addbbcode20.selectedIndex = 2;"><a href="javascript:void(0)">{L_FONT_NORMAL}</a></li>
+			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 -->
+				<li data-bbcode-size="150" onclick="bbfontstyle('[size=150]', '[/size]');this.form.addbbcode20.selectedIndex = 2;"><a href="javascript:void(0)">{L_FONT_LARGE}</a></li>
+				<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 -->
+					<li data-bbcode-size="200" onclick="bbfontstyle('[size=200]', '[/size]');this.form.addbbcode20.selectedIndex = 2;"><a href="javascript:void(0)">{L_FONT_HUGE}</a></li>
+				<!-- ENDIF -->
 			<!-- ENDIF -->
-		<!-- ENDIF -->
-	</select><input type="button" class="bbcode-color" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" /><!-- EVENT posting_editor_buttons_custom_tags_before --><!-- BEGIN custom_tags --><input type="button" class="bbcode-{custom_tags.BBCODE_TAG_CLEAN}" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+		</ul>
+	</div>
+
+	<div class="spacer"></div>
+
+	<!-- IF S_BBCODE_QUOTE -->
+		<button type="button" class="bbcode-quote" accesskey="q" name="addbbcode6" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" data-tooltip="{L_BBCODE_Q_HELP}">
+			<i class="fa fa-quote-left" aria-hidden="true"></i>
+		</button>
+	<!-- ENDIF -->
+	<button type="button" class="bbcode-code" accesskey="c" name="addbbcode8" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" data-tooltip="{L_BBCODE_C_HELP}">
+		<i class="fa fa-code" aria-hidden="true"></i>
+	</button>
+	<button type="button" class="bbcode-list" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" data-tooltip="{L_BBCODE_L_HELP}">
+		<i class="fa fa-list-ul" aria-hidden="true"></i>
+	</button>
+	<button type="button" class="bbcode-list-" accesskey="o" name="addbbcode12" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" data-tooltip="{L_BBCODE_O_HELP}">
+		<i class="fa fa-list-ol" aria-hidden="true"></i>
+	</button>
+	<button type="button" class="bbcode-asterisk" accesskey="y" name="addlistitem" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" data-tooltip="{L_BBCODE_LISTITEM_HELP}">
+		<i class="fa fa-asterisk" aria-hidden="true"></i>
+	</button>
+
+	<div class="spacer"></div>
+
+	<!-- IF S_BBCODE_IMG -->
+		<button type="button" class="bbcode-img" accesskey="p" name="addbbcode14" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" data-tooltip="{L_BBCODE_P_HELP}">
+			<i class="fa fa-picture-o" aria-hidden="true"></i>
+		</button>
+	<!-- ENDIF -->
+	<!-- IF S_LINKS_ALLOWED -->
+		<button type="button" class="bbcode-url" accesskey="w" name="addbbcode16" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" data-tooltip="{L_BBCODE_W_HELP}">
+			<i class="fa fa-link" aria-hidden="true"></i>
+		</button>
+	<!-- ENDIF -->
+	<!-- IF S_BBCODE_FLASH -->
+		<button type="button" class="bbcode-flash" accesskey="d" name="addbbcode18" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" data-tooltip="{L_BBCODE_D_HELP}">
+			<i class="fa fa-bolt" aria-hidden="true"></i>
+		</button>
+	<!-- ENDIF -->
+	<!-- EVENT posting_editor_buttons_custom_tags_before -->
+	<!-- BEGIN custom_tags -->
+		<button type="button" class="bbcode-{custom_tags.BBCODE_TAG_CLEAN}" name="addbbcode{custom_tags.BBCODE_ID}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" data-tooltip="{custom_tags.BBCODE_HELPLINE}">
+			{custom_tags.BBCODE_TAG}
+		</button>
 	<!-- END custom_tags -->
 
 	<!-- EVENT posting_editor_smilies_before -->	
@@ -81,5 +146,6 @@
 	<!-- EVENT posting_editor_smilies_after -->
 
 </div>
+{% endspaceless %}
 <!-- EVENT posting_editor_buttons_after -->
 <!-- ENDIF -->

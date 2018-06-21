@@ -3,6 +3,7 @@
 <div id="sub-header">
 	<div class="chunk">
 		<div class="sub-header-title">
+			<!-- EVENT memberlist_email_before -->
 			<!-- IF S_CONTACT_ADMIN-->
 				<h2 class="titlespace">{L_CONTACT_ADMIN}</h2>
 			<!-- ELSEIF S_SEND_USER -->
@@ -16,20 +17,14 @@
 
 <form method="post" action="{S_POST_ACTION}" id="post">
 
-	<!-- IF CONTACT_INFO -->
-	<div class="panel">
-		<div class="inner">
-			<div class="postbody">
-				<div class="content">
-					{CONTACT_INFO}
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ENDIF -->
-
 <div id="mbrs" class="background-main">
 	<div class="chunk">
+
+		<!-- IF CONTACT_INFO -->
+			<div class="box-normal">
+				<p>{CONTACT_INFO}</p>
+			</div>
+		<!-- ENDIF -->
 
 		<!-- IF ERROR_MESSAGE --><p class="error">{ERROR_MESSAGE}</p><!-- ENDIF -->
 		<fieldset>

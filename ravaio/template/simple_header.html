@@ -2,18 +2,38 @@
 <html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
 	<head>
 		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		{META}
 		<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
 
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,700italic">
+		<script>
+			WebFontConfig = {
+				google: {
+					families: ['Open Sans:300,400,400italic,600,700,700italic']
+				},
+				custom: {
+					families: ['FontAwesome'],
+					urls: ['//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']
+				}
+			};
 
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600">
+			(function(d) {
+				var wf = d.createElement('script'), s = d.scripts[0];
+				wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+				wf.async = true;
+				s.parentNode.insertBefore(wf, s);
+			})(document);
+		</script>
 
-		<link rel="stylesheet" href="{T_STYLESHEET_LINK}">
-		<link rel="stylesheet" href="{T_THEME_PATH}/colors.css?assets_version={T_ASSETS_VERSION}">
-		<link rel="stylesheet" href="{T_THEME_PATH}/responsive.css?assets_version={T_ASSETS_VERSION}" />
+		<!-- IF S_CONTENT_DIRECTION eq 'ltr' -->
+			<link rel="stylesheet" href="{T_THEME_PATH}/stylesheet.min.css?assets_version={T_ASSETS_VERSION}">
+		<!-- ELSE -->
+			<link rel="stylesheet" href="{T_THEME_PATH}/stylesheet_rtl.min.css?assets_version={T_ASSETS_VERSION}">
+		<!-- ENDIF -->
+		<!-- IF not RA_ENABLE -->
+			<link rel="stylesheet" href="{T_THEME_PATH}/colors.min.css?assets_version={T_ASSETS_VERSION}">
+		<!-- ENDIF -->
 
 		<!-- DEFINE $POPUP = 1 -->
 
@@ -31,4 +51,4 @@
 
 		<div id="wrap">
 			<a id="top" class="anchor" accesskey="t"></a>
-			<div id="page-body" role="main">
+			<div id="page-body" class="page-body">
