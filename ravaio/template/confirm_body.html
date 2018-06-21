@@ -1,0 +1,42 @@
+<!-- IF S_AJAX_REQUEST -->
+	<form action="{S_CONFIRM_ACTION}" method="post">
+		<h3>{MESSAGE_TITLE}</h3>
+		<p>{MESSAGE_TEXT}</p>
+
+		<fieldset class="submit-buttons">
+			<input type="button" name="confirm" value="{L_YES}" class="button" /><input type="button" name="cancel" value="{L_NO}" class="button-flat" />
+		</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2 class="message-title">{MESSAGE_TITLE}</h2>
+		</div>
+	</div>
+</div>
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+
+<div id="mbrs" class="background-main">
+	<div class="chunk message-main">
+
+		<p>{MESSAGE_TEXT}</p>
+
+		<fieldset class="actions-submit">
+			{S_HIDDEN_FIELDS}
+			<input type="submit" name="confirm" value="{L_YES}" class="button" /><input type="submit" name="cancel" value="{L_NO}" class="button-flat" />
+		</fieldset>
+
+	</div>
+</div>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->
+
+<!-- ENDIF -->

@@ -1,0 +1,22 @@
+imports:
+    - { resource: tables.yml }
+
+services:
+    gramziu.ravaio.listener:
+        class: gramziu\ravaio\event\listener
+        arguments:
+            - @template
+            - @config
+            - @dbal.conn
+            - @request
+            - @auth
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
+            - @cache.driver
+            - %ra_header_menu_table%
+            - %ra_sidebar_table%
+            - %ra_footer_blocks_table%
+            - %ra_footer_menu_table%
+        tags:
+            - { name: event.listener }

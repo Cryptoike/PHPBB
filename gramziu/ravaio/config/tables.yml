@@ -1,0 +1,5 @@
+parameters:
+    ra_header_menu_table: %core.table_prefix%ra_header_menu
+    ra_sidebar_table: %core.table_prefix%ra_sidebar
+    ra_footer_blocks_table: %core.table_prefix%ra_footer_blocks
+    ra_footer_menu_table: %core.table_prefix%ra_footer_menu

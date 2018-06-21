@@ -1,0 +1,41 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2 class="faq-title">{L_FAQ_TITLE}</h2>
+		</div>
+	</div>
+</div>
+
+<div class="background-main">
+	<div id="faqlinks" class="chunk">
+		<!-- BEGIN faq_block -->
+			<dl class="faq">
+				<dt>{faq_block.BLOCK_TITLE}</dt>
+				<!-- BEGIN faq_row -->
+					<dd><a href="#f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}">{faq_block.faq_row.FAQ_QUESTION}</a></dd>
+				<!-- END faq_row -->
+			</dl>
+		<!-- END faq_block -->
+	</div>
+</div>
+
+<!-- BEGIN faq_block -->
+<div class="<!-- IF faq_block.S_ROW_COUNT is odd -->background-normal<!-- ELSE -->background-deep<!-- ENDIF -->">
+	<div class="chunk">
+		<h3 class="faq-title">{faq_block.BLOCK_TITLE}</h3>
+		<!-- BEGIN faq_row -->
+			<dl class="faq">
+				<dt id="f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}">{faq_block.faq_row.FAQ_QUESTION}</dt>
+				<dd>{faq_block.faq_row.FAQ_ANSWER}</dd>
+			</dl>
+		<!-- END faq_row -->
+
+		<!-- IF faq_block.S_LAST_ROW --><!-- INCLUDE jumpbox.html --><!-- ENDIF -->
+
+	</div>
+</div>
+<!-- END faq_block -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,11 @@
+.colour-preview {
+	background-color: transparent;
+	border-radius: 0 3px 3px 0;
+	color: #FAFAFA;
+	display: inline-block;
+	font-weight: bold;
+	line-height: 21px;
+	padding-left: 6px;
+	padding-right: 60px;
+	vertical-align: -1px;
+}

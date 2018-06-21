@@ -1,0 +1,74 @@
+<!-- IF S_AJAX_REQUEST -->
+	<form action="{S_CONFIRM_ACTION}" method="post">
+		<p>{MESSAGE_TEXT}</p>
+
+		<!-- IF not S_SHADOW_TOPICS -->
+		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
+			<br><label>
+				<strong>{L_DELETE_PERMANENTLY}{L_COLON}</strong><br>
+				<input class="check" id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /><span class="check"></span><span><!-- IF S_TOPIC_MODE -->{L_DELETE_TOPIC_PERMANENTLY}<!-- ELSE -->{L_DELETE_POST_PERMANENTLY}<!-- ENDIF --></span>
+			</label><br><br>
+		<!-- ENDIF -->
+
+		<label for="delete_reason">
+			<strong>{L_DELETE_REASON}{L_COLON}</strong><br><span>{L_DELETE_REASON_EXPLAIN}</span><br />
+			<input type="text" name="delete_reason" value="" class="input" maxlength="120" size="45" style="width: 100%;" />
+		</label>
+		<!-- ENDIF -->
+
+		<fieldset class="submit-buttons">
+			<input type="button" name="confirm" value="{L_YES}" class="button" /><input type="button" name="cancel" value="{L_NO}" class="button-flat" />
+		</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+<!-- INCLUDE overall_header.html -->
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2 class="message-title">{MESSAGE_TITLE}</h2>
+		</div>
+	</div>
+</div>
+
+<div id="mbrs" class="background-main">
+	<div class="chunk message-main">
+
+	<p>{MESSAGE_TEXT}</p>
+
+	<!-- IF not S_SHADOW_TOPICS -->
+	<fieldset class="fields1">
+		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
+			<dl class="form">
+				<dt><span>{L_DELETE_PERMANENTLY}{L_COLON}</span></dt>
+				<dd>
+					<label for="delete_permanent">
+						<input class="check" id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /><span class="check"></span>
+						<!-- IF S_TOPIC_MODE --><span>{L_DELETE_TOPIC_PERMANENTLY}</span><!-- ELSE --><span>{L_DELETE_POST_PERMANENTLY}</span><!-- ENDIF -->
+					</label>
+				</dd>
+			</dl>
+		<!-- ENDIF -->
+
+		<dl class="form">
+			<dt><span>{L_DELETE_REASON}{L_COLON}</span><p>{L_DELETE_REASON_EXPLAIN}</p></dt>
+			<dd><input type="text" name="delete_reason" id="delete_reason" value="" class="input" maxlength="120" size="45" /></dd>
+		</dl>
+	</fieldset>
+	<!-- ENDIF -->
+
+	<fieldset class="actions-submit">
+		{S_HIDDEN_FIELDS}
+		<input type="submit" name="confirm" value="{L_YES}" class="button" /><input type="submit" name="cancel" value="{L_NO}" class="button-flat" />
+	</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

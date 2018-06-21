@@ -1,0 +1,130 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<p>{L_GROUPS_EXPLAIN}</p>
+<!-- DEFINE $SHOW_BUTTONS = 0 -->
+<!-- IF .leader -->
+
+	<h3>{L_GROUP_LEADER}</h3>
+
+	<ol class="cp-list">
+	<!-- BEGIN leader -->
+	<!-- IF not leader.GROUP_SPECIAL -->
+		<!-- DEFINE $SHOW_BUTTONS = 1 -->
+	<!-- ENDIF -->
+		<li>
+			<div class="cp-list-icon forum_read"><div></div><!-- IF S_CHANGE_DEFAULT --><input class="cp-list-mark" title="{L_CHANGE_DEFAULT_GROUP}" id="{leader.GROUP_ID}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /><label class="cp-list-mark" for="{leader.GROUP_ID}"><i class="fa fa-graduation-cap"></i></label><!-- ENDIF --></div>
+			<div class="cp-list-description">
+				<div class="cp-list-description-inner">
+						<h4><a href="{leader.U_VIEW_GROUP}" class="forumtitle"<!-- IF leader.GROUP_COLOUR --> style="color:#{leader.GROUP_COLOUR}"<!-- ENDIF -->>{leader.GROUP_NAME}</a></h4>
+						<!-- IF leader.GROUP_DESC --><p>{leader.GROUP_DESC}</p><!-- ENDIF -->
+						<!-- IF not leader.GROUP_SPECIAL --><p>{leader.GROUP_STATUS}</p><!-- ENDIF -->
+				</div>
+			</div>
+			<div class="cp-list-radio">
+				<label><input class="radio" type="radio" name="selected" value="{leader.GROUP_ID}" <!-- IF leader.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /><span class="radio"></span></label>
+			</div>
+		</li>
+	<!-- END leader -->
+	</ol>
+<!-- ENDIF -->
+
+<!-- IF .member -->
+
+	<h3>{L_GROUP_MEMBER}</h3>
+
+	<ol class="cp-list">
+	<!-- BEGIN member -->
+	<!-- IF not member.GROUP_SPECIAL -->
+		<!-- DEFINE $SHOW_BUTTONS = 1 -->
+	<!-- ENDIF -->		
+		<li>
+			<div class="cp-list-icon forum_read"><div></div><!-- IF S_CHANGE_DEFAULT --><input class="cp-list-mark" title="{L_CHANGE_DEFAULT_GROUP}" id="{member.GROUP_ID}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /><label class="cp-list-mark" for="{member.GROUP_ID}"><i class="fa fa-graduation-cap"></i></label><!-- ENDIF --></div>
+			<div class="cp-list-description">
+				<div class="cp-list-description-inner">
+					<h4><a href="{member.U_VIEW_GROUP}" class="forumtitle"<!-- IF member.GROUP_COLOUR --> style="color:#{member.GROUP_COLOUR}"<!-- ENDIF -->>{member.GROUP_NAME}</a></h4>
+					<!-- IF member.GROUP_DESC --><p>{member.GROUP_DESC}</p><!-- ENDIF -->
+					<!-- IF not member.GROUP_SPECIAL --><p>{member.GROUP_STATUS}</p><!-- ENDIF -->
+				</div>
+			</div>
+			<div class="cp-list-radio">
+				<label><input class="radio" type="radio" name="selected" value="{member.GROUP_ID}" <!-- IF member.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /><span class="radio"></span></label>
+			</div>
+		</li>
+	<!-- END member -->
+	</ol>
+<!-- ENDIF -->
+
+<!-- IF S_CHANGE_DEFAULT -->
+<div>
+	<input class="button" type="submit" name="change_default" value="{L_CHANGE_DEFAULT_GROUP}" /><br><br>
+	{S_FORM_TOKEN}
+</div>
+<!-- ENDIF -->
+
+<!-- IF .pending -->
+
+		<h3>{L_GROUP_PENDING}</h3>
+
+		<ol class="cp-list">
+		<!-- BEGIN pending -->
+		<!-- IF not pending.GROUP_SPECIAL -->
+			<!-- DEFINE $SHOW_BUTTONS = 1 -->
+		<!-- ENDIF -->			
+			<li>
+				<div class="cp-list-icon forum_read"><div></div></div>
+				<div class="cp-list-description">
+					<div class="cp-list-description-inner">
+
+						<h4><a href="{pending.U_VIEW_GROUP}" class="forumtitle"<!-- IF pending.GROUP_COLOUR --> style="color:#{pending.GROUP_COLOUR}"<!-- ENDIF -->>{pending.GROUP_NAME}</a></h4>
+						<!-- IF pending.GROUP_DESC --><p>{pending.GROUP_DESC}</p><!-- ENDIF -->
+						<!-- IF not pending.GROUP_SPECIAL --><p>{pending.GROUP_STATUS}</p><!-- ENDIF -->
+					</div>
+				</div>
+				<div class="cp-list-radio">
+					<label><input class="radio" type="radio" name="selected" value="{pending.GROUP_ID}" <!-- IF pending.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> /><span class="radio"></span></label>
+				</div>
+			</li>
+		<!-- END pending -->
+		</ol>
+<!-- ENDIF -->
+<!-- IF .nonmember -->
+
+		<h3>{L_GROUP_NONMEMBER}</h3>
+
+		<ol class="cp-list">
+		<!-- BEGIN nonmember -->
+		<!-- IF nonmember.S_CAN_JOIN -->
+			<!-- DEFINE $SHOW_BUTTONS = 1 -->
+		<!-- ENDIF -->		
+			<li>
+				<div class="cp-list-icon forum_read"><div></div></div>
+				<div class="cp-list-description">
+					<div class="cp-list-description-inner">
+						<h4><a href="{nonmember.U_VIEW_GROUP}" class="forumtitle"<!-- IF nonmember.GROUP_COLOUR --> style="color:#{nonmember.GROUP_COLOUR}"<!-- ENDIF -->>{nonmember.GROUP_NAME}</a></h4>
+						<!-- IF nonmember.GROUP_DESC --><p>{nonmember.GROUP_DESC}</p><!-- ENDIF -->
+						<!-- IF not nonmember.GROUP_SPECIAL --><p>{nonmember.GROUP_STATUS}</p><!-- ENDIF -->
+					</div>
+				</div>
+				<div class="cp-list-radio">
+					<label><input class="radio" type="radio" name="selected" value="{nonmember.GROUP_ID}" <!-- IF not nonmember.S_CAN_JOIN -->disabled="disabled"<!-- ENDIF --> /><span class="radio"></span></label>
+				</div>
+			</li>
+		<!-- END nonmember -->
+		</ol>
+<!-- ENDIF -->
+	
+<!-- IF $SHOW_BUTTONS eq 1 -->
+<fieldset class="actions">
+	<input class="button rside" type="submit" name="submit" value="{L_SUBMIT}" />
+	<label class="rside"><input class="radio-full" type="radio" value="join" name="action" /><span class="radio-full">{L_JOIN_SELECTED}</span></label>
+	<label class="rside"><input class="radio-full" type="radio" value="resign" name="action" /><span class="radio-full">{L_RESIGN_SELECTED}</span></label>
+	<label class="rside"><input class="radio-full" type="radio" value="demote" name="action" /><span class="radio-full">{L_DEMOTE_SELECTED}</span></label>
+	{S_FORM_TOKEN}
+</fieldset>
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

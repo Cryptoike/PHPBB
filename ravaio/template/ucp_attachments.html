@@ -1,0 +1,76 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+	
+	<p>{L_ATTACHMENTS_EXPLAIN}</p>
+
+	<!-- IF .attachrow -->
+		<div class="action-bar-top">
+			<div class="pagination">
+				{NUM_ATTACHMENTS}
+				<!-- IF .pagination --> 
+					<!-- INCLUDE pagination.html -->
+				<!-- ENDIF -->
+			</div>
+
+			<div>
+				<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+
+				<div class="dropdown-box">
+					<fieldset class="display-options">
+						<label for="sk">{L_SORT_BY}{L_COLON} <select name="sk" id="sk">{S_SORT_OPTIONS}</select></label> 
+						<label><select name="sd" id="sd">{S_ORDER_SELECT}</select></label>
+						<input class="button" type="submit" name="sort" value="{L_SORT}" />
+						{S_FORM_TOKEN}
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		
+		<div class="cp-list-header">
+			<div class="cp-list-header-description"><div><a href="{U_SORT_FILENAME}">{L_FILENAME}</a></div></div>
+			<div class="cp-list-header-recent">
+				<a href="{U_SORT_DOWNLOADS}">{L_DOWNLOADS}</a> / <a href="{U_SORT_POST_TIME}">{L_POST_TIME}</a>
+			</div>
+		</div>
+
+		<ol class="cp-list">
+		<!-- BEGIN attachrow -->
+			<li>
+				<div class="cp-list-icon forum_read"><div></div><input class="cp-list-mark" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" id="attachment[{attachrow.ATTACH_ID}]" /><label class="cp-list-mark" for="attachment[{attachrow.ATTACH_ID}]"><i class="fa fa-check"></i></label></div>
+				<div class="cp-list-description">
+					<div class="cp-list-description-inner">
+						<h4><a href="{attachrow.U_VIEW_ATTACHMENT}" class="topictitle attachment-filename ellipsis-text" title="{attachrow.FILENAME}">{attachrow.FILENAME}</a> ({attachrow.SIZE})</h4><p><!-- IF attachrow.S_IN_MESSAGE -->{L_PM}{L_COLON} <!-- ELSE -->{L_TOPIC}{L_COLON} <!-- ENDIF --><a href="{attachrow.U_VIEW_TOPIC}">{attachrow.TOPIC_TITLE}</a></p>
+					</div>
+				</div>
+				<div class="cp-list-recent">
+					{attachrow.DOWNLOAD_COUNT} <dfn>{L_DOWNLOADS}</dfn>
+					<br>
+					{attachrow.POST_TIME}
+				</div>
+			</li>
+		<!-- END attachrow -->
+		</ol>
+
+		<div class="action-bar-bottom">
+			<div class="pagination">
+				{NUM_ATTACHMENTS}
+				<!-- IF .pagination --> 
+					<!-- INCLUDE pagination.html -->
+				<!-- ENDIF -->
+			</div>
+		</div>
+
+	<!-- ELSE -->
+		<p><strong>{L_UCP_NO_ATTACHMENTS}</strong></p>
+	<!-- ENDIF -->
+	
+<!-- IF S_ATTACHMENT_ROWS -->
+	<fieldset class="actions">	
+		<div class="button-multiple"><a href="#" onclick="marklist('ucp', 'attachment', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('ucp', 'attachment', false); return false;">{L_UNMARK_ALL}</a></div><button class="button" type="submit" name="delete"><i class="fa fa-trash-o"></i><span>{L_DELETE_MARKED}</span></button>
+		{S_FORM_TOKEN}
+	</fieldset>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

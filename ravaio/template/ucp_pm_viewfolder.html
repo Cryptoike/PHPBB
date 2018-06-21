@@ -1,0 +1,133 @@
+<!-- INCLUDE ucp_header.html -->
+
+<!-- IF not PROMPT -->
+	<!-- INCLUDE ucp_pm_message_header.html -->
+<!-- ENDIF -->
+
+<!-- IF PROMPT -->
+	<h2>{L_EXPORT_AS_CSV}</h2>
+	<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+
+		<h3>{L_OPTIONS}</h3>
+		<fieldset>
+			<dl>
+				<dt><label for="delimiter">{L_DELIMITER}{L_COLON}</label></dt>
+				<dd><input class="inputbox" type="text" id="delimiter" name="delimiter" value="," /></dd>
+			</dl>
+			<dl>
+				<dt><label for="enclosure">{L_ENCLOSURE}{L_COLON}</label></dt>
+				<dd><input class="inputbox" type="text" id="enclosure" name="enclosure" value="&#034;" /></dd>
+			</dl>
+		</fieldset>
+
+	<fieldset class="actions-submit">
+		<input type="hidden" name="export_option" value="CSV" />
+		<input class="button" type="submit" name="submit_export" value="{L_EXPORT_FOLDER}" /><input class="button-flat" type="reset" value="{L_RESET}" name="reset" />
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+	<!-- IF NUM_REMOVED -->
+		<div class="notice">
+			<p>{RULE_REMOVED_MESSAGES}</p>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF NUM_NOT_MOVED -->
+		<div class="notice">
+			<p>{NOT_MOVED_MESSAGES}<br />{RELEASE_MESSAGE_INFO}</p>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF .messagerow -->
+		<h3>{L_MESSAGES}</h3>
+
+		<ol class="cp-list">
+		<!-- BEGIN messagerow -->
+			<li class="row<!-- IF messagerow.PM_CLASS --> {messagerow.PM_CLASS}<!-- ENDIF -->">
+				<div class="cp-list-icon {messagerow.FOLDER_IMG_STYLE}"><div></div><input class="cp-list-mark" type="checkbox" name="marked_msg_id[]" id="{messagerow.MESSAGE_ID}" value="{messagerow.MESSAGE_ID}" /><label class="cp-list-mark" for="{messagerow.MESSAGE_ID}"><i class="fa fa-check"></i></label></div>
+				<div class="cp-list-description" <!-- IF messagerow.PM_ICON_URL and S_PM_ICONS --> style="background-image: url({messagerow.PM_ICON_URL}); background-repeat: no-repeat;"<!-- ENDIF -->>
+					<div class="cp-list-description-inner">
+						<!-- IF messagerow.S_PM_UNREAD and not messagerow.S_PM_DELETED --><a href="{messagerow.U_VIEW_PM}" class="icon-link"></a><!-- ENDIF -->
+						<!-- IF messagerow.S_PM_DELETED -->
+							<h4><a href="{messagerow.U_REMOVE_PM}" class="topictitle">{L_DELETE_MESSAGE}</a></h4>
+							<p class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</p>
+						<!-- ELSE -->
+							<h4><a href="{messagerow.U_VIEW_PM}" class="topictitle">{messagerow.SUBJECT}</a></h4>
+						<!-- ENDIF -->
+						<!-- IF messagerow.S_AUTHOR_DELETED -->
+							<p>{L_PM_FROM_REMOVED_AUTHOR}</p>
+						<!-- ENDIF -->
+						<!-- IF messagerow.S_PM_REPORTED -->
+							<a class="topic-reported-icon" href="{messagerow.U_MCP_REPORT}"><i class="fa fa-flag-o"></i></a>
+						<!-- ENDIF -->
+						<!-- IF messagerow.ATTACH_ICON_IMG -->
+							<i class="fa fa-floppy-o"></i>
+						<!-- ENDIF -->
+						<!-- IF S_SHOW_RECIPIENTS -->
+							<p>{L_MESSAGE_TO} {messagerow.RECIPIENTS}</p>
+						<!-- ELSE -->
+							<p>{L_MESSAGE_BY_AUTHOR} {messagerow.MESSAGE_AUTHOR_FULL}, {messagerow.SENT_TIME}</p>
+						<!-- ENDIF -->
+					</div>
+				</div>
+				<div class="cp-list-recent">
+					<!-- IF S_SHOW_RECIPIENTS -->{L_SENT_AT}{L_COLON} {messagerow.SENT_TIME}<!-- ENDIF -->
+					<br>
+					<!-- IF S_UNREAD -->
+						<!-- IF messagerow.FOLDER -->
+							<a href="{messagerow.U_FOLDER}">{messagerow.FOLDER}</a>
+						<!-- ELSE -->
+							{L_UNKNOWN_FOLDER}
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+				</div>
+			</li>
+		<!-- END messagerow -->
+
+		</ol>
+	<!-- ELSE -->
+		<p><strong>
+			<!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
+				<!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF -->
+			<!-- ELSE -->
+				{L_NO_MESSAGES}
+			<!-- ENDIF -->
+		</strong></p>
+	<!-- ENDIF -->
+
+	<!-- IF FOLDER_CUR_MESSAGES neq 0 -->
+		<fieldset class="actions">
+			<div class="lside">
+				<label for="export_option">
+					<select class="dropdown-up" name="export_option" id="export_option">
+						<option value="CSV">{L_EXPORT_AS_CSV}</option>
+						<option value="CSV_EXCEL">{L_EXPORT_AS_CSV_EXCEL}</option>
+						<option value="XML">{L_EXPORT_AS_XML}</option>
+					</select>
+				</label><input class="button-flat" type="submit" name="submit_export" value="{L_GO}" />
+			</div>
+			<div class="rside">
+				<select class="dropdown-up" name="mark_option">
+					{S_MARK_OPTIONS}
+					{S_MOVE_MARKED_OPTIONS}
+				</select><input class="button-flat" type="submit" name="submit_mark" value="{L_GO}" />
+			</div><br><br><br>
+			<div class="button-multiple"><a href="#" onclick="marklist('viewfolder', 'marked_msg', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('viewfolder', 'marked_msg', false); return false;">{L_UNMARK_ALL}</a></div>
+		</fieldset>
+	
+		<div class="action-bar-bottom">
+			<div class="pagination">
+				{TOTAL_MESSAGES}
+				<!-- IF .pagination --> 
+					<!-- INCLUDE pagination.html -->
+				<!-- ENDIF -->
+			</div>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- INCLUDE ucp_pm_message_footer.html -->
+<!-- ENDIF -->
+<!-- INCLUDE ucp_footer.html -->

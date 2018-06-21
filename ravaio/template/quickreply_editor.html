@@ -1,0 +1,21 @@
+<form method="post" action="{U_QR_ACTION}" class="quickreply">
+	<!-- EVENT quickreply_editor_panel_before -->
+	<fieldset>
+		<!-- EVENT quickreply_editor_subject_before -->
+		<div class="quickreply-box">
+			<input type="hidden" name="subject" id="subject" size="45" maxlength="124" tabindex="2" value="{SUBJECT}" />
+			<!-- EVENT quickreply_editor_message_before -->
+			<textarea name="message" rows="4" cols="76" tabindex="3" placeholder="{L_MESSAGE}"></textarea>
+			<!-- EVENT quickreply_editor_message_after -->
+			{S_FORM_TOKEN}
+			{QR_HIDDEN_FIELDS}
+			<div class="quickreply-buttons"><button type="submit" accesskey="f" tabindex="6" name="preview" class="right"><i class="fa fa-expand"></i><span>{L_FULL_EDITOR}</span></button><button type="submit" accesskey="s" tabindex="7" name="post"><i class="fa fa-pencil"></i><span>{L_SUBMIT}</span></button></div>
+		</div>
+		<!-- IF CURRENT_USER_AVATAR -->
+			<span class="quickreply-avatar">{CURRENT_USER_AVATAR}</span>
+		<!-- ELSE -->
+			<span class="avatar-none">{CURRENT_USERNAME_SIMPLE}</span>
+		<!-- ENDIF -->
+	</fieldset>
+	<!-- EVENT quickreply_editor_panel_after -->
+</form>

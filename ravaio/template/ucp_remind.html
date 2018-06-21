@@ -1,0 +1,35 @@
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_PROFILE_ACTION}" method="post" id="remind">
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2>{L_SEND_PASSWORD}</h2>
+		</div>
+	</div>
+</div>
+
+<div class="background-main">
+	<div class="chunk">
+
+		<fieldset>
+		<dl class="form">
+			<dt><span>{L_USERNAME}{L_COLON}</span></dt>
+			<dd><label for="username"><input class="input" type="text" name="username" id="username" size="25" /></label></dd>
+		</dl>
+		<dl class="form">
+			<dt><span>{L_EMAIL_ADDRESS}{L_COLON}</span><p>{L_EMAIL_REMIND}</p></dt>
+			<dd><label for="email"><input class="input" type="email" name="email" id="email" size="25" maxlength="100" /></label></dd>
+		</dl>
+		<div class="actions-submit">
+			{S_HIDDEN_FIELDS}<input type="submit" name="submit" id="submit" class="button" value="{L_SUBMIT}" tabindex="2" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+		</div>
+		{S_FORM_TOKEN}
+		</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

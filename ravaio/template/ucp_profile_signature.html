@@ -1,0 +1,39 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+	<!-- IF SIGNATURE_PREVIEW != '' -->
+		<h3>{L_SIGNATURE_PREVIEW}</h3>
+		<div class="postbody">
+			<div class="signature standalone">{SIGNATURE_PREVIEW}</div>
+		</div>
+	<!-- ENDIF -->
+
+	<p>{L_SIGNATURE_EXPLAIN}</p>
+
+	<!-- DEFINE $SIG_EDIT = 1 -->
+	<!-- INCLUDE posting_editor.html -->
+
+	<h3>{L_OPTIONS}</h3>
+
+	<fieldset class="fields">
+		<!-- IF S_BBCODE_ALLOWED -->
+			<div><label for="disable_bbcode"><input class="check" type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} /><span class="check"></span><span>{L_DISABLE_BBCODE}</span></label></div>
+		<!-- ENDIF -->
+		<!-- IF S_SMILIES_ALLOWED -->
+			<div><label for="disable_smilies"><input class="check" type="checkbox" name="disable_smilies" id="disable_smilies"{S_SMILIES_CHECKED} /><span class="check"></span><span>{L_DISABLE_SMILIES}</span></label></div>
+		<!-- ENDIF -->
+		<!-- IF S_LINKS_ALLOWED -->
+			<div><label for="disable_magic_url"><input class="check" type="checkbox" name="disable_magic_url" id="disable_magic_url"{S_MAGIC_URL_CHECKED} /><span class="check"></span><span>{L_DISABLE_MAGIC_URL}</span></label></div>
+		<!-- ENDIF -->
+
+	</fieldset>
+
+<fieldset class="actions-submit">
+	{S_HIDDEN_FIELDS}
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button" /><input type="submit" name="preview" value="{L_PREVIEW}" class="button-flat" /><input type="reset" name="reset" value="{L_RESET}" class="button-flat" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

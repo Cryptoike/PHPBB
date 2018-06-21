@@ -1,0 +1,49 @@
+<div class="dropdown-box-big">
+	<div class="dropdown-header">
+		<h5>{L_NOTIFICATIONS}</h5>
+		<a href="{U_NOTIFICATION_SETTINGS}"><i class="fa fa-cog"></i></a>
+		<!-- IF NOTIFICATIONS_COUNT -->
+			<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read"><i class="fa fa-check"></i></a>
+		<!-- ENDIF -->
+	</div>
+
+	<ul class="dropdown-body">
+		<!-- IF not .notifications -->
+			<li class="no_notifications">
+				{L_NO_NOTIFICATIONS}
+			</li>
+		<!-- ENDIF -->
+		<!-- BEGIN notifications -->
+			<li<!-- IF notifications.STYLING --> class="{notifications.STYLING}"<!-- ENDIF -->>
+				<!-- IF notifications.URL -->
+					<a class="notification-block" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
+				<!-- ELSE -->
+					<div class="notification-nl">
+				<!-- ENDIF -->
+					<!-- IF notifications.UNREAD --><div class="notification-unread"></div><!-- ENDIF --><p class="notification-title">{notifications.FORMATTED_TITLE}</p>
+					<!-- IF notifications.REFERENCE -->
+						<p class="notification-reference">{notifications.REFERENCE}</p>
+					<!-- ENDIF -->
+					<!-- IF notifications.FORUM -->
+						<p class="notification-forum">{notifications.FORUM}</p>
+					<!-- ENDIF -->
+					<!-- IF notifications.REASON -->
+						<p class="notification-reason">{notifications.REASON}</p>
+					<!-- ENDIF -->
+					<p class="notification-time">{notifications.TIME}</p>
+				<!-- IF notifications.URL -->
+					</a>
+				<!-- ELSE -->
+					</div>
+				<!-- ENDIF -->
+				<!-- IF notifications.UNREAD -->
+					<a href="{notifications.U_MARK_READ}" class="notification-mark" data-ajax="notification.mark_read" title="{L_MARK_READ}"><i class="fa fa-check"></i></a>
+				<!-- ENDIF -->
+			</li>
+		<!-- END notifications -->
+	</ul>
+
+	<div class="dropdown-footer">
+		<a href="{U_VIEW_ALL_NOTIFICATIONS}">{L_SEE_ALL}</a>
+	</div>
+</div>

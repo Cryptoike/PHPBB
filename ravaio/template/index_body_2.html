@@ -1,0 +1,189 @@
+<!-- INCLUDE overall_header.html -->
+
+
+
+<div id="sub-header">
+
+	<div class="chunk">
+
+		<div class="sub-header-title">
+
+			<!-- EVENT viewforum_forum_title_before -->
+
+			<h2 class="forum-title"><!-- EVENT viewforum_forum_name_prepend --><a href="{U_VIEW_FORUM}">LE FORUM CANI-SENIORS</a><!-- EVENT viewforum_forum_name_append --></h2>
+
+			<!-- EVENT viewforum_forum_title_after -->
+
+			<!-- IF FORUM_DESC or MODERATORS or U_MCP -->
+
+			<div>
+
+				<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->{L_COLON}</strong> {MODERATORS}</p><!-- ENDIF -->
+
+			</div>
+
+			<!-- ENDIF -->
+
+		</div>
+
+		<!-- IF not S_IS_BOT -->
+
+			<div class="sub-header-buttons">
+
+				<!-- EVENT viewforum_buttons_top_before -->
+
+
+
+				<!-- IF S_DISPLAY_POST_INFO -->
+
+					<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->">
+
+						<!-- IF S_IS_LOCKED --><i class="fa fa-lock"></i><span>{L_BUTTON_FORUM_LOCKED}</span><!-- ELSE --><i class="fa fa-pencil"></i><span>{L_BUTTON_NEW_TOPIC}</span><!-- ENDIF -->
+
+					</a>
+
+				<!-- ENDIF -->
+
+
+
+				<!-- EVENT viewforum_buttons_top_after -->
+
+			</div>
+
+		<!-- ENDIF -->
+
+	</div>
+
+</div>
+
+<div id="main-index" class="background-main">
+
+	<!-- EVENT ra_index_body_before -->
+
+	<div class="chunk">            
+
+	<div class="forumlist-main2">
+            
+        <div class="forumlist-main-inner">
+			<!-- EVENT ra_index_markforums_before -->
+			
+			<!-- INCLUDE forumlist_body2.html -->
+
+			<!-- EVENT index_body_markforums_before -->
+
+			<!-- IF not S_IS_BOT and U_MARK_FORUMS and $SHOW_MARK_ALL -->
+				<span class="mark-read-container"><a href="{U_MARK_FORUMS}" class="mark-read" accesskey="m" data-ajax="mark_forums_read">{L_MARK_FORUMS_READ}</a></span>
+			<!-- ENDIF -->
+
+			<!-- EVENT index_body_markforums_after -->
+
+			<!-- IF RA_STAT_POS eq 1 -->
+
+			<!-- IF S_DISPLAY_ONLINE_LIST -->
+				<div class="box-normal">
+					<!-- IF U_VIEWONLINE --><h3 class="strong-head"><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3 class="strong-head">{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+					<p>
+						<!-- EVENT index_body_block_online_prepend -->
+						{TOTAL_USERS_ONLINE}<br><span class="dimmed">{L_ONLINE_EXPLAIN}</span><br><br>{RECORD_USERS}<br><br>{LOGGED_IN_USER_LIST}
+						<!-- IF LEGEND --><br>{L_LEGEND}{L_COLON} {LEGEND}<!-- ENDIF -->
+						<!-- EVENT index_body_block_online_append -->
+					</p>
+				</div>
+			<!-- ENDIF -->
+
+			<!-- IF S_DISPLAY_BIRTHDAY_LIST and .birthdays -->
+				<div class="box-normal">
+					<h3 class="strong-head">{L_BIRTHDAYS}</h3>
+					<p>
+						<!-- EVENT index_body_block_birthday_prepend -->
+						<!-- IF .birthdays -->{L_CONGRATULATIONS}{L_COLON} <strong><!-- BEGIN birthdays -->{birthdays.USERNAME}<!-- IF birthdays.AGE !== '' --> ({birthdays.AGE})<!-- ENDIF --><!-- IF not birthdays.S_LAST_ROW -->, <!-- ENDIF --><!-- END birthdays --></strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF -->
+						<!-- EVENT index_body_block_birthday_append -->
+					</p>
+				</div>
+			<!-- ENDIF -->
+
+			<!-- IF NEWEST_USER -->
+				<div class="box-normal">
+					<h3 class="strong-head">{L_STATISTICS}</h3>
+					<p>
+						<!-- EVENT index_body_block_stats_prepend -->
+						<span>{TOTAL_POSTS}</span>, <span>{TOTAL_TOPICS}</span>, <span>{TOTAL_USERS}</span>, <span>{NEWEST_USER}</span>
+						<!-- EVENT index_body_block_stats_append -->
+					</p>
+				</div>
+			<!-- ENDIF -->
+
+			<!-- ENDIF -->
+
+		</div>
+
+	</div>
+
+	<div class="main-sidebar2">
+    <div class="sidebar-block">
+      <a href="/index2.php"><h5 class="sidebar-head">LES DERNIERS POSTS</h5></a>
+      <div class="sidebar-body">
+        {TABLE_RETOUR}
+      </div>
+    </div>
+  </div>
+
+	</div>
+
+	<!-- EVENT ra_index_body -->
+
+</div>
+
+
+<!-- IF not RA_STAT_POS or RA_FOOTER_BLOCKS -->
+
+<div class="background-deep">
+	<!-- IF not RA_STAT_POS -->
+	<div class="chunk">
+
+		<!-- EVENT index_body_stat_blocks_before -->
+
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+			<div class="stat-block online-list">
+				<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+				<p>
+					<!-- EVENT index_body_block_online_prepend -->
+					{TOTAL_USERS_ONLINE}<br><span class="dimmed">{L_ONLINE_EXPLAIN}</span><br><br>{RECORD_USERS}<br><br>{LOGGED_IN_USER_LIST}
+					<!-- IF LEGEND --><br>{L_LEGEND}{L_COLON} {LEGEND}<!-- ENDIF -->
+					<!-- EVENT index_body_block_online_append -->
+				</p>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- EVENT index_body_stat_blocks_after -->
+
+		<!-- IF S_DISPLAY_BIRTHDAY_LIST and .birthdays -->
+			<div class="box-normal birthdays">
+				<h3>{L_BIRTHDAYS}</h3>
+				<p>
+					<!-- EVENT index_body_block_birthday_prepend -->
+					<!-- IF .birthdays -->{L_CONGRATULATIONS}{L_COLON} <strong><!-- BEGIN birthdays -->{birthdays.USERNAME}<!-- IF birthdays.AGE !== '' --> ({birthdays.AGE})<!-- ENDIF --><!-- IF not birthdays.S_LAST_ROW -->, <!-- ENDIF --><!-- END birthdays --></strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF -->
+					<!-- EVENT index_body_block_birthday_append -->
+				</p>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF NEWEST_USER -->
+			<div class="stat-block statistics">
+				<p>
+					<!-- EVENT index_body_block_stats_prepend -->
+					<span>{TOTAL_POSTS}</span><span>{TOTAL_TOPICS}</span><span>{TOTAL_USERS}</span><span>{NEWEST_USER}</span>
+					<!-- EVENT index_body_block_stats_append -->
+				</p>
+			</div>
+		<!-- ENDIF -->
+
+	</div>
+	<!-- ELSE -->
+		<!-- EVENT ra_index_body_stats -->
+	<!-- ENDIF -->
+</div>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

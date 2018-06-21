@@ -1,0 +1,65 @@
+<div id="topicreview">
+<script type="text/javascript">
+// <![CDATA[
+	bbcodeEnabled = {S_BBCODE_ALLOWED};
+// ]]>
+</script>
+	<!-- BEGIN topic_review_row -->
+
+	<!-- IF topic_review_row.S_IGNORE_POST -->
+	<div class="post bg3 post-ignore">
+		<div class="inner">
+			{topic_review_row.L_IGNORE_POST}
+	<!-- ELSE -->
+	<div class="post <!-- IF topic_review_row.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF topic_review_row.POST_ID == REPORTED_POST_ID --> reported<!-- ENDIF -->">
+	<!-- ENDIF -->
+
+		<aside class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
+
+			<div>
+				<div class="avatar-container">
+					<span class="avatar-none">{topic_review_row.POST_AUTHOR_FULL}</span>
+				</div>
+				{topic_review_row.POST_AUTHOR_FULL}
+			</div>
+		</aside>
+
+		<article class="postbody" id="pr{topic_review_row.POST_ID}">
+			<h3><a href="#pr{topic_review_row.POST_ID}">{topic_review_row.POST_SUBJECT}</a></h3>
+
+			<div class="post-content">{topic_review_row.MESSAGE}</div>
+
+			<!-- IF topic_review_row.S_HAS_ATTACHMENTS -->
+				<dl class="attachbox">
+					<dt>{L_ATTACHMENTS}</dt>
+					<!-- BEGIN attachment -->
+						<dd>{topic_review_row.attachment.DISPLAY_ATTACHMENT}</dd>
+					<!-- END attachment -->
+				</dl>
+			<!-- ENDIF -->
+
+			<!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE -->
+				<div id="message_{topic_review_row.POST_ID}" style="display: none;">{topic_review_row.DECODED_MESSAGE}</div>
+			<!-- ENDIF -->
+
+			<!-- IF (topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE) or topic_review_row.U_MCP_DETAILS -->
+			<ul class="post-actions">
+				<!-- IF topic_review_row.U_MCP_DETAILS -->
+					<li>
+						<a href="{topic_review_row.U_MCP_DETAILS}" title="{L_POST_DETAILS}">
+							<span>{L_POST_DETAILS}</span>
+						</a>
+					</li><!-- ENDIF --><!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE --><li>
+						<a href="#postingbox" onclick="addquote({topic_review_row.POST_ID}, '{topic_review_row.POSTER_QUOTE}', '{LA_WROTE}');" title="{L_QUOTE} {topic_review_row.POST_AUTHOR}">
+							<span>{L_QUOTE} {topic_review_row.POST_AUTHOR}</span>
+						</a>
+					</li><!-- ENDIF --><!-- IF not S_IS_BOT --><li class="right post-date">
+						<a href="{topic_review_row.U_MINI_POST}">{topic_review_row.POST_DATE}</a>
+					</li>
+				<!-- ENDIF -->
+			</ul>
+			<!-- ENDIF -->
+		</article>
+	</div>
+	<!-- END topic_review_row -->
+</div>

@@ -1,0 +1,84 @@
+<div class="background-deep">
+	<div class="chunk">
+		<h2 class="solo">{L_FIND_USERNAME}</h2>
+
+		<form method="post" action="{S_MODE_ACTION}" id="search_memberlist">
+
+			<p>{L_FIND_USERNAME_EXPLAIN}</p>
+
+			<!-- EVENT memberlist_search_fields_before -->
+			<fieldset class="fields1 column1">
+			<dl class="form">
+				<dt><span>{L_USERNAME}{L_COLON}</span></dt>
+				<dd>
+					<!-- IF U_LIVE_SEARCH --><div class="live-search-container"><!-- ENDIF -->
+					<input type="text" name="username" id="username" value="{USERNAME}" class="input"<!-- IF U_LIVE_SEARCH --> autocomplete="off" data-filter="phpbb.search.filter" data-ajax="member_search" data-min-length="3" data-url="{U_LIVE_SEARCH}" data-results="#user-search" data-overlay="false"<!-- ENDIF --> />
+					<!-- IF U_LIVE_SEARCH -->
+						<div class="live-search dropdown-box" id="user-search">
+							<ul class="search-results">
+								<li class="search-result-tpl"><span class="search-result"></span></li>
+							</ul>
+						</div>
+					</div>
+					<!-- ENDIF -->
+				</dd>
+			</dl>
+		<!-- IF S_EMAIL_SEARCH_ALLOWED -->
+			<dl class="form">
+				<dt><span>{L_EMAIL}{L_COLON}</span></dt>
+				<dd><input type="text" name="email" id="email" value="{EMAIL}" class="input" /></dd>
+			</dl>
+		<!-- ENDIF -->
+		<!-- IF S_JABBER_ENABLED -->
+			<dl class="form">
+				<dt><span>{L_JABBER}{L_COLON}</span></dt>
+				<dd><input type="text" name="jabber" id="jabber" value="{JABBER}" class="input" /></dd>
+			</dl>
+		<!-- ENDIF -->
+			<dl class="form">
+				<dt><span>{L_GROUP}{L_COLON}</span></dt>
+				<dd><select name="search_group_id" id="search_group_id">{S_GROUP_SELECT}</select></dd>
+			</dl>
+			<!-- EVENT memberlist_search_sorting_options_before -->
+			<dl class="form">
+				<dt><span>{L_SORT_BY}{L_COLON}</span></dt>
+				<dd><select name="sk" id="sk">{S_SORT_OPTIONS}</select></dd>
+				<dd><select name="sd">{S_ORDER_SELECT}</select></dd>
+			</dl>
+			</fieldset>
+
+			<fieldset class="fields1 column2">
+			<dl class="form">
+				<dt><span>{L_JOINED}{L_COLON}</span></dt>
+				<dd><select name="joined_select">{S_JOINED_TIME_OPTIONS}</select></dd>
+				<dd><input class="input" type="text" name="joined" id="joined" value="{JOINED}" /></dd>
+			</dl>
+		<!-- IF S_VIEWONLINE -->
+			<dl class="form">
+				<dt><span>{L_LAST_ACTIVE}{L_COLON}</span></dt>
+				<dd><select name="active_select">{S_ACTIVE_TIME_OPTIONS}</select></dd>
+				<dd><input class="input" type="text" name="active" id="active" value="{ACTIVE}" /></dd>
+			</dl>
+		<!-- ENDIF -->
+			<dl class="form">
+				<dt><span>{L_POSTS}{L_COLON}</span></dt>
+				<dd><select name="count_select">{S_COUNT_OPTIONS}</select></dd>
+				<dd><input class="input" type="number" min="0" name="count" id="count" value="{COUNT}" /></dd>
+			</dl>
+		<!-- IF S_IP_SEARCH_ALLOWED -->
+			<dl class="form">
+				<dt><span>{L_POST_IP}{L_COLON}</span></dt>
+				<dd><input class="input" type="text" name="ip" id="ip" value="{IP}" /></dd>
+			</dl>
+		<!-- ENDIF -->
+			<!-- EVENT memberlist_search_fields_after -->
+			</fieldset>
+
+			<fieldset class="actions-submit">
+				<input type="submit" name="submit" value="{L_SEARCH}" class="button" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	</div>
+</div>
+

@@ -1,0 +1,32 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<p>{L_FOES_EXPLAIN}</p>
+
+<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<dl class="form">
+		<dt><span>{L_YOUR_FOES}{L_COLON}</span><p>{L_YOUR_FOES_EXPLAIN}</p></dt>
+		<dd>
+			<!-- IF S_USERNAME_OPTIONS -->
+				<select name="usernames[]" id="usernames" multiple="multiple" size="5">{S_USERNAME_OPTIONS}</select>
+			<!-- ELSE -->
+				<strong>{L_NO_FOES}</strong>
+			<!-- ENDIF -->
+		</dd>
+	</dl>
+	<dl class="form">
+		<dt><span>{L_ADD_FOES}{L_COLON}</span><p>{L_ADD_FOES_EXPLAIN}</p></dt>
+		<dd><textarea name="add" id="add" rows="3" cols="30" class="input">{USERNAMES}</textarea></dd>
+		<dd><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd>
+	</dl>
+</fieldset>
+
+<fieldset class="actions-submit">
+	{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="{L_SUBMIT}" class="button" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

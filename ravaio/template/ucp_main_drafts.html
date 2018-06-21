@@ -1,0 +1,61 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+	<p>{L_DRAFTS_EXPLAIN}</p>
+
+<!-- IF S_EDIT_DRAFT -->
+
+		<!-- INCLUDE posting_editor.html -->
+
+			<fieldset class="actions">
+				{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button" /><input type="submit" name="submit" value="{L_SAVE}" class="button" />
+				{S_FORM_TOKEN}
+			</fieldset>
+
+<!-- ELSE -->
+
+	<!-- IF .draftrow -->
+		<ol class="cp-list">
+		<!-- BEGIN draftrow -->
+			<li>
+				<div class="cp-list-icon forum_read"><div></div><input class="cp-list-mark" type="checkbox" name="d[{draftrow.DRAFT_ID}]" id="d{draftrow.DRAFT_ID}" /><label class="cp-list-mark" for="d{draftrow.DRAFT_ID}"><i class="fa fa-check"></i></label></div>
+				<div class="cp-list-description">
+					<div class="cp-list-description-inner">
+						<h4><a class="topictitle" href="{draftrow.U_VIEW_EDIT}">{draftrow.DRAFT_SUBJECT}</a></h4>
+						<!-- IF draftrow.S_LINK_TOPIC -->
+							<p>{L_TOPIC}{L_COLON} <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a></p>
+						<!-- ELSEIF draftrow.S_LINK_FORUM -->
+							<p>{L_FORUM}{L_COLON} <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a></p>
+						<!-- ELSEIF S_PRIVMSGS --><!-- ELSE -->
+								{L_NO_TOPIC_FORUM}
+						<!-- ENDIF -->
+					</div>
+				</div>
+				<div class="cp-list-recent">
+					{draftrow.DATE}
+					<br>
+					<!-- IF draftrow.U_INSERT -->
+						<a href="{draftrow.U_INSERT}">{L_LOAD_DRAFT}</a>
+					<!-- ENDIF -->
+					<a href="{draftrow.U_VIEW_EDIT}">{L_VIEW_EDIT}</a>
+				</div>
+			</li>
+		<!-- END draftrow -->
+		</ol>
+	<!-- ELSE -->
+		<p><strong>{L_NO_SAVED_DRAFTS}</strong></p>
+	<!-- ENDIF -->
+
+	<!-- IF .draftrow -->
+		<fieldset class="actions">
+			<div class="button-multiple"><a href="#" onclick="marklist('postform', '', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('postform', '', false); return false;">{L_UNMARK_ALL}</a></div><button class="button" type="submit" name="delete"><i class="fa fa-trash-o"></i><span>{L_DELETE_MARKED}</span></button>
+			{S_FORM_TOKEN}
+		</fieldset>
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

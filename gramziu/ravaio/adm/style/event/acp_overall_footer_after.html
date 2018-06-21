@@ -1,0 +1,37 @@
+<!-- IF not $INCLUDED_COLPICKJS -->
+	<!-- INCLUDEJS @gramziu_ravaio/colpick.js -->
+	<!-- DEFINE $INCLUDED_COLPICKJS = true -->
+<!-- ENDIF -->
+
+<script>
+jQuery(function($) {
+	$('.colour-field-bg').colpick({
+		layout: 'full',
+		submit: 0,
+		onChange: function(hsb, hex, rgb, el, bySetColor) {
+			$(el).next().css({
+				'background-color': '#' + hex
+			});
+			if (!bySetColor) {
+				$(el).val('#' + hex);
+			}
+		}
+	}).keyup(function() {
+		$(this).colpickSetColor(this.value || 'ffffff');
+	});
+	$('.colour-field-txt').colpick({
+		layout: 'full',
+		submit: 0,
+		onChange: function(hsb, hex, rgb, el, bySetColor) {
+			$(el).next().css({
+				'color': '#' + hex
+			});
+			if (!bySetColor) {
+				$(el).val('#' + hex);
+			}
+		}
+	}).keyup(function() {
+		$(this).colpickSetColor(this.value || 'ffffff');
+	});
+});
+</script>

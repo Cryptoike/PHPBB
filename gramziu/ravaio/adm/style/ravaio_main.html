@@ -1,0 +1,638 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<!-- IF S_GENERAL -->
+	<h1>{L_ACP_RAVAIO_GENERAL}</h1>
+	<p>{L_ACP_RAVAIO_GENERAL_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_GENERAL}</legend>
+			<dl>
+				<dt>
+					<label for="ra_layout">{L_ACP_RA_LAYOUT}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_LAYOUT_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_layout" value="1"<!-- IF RA_LAYOUT eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_LAYOUT_WIDE}</label>
+					<label><input type="radio" class="radio" name="ra_layout" value="0"<!-- IF RA_LAYOUT eq 0 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_LAYOUT_BOXED}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_width">{L_ACP_RA_WIDTH}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_WIDTH_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_WIDTH}" name="ra_width" maxlength="7" size="5" />
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_stat_pos">{L_ACP_RA_STAT_POS}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_STAT_POS_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_stat_pos" value="0"<!-- IF RA_STAT_POS eq 0 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_STAT_POS_DEFAULT}</label>
+					<label><input type="radio" class="radio" name="ra_stat_pos" value="1"<!-- IF RA_STAT_POS eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_STAT_POS_BOXED}</label>
+					<label><input type="radio" class="radio" name="ra_stat_pos" value="2"<!-- IF RA_STAT_POS eq 2 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_STAT_POS_SIDEBAR}</label>
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_av_style">{L_ACP_RA_AV_STYLE}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_AV_STYLE_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_av_style" value="0"<!-- IF RA_AV_STYLE eq 0 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_AV_STYLE_ROUND}</label>
+					<label><input type="radio" class="radio" name="ra_av_style" value="1"<!-- IF RA_AV_STYLE eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_AV_STYLE_SQUARE}</label>
+					<label><input type="radio" class="radio" name="ra_av_style" value="2"<!-- IF RA_AV_STYLE eq 2 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_AV_STYLE_RECTANGLE}</label>
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_poster_style">{L_ACP_RA_POSTER_STYLE}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_POSTER_STYLE_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_poster_style" value="0"<!-- IF RA_POSTER_STYLE eq 0 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_POSTER_STYLE_DROP}</label>
+					<label><input type="radio" class="radio" name="ra_poster_style" value="1"<!-- IF RA_POSTER_STYLE eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_POSTER_STYLE_UNDER}</label>
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_poster_column">{L_ACP_RA_POSTER_COLUMN}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_POSTER_COLUMN_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_poster_column" value="1"<!-- IF RA_POSTER_COLUMN eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_poster_column" value="0"<!-- IF RA_POSTER_COLUMN eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_width">{L_ACP_RA_POSTER_WIDTH}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_POSTER_WIDTH_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_POSTER_WIDTH}" name="ra_poster_width" maxlength="7" size="5" />
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_poster_column">{L_ACP_RA_BACK_TO_TOP}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_BACK_TO_TOP_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_back_to_top" value="1"<!-- IF RA_BACK_TO_TOP eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_back_to_top" value="0"<!-- IF RA_BACK_TO_TOP eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_COLOURS -->
+	<h1>{L_ACP_RAVAIO_COLOURS}</h1>
+	<p>{L_ACP_RAVAIO_COLOURS_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RA_BG_COLOURS}</legend>
+			<dl>
+				<dt>
+					<label for="ra_head_index_bg">{L_ACP_RA_HEAD_INDEX_BG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_INDEX_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_INDEX_BG}" name="ra_head_index_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_INDEX_BG};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_other_bg">{L_ACP_RA_HEAD_OTHER_BG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_OTHER_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_OTHER_BG}" name="ra_head_other_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_OTHER_BG};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_bg">{L_ACP_RA_HEAD_BG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_BG}" name="ra_head_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_BG};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_sub_head_bg">{L_ACP_RA_SUB_HEAD_BG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_SUB_HEAD_BG_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_SUB_HEAD_BG}" name="ra_sub_head_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_SUB_HEAD_BG};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_m_accent">{L_ACP_RA_M_ACCENT}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_M_ACCENT}" name="ra_m_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_M_ACCENT};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_m_accent_b">{L_ACP_RA_M_ACCENT_B}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_M_ACCENT_B}" name="ra_m_accent_b" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_M_ACCENT_B};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_s_accent">{L_ACP_RA_S_ACCENT}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_S_ACCENT}" name="ra_s_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_S_ACCENT};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_s_accent_b">{L_ACP_RA_S_ACCENT_B}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_S_ACCENT_B}" name="ra_s_accent_b" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_S_ACCENT_B};">Preview</span>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>{L_ACP_RA_TXT_COLOURS}</legend>
+			<dl>
+				<dt>
+					<label for="ra_t_accent">{L_ACP_RA_T_ACCENT}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_T_ACCENT}" name="ra_t_accent" maxlength="27" size="24" class="colour-field-txt" /><span class="colour-preview" style="color: {RA_T_ACCENT};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_t_accent_b">{L_ACP_RA_T_ACCENT_B}{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_T_ACCENT_B}" name="ra_t_accent_b" maxlength="27" size="24" class="colour-field-txt" /><span class="colour-preview" style="color: {RA_T_ACCENT_B};">Preview</span>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_HEADER -->
+	<h1>{L_ACP_RAVAIO_HEADER}</h1>
+	<p>{L_ACP_RAVAIO_HEADER_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_HEADER}</legend>
+			<dl>
+				<dt>
+					<label for="ra_logo_type">{L_ACP_RA_LOGO_TYPE}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_logo_type" value="1"<!-- IF RA_LOGO_TYPE eq 1 --> checked="checked"<!-- ENDIF --> /> Text</label>
+					<label><input type="radio" class="radio" name="ra_logo_type" value="0"<!-- IF RA_LOGO_TYPE eq 0 --> checked="checked"<!-- ENDIF --> /> Image</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_logo_text">{L_ACP_RA_LOGO_TEXT}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_LOGO_TEXT_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_LOGO_TEXT}" name="ra_logo_text" maxlength="255" size="40" />
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_site_desc">{L_ACP_RA_SITE_DESC}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_SITE_DESC_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="1"<!-- IF RA_SITE_DESC eq 1 --> checked="checked"<!-- ENDIF --> /> Standard</label>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="2"<!-- IF RA_SITE_DESC eq 2 --> checked="checked"<!-- ENDIF --> /> Small</label>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="0"<!-- IF RA_SITE_DESC eq 0 --> checked="checked"<!-- ENDIF --> /> Disabled</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_type">{L_ACP_RA_HEAD_TYPE}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_head_type" value="1"<!-- IF RA_HEAD_TYPE eq 1 --> checked="checked"<!-- ENDIF --> /> Standard</label>
+					<label><input type="radio" class="radio" name="ra_head_type" value="0"<!-- IF RA_HEAD_TYPE eq 0 --> checked="checked"<!-- ENDIF --> /> Sticky</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_index_img">{L_ACP_RA_HEAD_INDEX_IMG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_INDEX_IMG_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_INDEX_IMG}" name="ra_head_index_img" maxlength="255" size="40" />
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_other_img">{L_ACP_RA_HEAD_OTHER_IMG}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_OTHER_IMG_EXP}</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_OTHER_IMG}" name="ra_head_other_img" maxlength="255" size="40" />
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_HEADER_MENU -->
+	<h1>{L_ACP_RAVAIO_HEADER_MENU}</h1>
+	<p>{L_ACP_RAVAIO_HEADER_MENU_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_HEADER_MENU}</legend>
+			<dl>
+				<dt>
+					<label for="ra_logo_type">{L_ACP_RA_HEADER_MENU_ENABLE}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_header_menu" value="1"<!-- IF RA_HEADER_MENU eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_header_menu" value="0"<!-- IF RA_HEADER_MENU eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<!-- BEGIN ra_header_menu -->
+			<fieldset>
+				<legend>{L_ACP_RA_HEADER_MENU_ITEM}</legend>
+				<dl>
+					<dt>
+						<label for="name">{L_ACP_RA_HEADER_MENU_NAME}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_HEADER_MENU_NAME_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_header_menu.NAME}" name="name[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="url">{L_ACP_RA_HEADER_MENU_URL}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_HEADER_MENU_URL_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_header_menu.URL}" name="url[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="content">{L_ACP_RA_HEADER_MENU_CONTENT}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_HEADER_MENU_CONTENT_EXP}</span>
+					</dt>
+					<dd>
+						<textarea name="content[]" rows="15" cols="45">{ra_header_menu.CONTENT}</textarea>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="mega">{L_ACP_RA_HEADER_MENU_MEGA}{L_COLON}</label>
+					</dt>
+					<dd>
+						<label><input type="radio" class="radio" name="mega[{ra_header_menu.POSITION}]" value="1"<!-- IF ra_header_menu.MEGA eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+						<label><input type="radio" class="radio" name="mega[{ra_header_menu.POSITION}]" value="0"<!-- IF ra_header_menu.MEGA eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+					</dd>
+				</dl>
+				<input type="hidden" value="{ra_header_menu.POSITION}" name="position[]" />
+				<p class="submit-buttons">
+					<a class="button2" type="submit" id="delete_{ra_header_menu.POSITION}" href="{ra_header_menu.DELETE}">{L_DELETE}</a>
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		<!-- END ra_header_menu -->
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button1" type="submit" id="add" name="add" value="{L_ADD}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_SIDEBAR -->
+	<h1>{L_ACP_RAVAIO_SIDEBAR}</h1>
+	<p>{L_ACP_RAVAIO_SIDEBAR_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SIDEBAR}</legend>
+			<dl> 
+				<dt>
+					<label for="ra_sidebar">{L_ACP_RA_SIDEBAR}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_sidebar" value="1"<!-- IF RA_SIDEBAR eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_sidebar" value="0"<!-- IF RA_SIDEBAR eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+
+			<dl> 
+				<dt>
+					<label for="ra_sidebar_index">{L_ACP_RA_SIDEBAR_INDEX}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_sidebar_index" value="1"<!-- IF RA_SIDEBAR_INDEX eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_sidebar_index" value="0"<!-- IF RA_SIDEBAR_INDEX eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_sidebar_cat">{L_ACP_RA_SIDEBAR_CAT}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_sidebar_cat" value="1"<!-- IF RA_SIDEBAR_CAT eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_sidebar_cat" value="0"<!-- IF RA_SIDEBAR_CAT eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_sidebar_topic">{L_ACP_RA_SIDEBAR_TOPIC}{L_COLON}</label></dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_sidebar_topic" value="1"<!-- IF RA_SIDEBAR_TOPIC eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_sidebar_topic" value="0"<!-- IF RA_SIDEBAR_TOPIC eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			{S_FORM_TOKEN}
+		</fieldset>
+		<!-- BEGIN ra_sidebar -->
+			<fieldset>
+				<legend>{ra_sidebar.NAME}</legend>
+				<dl>
+					<dt>
+						<label for="name">{L_ACP_RA_SIDEBAR_BLOCK_NAME}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_SIDEBAR_BLOCK_NAME_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_sidebar.NAME}" name="name[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="content">{L_ACP_RA_SIDEBAR_BLOCK_CONTENT}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_SIDEBAR_BLOCK_CONTENT_EXP}</span>
+					</dt>
+					<dd>
+						<textarea name="content[]" rows="15" cols="45">{ra_sidebar.CONTENT}</textarea>
+					</dd>
+				</dl>
+				<input type="hidden" value="{ra_sidebar.POSITION}" name="position[]" />
+				<p class="submit-buttons">
+					<a class="button2" type="submit" id="delete_{ra_sidebar.POSITION}" href="{ra_sidebar.DELETE}">{L_DELETE}</a>
+				</p>
+			</fieldset>
+		<!-- END ra_sidebar -->
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button1" type="submit" id="add" name="add" value="{L_ADD}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_FOOTER -->
+	<h1>{L_ACP_RAVAIO_FOOTER}</h1>
+	<p>{L_ACP_RAVAIO_FOOTER_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_FOOTER}</legend>
+			<dl>
+				<dt><label for="ra_foot_type">{L_ACP_RA_FOOT_TYPE}{L_COLON}</label></dt>
+				<dd><label><input type="radio" class="radio" name="ra_foot_type" value="1"<!-- IF RA_FOOT_TYPE eq 1 --> checked="checked"<!-- ENDIF --> /> Standard</label>
+					<label><input type="radio" class="radio" name="ra_foot_type" value="0"<!-- IF RA_FOOT_TYPE eq 0 --> checked="checked"<!-- ENDIF --> /> Sticky</label></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_rc_posts">{L_ACP_RA_RC_POSTS}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_RC_POSTS_EXP}</span>
+				</dt>
+				<dd><label><input type="radio" class="radio" name="ra_rc_posts" value="1"<!-- IF RA_RC_POSTS eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_rc_posts" value="0"<!-- IF RA_RC_POSTS eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="ra_rc_posts">{L_ACP_RA_RC_POSTS_NUM}{L_COLON}</label></dt>
+				<dd><label><input type="radio" class="radio" name="ra_rc_posts_num" value="8"<!-- IF RA_RC_POSTS_NUM eq 8 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_rc_posts_num" value="4"<!-- IF RA_RC_POSTS_NUM eq 4 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_foot_text">{L_ACP_RA_FOOT_TEXT}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_FOOT_TEXT_EXP}</span>
+				</dt>
+				<dd>
+					<textarea name="ra_foot_text" rows="15" cols="45">{RA_FOOT_TEXT}</textarea>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_FOOTER_BLOCKS -->
+	<h1>{L_ACP_RAVAIO_FOOTER_BLOCKS}</h1>
+	<p>{L_ACP_RAVAIO_FOOTER_BLOCKS_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_FOOTER_BLOCKS}</legend>
+			<dl>
+				<dt>
+					<label for="ra_logo_type">{L_ACP_RA_FOOTER_BLOCKS_ENABLE}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_footer_blocks" value="1"<!-- IF RA_FOOTER_BLOCKS eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_footer_blocks" value="0"<!-- IF RA_FOOTER_BLOCKS eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<!-- BEGIN ra_footer_blocks -->
+			<fieldset>
+				<legend>{L_ACP_RA_FOOTER_BLOCKS_ITEM}</legend>
+				<dl>
+					<dt>
+						<label for="name">{L_ACP_RA_FOOTER_BLOCKS_NAME}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_BLOCKS_NAME_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_footer_blocks.NAME}" name="name[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="url">{L_ACP_RA_FOOTER_BLOCKS_URL}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_BLOCKS_URL_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_footer_blocks.URL}" name="url[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="content">{L_ACP_RA_FOOTER_BLOCKS_CONTENT}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_BLOCKS_CONTENT_EXP}</span>
+					</dt>
+					<dd>
+						<textarea name="content[]" rows="15" cols="45">{ra_footer_blocks.CONTENT}</textarea>
+					</dd>
+				</dl>
+				<input type="hidden" value="{ra_footer_blocks.POSITION}" name="position[]" />
+				<!-- IF RA_FOOTER_BLOCKS_COUNT neq 1 --><p class="submit-buttons">
+					<a class="button2" type="submit" id="delete_{ra_footer_blocks.POSITION}" href="{ra_footer_blocks.DELETE}">{L_DELETE}</a>
+				</p><!-- ENDIF -->
+				{S_FORM_TOKEN}
+			</fieldset>
+		<!-- END ra_footer_blocks -->
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<!-- IF RA_FOOTER_BLOCKS_COUNT lt 5 --><input class="button1" type="submit" id="add" name="add" value="{L_ADD}" />&nbsp;<!-- ENDIF -->
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ELSEIF S_FOOTER_MENU -->
+	<h1>{L_ACP_RAVAIO_FOOTER_MENU}</h1>
+	<p>{L_ACP_RAVAIO_FOOTER_MENU_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_FOOTER_MENU}</legend>
+			<dl>
+				<dt>
+					<label for="ra_logo_type">{L_ACP_RA_FOOTER_MENU_ENABLE}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_footer_menu" value="1"<!-- IF RA_FOOTER_MENU eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_footer_menu" value="0"<!-- IF RA_FOOTER_MENU eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<!-- BEGIN ra_footer_menu -->
+			<fieldset>
+				<legend>{L_ACP_RA_FOOTER_MENU_ITEM}</legend>
+				<dl>
+					<dt>
+						<label for="name">{L_ACP_RA_FOOTER_MENU_NAME}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_MENU_NAME_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_footer_menu.NAME}" name="name[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="url">{L_ACP_RA_FOOTER_MENU_URL}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_MENU_URL_EXP}</span>
+					</dt>
+					<dd>
+						<input class="text full" type="text" value="{ra_footer_menu.URL}" name="url[]" maxlength="100" size="10" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="align[{ra_footer_menu.POSITION}]">{L_ACP_RA_FOOTER_MENU_ALIGN}{L_COLON}</label>
+						<br>
+						<span>{L_ACP_RA_FOOTER_MENU_ALIGN_EXP}</span>
+					</dt>
+					<dd>
+						<label><input type="radio" class="radio" name="align[{ra_footer_menu.POSITION}]" value="1"<!-- IF ra_footer_menu.ALIGN eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_FOOTER_MENU_ALIGN_LEFT}</label>
+						<label><input type="radio" class="radio" name="align[{ra_footer_menu.POSITION}]" value="0"<!-- IF ra_footer_menu.ALIGN eq 0 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_FOOTER_MENU_ALIGN_RIGHT}</label>
+					</dd>
+				</dl>
+				<input type="hidden" value="{ra_footer_menu.POSITION}" name="position[]" />
+				<p class="submit-buttons">
+					<a class="button2" type="submit" id="delete_{ra_footer_menu.POSITION}" href="{ra_footer_menu.DELETE}">{L_DELETE}</a>
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		<!-- END ra_footer_menu -->
+		<fieldset>
+			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button1" type="submit" id="add" name="add" value="{L_ADD}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			</p>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

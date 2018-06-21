@@ -1,0 +1,45 @@
+
+<!-- IF not S_AVATARS_ENABLED -->
+	<p>{L_AVATAR_FEATURES_DISABLED}</p>
+<!-- ENDIF -->
+
+<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<!-- IF AVATAR -->
+		<dl class="form">
+			<dt><span>{L_CURRENT_IMAGE}{L_COLON}</span><p>{L_AVATAR_EXPLAIN}</p></dt>
+			<dd>{AVATAR}</dd>
+			<dd><label for="avatar_delete"><input class="check" type="checkbox" name="avatar_delete" id="avatar_delete" /><span class="check"></span><span>{L_DELETE_AVATAR}</span></label></dd>
+		</dl>
+	<!-- ENDIF -->
+</fieldset>
+<h3>{L_AVATAR_SELECT}</h3>
+<fieldset>
+	<dl class="form">
+		<dt><span>{L_AVATAR_TYPE}{L_COLON}</span></dt>
+		<dd><select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
+			<!-- BEGIN avatar_drivers -->
+			<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF --> data-toggle-setting="#avatar_option_{avatar_drivers.DRIVER}">{avatar_drivers.L_TITLE}</option>
+			<!-- END avatar_drivers -->
+		</select></dd>
+	</dl>
+</fieldset>
+<div id="avatar_options">
+	<!-- BEGIN avatar_drivers -->
+		<div id="avatar_option_{avatar_drivers.DRIVER}">
+			<noscript>
+				<h3 class="avatar_section_header">{avatar_drivers.L_TITLE}</h3>
+			</noscript>
+			<p>{avatar_drivers.L_EXPLAIN}</p>
+
+			<fieldset>
+				{avatar_drivers.OUTPUT}
+			</fieldset>
+		</div>
+	<!-- END avatar_drivers -->
+</div>
+<!-- IF not S_GROUP_MANAGE -->
+	<fieldset class="actions-submit">
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+	</fieldset>
+<!-- ENDIF -->

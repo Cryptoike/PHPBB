@@ -1,0 +1,50 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2 class="titlespace"><!-- IF S_REPORT_POST -->{L_REPORT_POST}<!-- ELSE -->{L_REPORT_MESSAGE}<!-- ENDIF --></h2>
+		</div>
+	</div>
+</div>
+
+<form method="post" action="{S_REPORT_ACTION}" id="report">
+<div id="mbrs" class="background-main">
+	<div class="chunk message-main">
+
+	<p><!-- IF S_REPORT_POST -->{L_REPORT_POST_EXPLAIN}<!-- ELSE -->{L_REPORT_MESSAGE_EXPLAIN}<!-- ENDIF --></p>
+
+	<fieldset>
+	<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
+	<dl class="form">
+		<dt><span>{L_REASON}{L_COLON}</span></dt>
+		<dd><select name="reason_id" id="reason_id" class="full"><!-- BEGIN reason --><option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option><!-- END reason --></select></dd>
+	</dl>
+	<!-- IF S_CAN_NOTIFY -->
+		<dl class="form">
+			<dt><span>{L_REPORT_NOTIFY}{L_COLON}</span><p>{L_REPORT_NOTIFY_EXPLAIN}</p></dt>
+			<dd>
+				<label for="notify1"><input class="radio" type="radio" name="notify" id="notify1" value="1" <!-- IF not S_NOTIFY -->checked="checked"<!-- ENDIF --> /><span class="radio"></span><span>{L_YES}</span></label> 
+				<label for="notify0"><input class="radio" type="radio" name="notify" id="notify0" value="0" <!-- IF S_NOTIFY -->checked="checked"<!-- ENDIF --> /><span class="radio"></span><span>{L_NO}</span></label>
+			</dd>
+		</dl>
+	<!-- ENDIF -->
+	<dl class="form">
+		<dt><span>{L_MORE_INFO}{L_COLON}</span><p>{L_CAN_LEAVE_BLANK}</p></dt>
+		<dd><textarea name="report_text" id="report_text" rows="10" cols="76" class="input">{REPORT_TEXT}</textarea></dd>
+	</dl>
+	<!-- IF CAPTCHA_TEMPLATE -->
+		<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+	<!-- ENDIF -->
+	</fieldset>
+
+	<fieldset class="actions-submit">
+		<input type="submit" name="submit" class="button" value="{L_SUBMIT}" /><input type="submit" name="cancel" class="button-flat" value="{L_CANCEL}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

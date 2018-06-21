@@ -1,0 +1,108 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+	/**
+	* Change language
+	*/
+	function change_language(lang_iso)
+	{
+		document.cookie = '{COOKIE_NAME}_lang=' + lang_iso + '; path={COOKIE_PATH}';
+		document.forms['register'].change_lang.value = lang_iso;
+		document.forms['register'].submit.click();
+	}
+// ]]>
+</script>
+
+<form id="register" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2>{SITENAME} - {L_REGISTRATION}</h2>
+		</div>
+	</div>
+</div>
+
+<div class="background-main">
+	<div class="chunk">
+		<fieldset>
+			<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+			<!-- IF L_REG_COND -->
+				<p>{L_REG_COND}</p>
+			<!-- ENDIF -->
+			<!-- EVENT ucp_register_credentials_before -->
+			<dl class="form">
+				<dt><span>{L_USERNAME}{L_COLON}</span><p>{L_USERNAME_EXPLAIN}</p></dt>
+				<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="input" title="{L_USERNAME}" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_EMAIL_ADDRESS}{L_COLON}</span></dt>
+				<dd><input type="email" tabindex="2" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="input" title="{L_EMAIL_ADDRESS}" autocomplete="off" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_PASSWORD}{L_COLON}</span><p>{L_PASSWORD_EXPLAIN}</p></dt>
+				<dd><input type="password" tabindex="4" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="input" title="{L_NEW_PASSWORD}" autocomplete="off" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_CONFIRM_PASSWORD}{L_COLON}</span></dt>
+				<dd><input type="password"  tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="input" title="{L_CONFIRM_PASSWORD}" autocomplete="off" /></dd>
+			</dl>
+
+			<!-- EVENT ucp_register_credentials_after -->
+
+			<!-- EVENT ucp_register_options_before -->
+			<dl class="form">
+				<dt><span>{L_LANGUAGE}{L_COLON}</span></dt>
+				<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
+			</dl>
+
+			<!-- INCLUDE timezone_option.html -->
+
+			<!-- EVENT ucp_register_profile_fields_before -->
+			<!-- IF .profile_fields -->
+				<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
+
+			<!-- BEGIN profile_fields -->
+				<dl class="form">
+					<dt><span>{profile_fields.LANG_NAME}{L_COLON}<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></span>
+					<!-- IF profile_fields.LANG_EXPLAIN --><p>{profile_fields.LANG_EXPLAIN}</p><!-- ENDIF -->
+					<!-- IF profile_fields.ERROR --><p class="error">{profile_fields.ERROR}</p><!-- ENDIF --></dt>
+					<dd>{profile_fields.FIELD}</dd>
+				</dl>
+			<!-- END profile_fields -->
+			<!-- ENDIF -->
+
+			<!-- EVENT ucp_register_profile_fields_after -->
+		</fieldset>
+	</div>
+</div>
+<!-- IF CAPTCHA_TEMPLATE -->
+	<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
+	<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+<!-- ENDIF -->
+
+<!-- IF S_COPPA -->
+
+
+<div class="background-main">
+	<div class="chunk">
+		<h4>{L_COPPA_COMPLIANCE}</h4>
+		<p>{L_COPPA_EXPLAIN}</p>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<div id="mbrs" class="background-main">
+	<div class="chunk">
+
+		<fieldset class="actions-submit">
+			{S_HIDDEN_FIELDS}<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button default-submit-action" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+			{S_FORM_TOKEN}
+		</fieldset>
+
+	</div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

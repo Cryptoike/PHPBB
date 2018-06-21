@@ -1,0 +1,105 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<!-- IF TOPIC_TITLE -->
+				<h2 class="posting-title"><!-- EVENT posting_topic_title_before --><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a><!-- EVENT posting_topic_title_after --></h2>
+			<!-- ELSE -->
+				<h2 class="posting-title"><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+			<!-- ENDIF -->
+		</div>
+	</div>
+</div>
+
+<form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+	<!-- IF S_FORUM_RULES or S_DRAFT_LOADED or S_SHOW_DRAFTS or S_POST_REVIEW or S_UNGLOBALISE -->
+		<div class="background-main">
+			<div class="chunk">
+				<!-- IF S_FORUM_RULES -->
+					<div class="<!-- IF not U_FORUM_RULES -->important-box<!-- ELSE -->important-box-link<!-- ENDIF -->">
+
+						<!-- IF U_FORUM_RULES -->
+							<span><i class="fa fa-exclamation-triangle"></i></span><a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+						<!-- ELSE -->
+							{FORUM_RULES}
+						<!-- ENDIF -->
+
+					</div>
+				<!-- ENDIF -->
+
+				<!-- IF S_DRAFT_LOADED -->
+					<div class="panel">
+						<div class="inner">
+
+						<h3>{L_INFORMATION}</h3>
+						<p>{L_DRAFT_LOADED}</p>
+
+						</div>
+					</div>
+				<!-- ENDIF -->
+
+				<!-- IF S_SHOW_DRAFTS --><!-- INCLUDE drafts.html --><!-- ENDIF -->
+
+				<!-- IF S_POST_REVIEW --><!-- INCLUDE posting_review.html --><!-- ENDIF -->
+
+				<!-- IF S_UNGLOBALISE -->
+					<div class="panel bg3">
+						<div class="inner">
+						<fieldset class="fields1">
+							<h2>{L_SELECT_DESTINATION_FORUM}</h2>
+							<p>{L_UNGLOBALISE_EXPLAIN}</p>
+							<dl>
+								<dt><label for="to_forum_id">{L_MOVE}{L_COLON}</label></dt>
+								<dd><select id="to_forum_id" name="to_forum_id">{S_FORUM_SELECT}</select></dd>
+							</dl>
+
+							<dl>
+								<dt>&nbsp;</dt>
+								<dd><input class="button1" type="submit" name="post" value="{L_CONFIRM}" /> <input class="button2" type="submit" name="cancel_unglobalise" value="{L_CANCEL}" /></dd>
+							</dl>
+						</fieldset>
+
+						</div>
+					</div>
+				<!-- ENDIF -->
+
+		<!-- IF S_DISPLAY_PREVIEW -->
+			</div>
+		</div>
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+	<!-- IF S_DISPLAY_PREVIEW -->
+		<div class="background-deep">
+			<div class="chunk">
+
+				<!-- INCLUDE posting_preview.html -->
+
+			</div>
+		</div>
+	<!-- ENDIF -->
+	<!-- IF not S_FORUM_RULES and not S_DRAFT_LOADED and not S_SHOW_DRAFTS and not S_POST_REVIEW and not S_UNGLOBALISE or S_DISPLAY_PREVIEW -->
+	<div id="mbrs" class="background-main">
+		<div class="chunk">
+	<!-- ENDIF -->
+			<!-- DEFINE $EXTRA_POSTING_OPTIONS = 1 -->
+			<!-- INCLUDE posting_editor.html -->
+			<input type="hidden" name="show_panel" value="options-panel" />
+			{S_FORM_TOKEN}
+
+			<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
+
+			<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
+			<!-- EVENT posting_layout_include_panel_body -->
+		</div>
+	</div>
+	<!-- IF S_DISPLAY_REVIEW -->
+		<div class="background-main">
+			<div class="chunk">
+				<!-- INCLUDE posting_topic_review.html -->
+			</div>
+		</div>
+	<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE overall_footer.html -->

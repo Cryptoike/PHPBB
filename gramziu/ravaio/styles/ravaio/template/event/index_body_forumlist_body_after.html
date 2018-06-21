@@ -1,0 +1,55 @@
+<!-- IF RA_SIDEBAR and RA_SIDEBAR_INDEX -->
+	<div class="main-sidebar">
+
+		<!-- IF RA_STAT_POS eq 2 -->
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+			<div class="sidebar-block">
+				<!-- IF U_VIEWONLINE --><h3 class="sidebar-head"><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3 class="sidebar-head">{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+				<div class="sidebar-body">
+					<!-- EVENT index_body_block_online_prepend -->
+					{TOTAL_USERS_ONLINE} <span class="dimmed">{L_ONLINE_EXPLAIN}</span><br><br>{RECORD_USERS}<br><br>{LOGGED_IN_USER_LIST}
+					<!-- EVENT index_body_block_online_append -->
+				</div>
+			</div>
+
+			<!-- IF LEGEND -->
+			<div class="sidebar-block">
+				<h3 class="sidebar-head">{L_LEGEND}</h3>
+				<div class="sidebar-body">
+					{LEGEND}
+				</div>
+			</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+
+		<!-- IF S_DISPLAY_BIRTHDAY_LIST and .birthdays -->
+			<div class="sidebar-block">
+				<h3 class="sidebar-head">{L_BIRTHDAYS}</h3>
+				<div class="sidebar-body">
+					<!-- EVENT index_body_block_birthday_prepend -->
+					<!-- IF .birthdays -->{L_CONGRATULATIONS}{L_COLON} <strong><!-- BEGIN birthdays -->{birthdays.USERNAME}<!-- IF birthdays.AGE !== '' --> ({birthdays.AGE})<!-- ENDIF --><!-- IF not birthdays.S_LAST_ROW -->, <!-- ENDIF --><!-- END birthdays --></strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF -->
+					<!-- EVENT index_body_block_birthday_append -->
+				</div>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF NEWEST_USER -->
+			<div class="sidebar-block">
+				<h3 class="sidebar-head">{L_STATISTICS}</h3>
+				<div class="sidebar-body side-stats">
+					<!-- EVENT index_body_block_stats_prepend -->
+					<span>{TOTAL_POSTS}</span><span>{TOTAL_TOPICS}</span><span>{TOTAL_USERS}</span><span>{NEWEST_USER}</span>
+					<!-- EVENT index_body_block_stats_append -->
+				</div>
+			</div>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+
+		<!-- BEGIN ra_sidebar -->
+			<div class="sidebar-block">
+				<h5 class="sidebar-head">{ra_sidebar.NAME}</h5>
+				<div class="sidebar-body">{ra_sidebar.CONTENT}</div>
+			</div>
+		<!-- END ra_sidebar -->
+	</div>
+<!-- ENDIF -->

@@ -1,0 +1,68 @@
+<!-- DEFINE $ON_LOGIN_PAGE = 1 -->
+
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_LOGIN_ACTION}" method="post" id="login" data-focus="<!-- IF S_ADMIN_AUTH -->{PASSWORD_CREDENTIAL}<!-- ELSE -->{USERNAME_CREDENTIAL}<!-- ENDIF -->">
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<h2 class="login-title"><!-- IF LOGIN_EXPLAIN -->{LOGIN_EXPLAIN}<!-- ELSE -->{L_LOGIN}<!-- ENDIF --></h2>
+		</div>
+	</div>
+</div>
+
+<div id="mbrs" class="background-main">
+	<div class="login-main chunk">
+		<fieldset>
+			<!-- IF LOGIN_ERROR --><p class="error">{LOGIN_ERROR}</p><!-- ENDIF -->
+			<dl class="form">
+				<dt><span>{L_USERNAME}{L_COLON}</span></dt>
+				<dd><input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" class="input" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_PASSWORD}{L_COLON}</span></dt>
+				<dd><input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="input" autocomplete="off" /></dd>
+			</dl>
+			<p>
+			<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
+				<!-- IF U_SEND_PASSWORD -->
+					<a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a><br><br>
+				<!-- ENDIF -->
+				<!-- IF U_RESEND_ACTIVATION -->
+					<a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a><br><br><br>
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+				<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+				<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+			<!-- ENDIF -->
+			<!-- IF S_DISPLAY_FULL_LOGIN -->
+				<!-- IF S_AUTOLOGIN_ENABLED -->
+					<label for="autologin"><input class="check" type="checkbox" name="autologin" id="autologin" tabindex="4" /><span class="check"></span><span>{L_LOG_ME_IN}</span></label><br><br>
+				<!-- ENDIF -->
+				<label for="viewonline"><input class="check" type="checkbox" name="viewonline" id="viewonline" tabindex="5" /><span class="check"></span><span>{L_HIDE_ME}</span></label>
+			<!-- ENDIF -->
+			</p>
+
+			{S_LOGIN_REDIRECT}
+			{S_HIDDEN_FIELDS}
+			<div class="log-reg"><input type="submit" name="login" tabindex="6" value="{L_LOGIN}" class="button" />
+			<a href="{U_REGISTER}" class="button-flat">{L_REGISTER}</a></div>
+		</fieldset>
+
+		<!-- IF not S_ADMIN_AUTH and PROVIDER_TEMPLATE_FILE -->
+			<!-- INCLUDE {PROVIDER_TEMPLATE_FILE} -->
+		<!-- ENDIF -->
+
+		<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
+		<p>
+			<a href="{U_TERMS_USE}">{L_TERMS_USE}</a><a href="{U_PRIVACY}">{L_PRIVACY}</a>
+		</p>
+		<!-- ENDIF -->
+	</div>
+</div>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

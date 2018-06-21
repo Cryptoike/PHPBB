@@ -1,0 +1,120 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form id="mcp" method="post" action="{S_MCP_ACTION}">
+
+<fieldset class="forum-selection">
+	<select name="f" id="fo">{S_FORUM_OPTIONS}</select><input type="submit" name="sort" value="{L_GO}" class="button-flat" />
+	{S_FORM_TOKEN}
+</fieldset>
+
+<h3>{L_TITLE}</h3>
+
+<p>{L_EXPLAIN}</p>
+
+<!-- IF .postrow -->
+	<div class="action-bar-top">
+		<div class="pagination">
+			{TOTAL}
+			<!-- IF .pagination --> 
+				<!-- INCLUDE pagination.html -->
+			<!-- ENDIF -->
+		</div>
+
+		<!-- IF TOPIC_ID --><label><input type="checkbox" class="radio" name="t" value="{TOPIC_ID}" checked="checked" /><strong>{L_ONLY_TOPIC}</strong></label><!-- ENDIF -->
+
+		<div>
+			<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+			<div class="dropdown-box-big">
+				<fieldset>
+					<div class="dropdown-header"><h5>{L_DISPLAY_POSTS}</h5></div>
+					<div class="dropdown-body">{S_SELECT_SORT_DAYS}</div>
+					<div class="dropdown-header"><h5>{L_SORT_BY}</h5></div>
+					<div class="dropdown-body">
+						{S_SELECT_SORT_KEY}{S_SELECT_SORT_DIR}
+					</div>
+					<div class="dropdown-footer"><input type="submit" name="sort" value="{L_GO}" /></div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+	<ol class="cp-list">
+	<!-- BEGIN postrow -->
+
+	<!-- IF postrow.S_DELETED_TOPIC -->
+		<li><p class="notopics">{L_DELETED_TOPIC}</p></li>
+	<!-- ELSE -->
+		<li>
+			<div class="cp-list-icon forum_read"><div></div>
+				<!-- IF S_TOPICS -->
+					<input class="cp-list-mark" type="checkbox" name="topic_id_list[]" value="{postrow.TOPIC_ID}" id="t{postrow.TOPIC_ID}" />
+				<!-- ELSE -->
+					<input class="cp-list-mark" type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}" id="p{postrow.POST_ID}" />
+				<!-- ENDIF -->
+
+				<!-- IF S_TOPICS -->
+				<label class="cp-list-mark" for="t{postrow.TOPIC_ID}">
+					<i class="fa fa-check"></i>
+				</label>
+				<!-- ELSE -->
+				<label class="cp-list-mark" for="p{postrow.POST_ID}">
+					<i class="fa fa-check"></i>
+				</label>
+				<!-- ENDIF -->
+			</div>
+			<div class="cp-list-description">
+				<div class="cp-list-description-inner">
+						<h4><a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.POST_SUBJECT}</a></h4> {postrow.ATTACH_ICON_IMG}
+						<p>{L_POSTED} {L_POST_BY_AUTHOR} {postrow.POST_AUTHOR_FULL}, {postrow.POST_TIME}</p>
+				</div>
+			</div>
+			<div class="cp-list-recent">
+				<!-- IF not S_TOPICS -->
+					{L_TOPIC}{L_COLON} <a href="{postrow.U_TOPIC}">{postrow.TOPIC_TITLE}</a>
+					<br>
+				<!-- ENDIF -->
+				{L_FORUM}{L_COLON} <a href="{postrow.U_VIEWFORUM}">{postrow.FORUM_NAME}</a>
+			</div>
+		</li>
+	<!-- ENDIF -->
+	<!-- END postrow -->
+	</ol>
+
+	<div class="action-bar-bottom">
+		<div class="pagination">
+			{TOTAL}
+			<!-- IF .pagination --> 
+				<!-- INCLUDE pagination.html -->
+			<!-- ENDIF -->
+		</div>
+	</div>
+
+<!-- ELSE -->
+	<p class="notopics"><strong>
+		<!-- IF S_RESTORE -->
+			<!-- IF S_TOPICS -->{L_NO_TOPICS_DELETED}<!-- ELSE -->{L_NO_POSTS_DELETED}<!-- ENDIF -->
+		<!-- ELSE -->
+			<!-- IF S_TOPICS -->{L_NO_TOPICS_QUEUE}<!-- ELSE -->{L_NO_POSTS_QUEUE}<!-- ENDIF -->
+		<!-- ENDIF -->
+	</strong></p>
+<!-- ENDIF -->
+
+<!-- IF .postrow -->
+	<fieldset class="actions">
+		<!-- IF S_RESTORE -->
+		<input class="button" type="submit" name="action[delete]" value="{L_DELETE}" /><input class="button" type="submit" name="action[restore]" value="{L_RESTORE}" />
+		<!-- ELSE -->
+		<input class="button" type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" /><input class="button" type="submit" name="action[approve]" value="{L_APPROVE}" />
+		<!-- ENDIF -->
+		<div class="button-multiple">
+			<!-- IF S_TOPICS -->
+				<a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a>
+			<!-- ELSE -->
+				<a href="#" onclick="marklist('mcp', 'post_id_list', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('mcp', 'post_id_list', false); return false;">{L_UNMARK_ALL}</a>
+			<!-- ENDIF -->
+		</div>
+	</fieldset>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

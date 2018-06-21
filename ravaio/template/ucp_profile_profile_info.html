@@ -1,0 +1,42 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h3><a href="{U_USER_PROFILE}" title="{L_VIEW_PROFILE}">{L_VIEW_PROFILE}</a></h3>
+
+<p>{L_PROFILE_INFO_NOTICE}</p>
+
+<fieldset>
+<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+<!-- EVENT ucp_profile_profile_info_before -->
+<!-- IF S_BIRTHDAYS_ENABLED -->
+	<dl class="form">
+		<dt><span>{L_BIRTHDAY}{L_COLON}</span><p>{L_BIRTHDAY_EXPLAIN} {L_DAY} / {L_MONTH} / {L_YEAR}.</p></dt>
+		<dd>
+			<label for="bday_day"><select name="bday_day" id="bday_day">{S_BIRTHDAY_DAY_OPTIONS}</select></label><label for="bday_month"><select name="bday_month" id="bday_month">{S_BIRTHDAY_MONTH_OPTIONS}</select></label><label for="bday_year"><select name="bday_year" id="bday_year">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF S_JABBER_ENABLED -->
+	<dl>
+		<dt><span>{L_UCP_JABBER}{L_COLON}</span></dt>
+		<dd><input type="email" name="jabber" id="jabber" maxlength="255" value="{JABBER}" class="input" /></dd>
+	</dl>
+<!-- ENDIF -->
+<!-- BEGIN profile_fields -->
+	<dl class="form">
+		<dt><span>{profile_fields.LANG_NAME}{L_COLON}</span><!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --><!-- IF profile_fields.LANG_EXPLAIN --><p>{profile_fields.LANG_EXPLAIN}</p><!-- ENDIF --></dt>
+		<!-- IF profile_fields.ERROR --><dd class="error">{profile_fields.ERROR}</dd><!-- ENDIF -->
+		<dd>{profile_fields.FIELD}</dd>
+	</dl>
+<!-- END profile_fields -->
+<!-- EVENT ucp_profile_profile_info_after -->
+</fieldset>
+
+<fieldset class="actions-submit">
+	{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="{L_SUBMIT}" class="button" /><input type="reset" value="{L_RESET}" name="reset" class="button-flat" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

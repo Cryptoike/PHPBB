@@ -1,0 +1,62 @@
+<!-- IF S_HAS_POLL_OPTIONS -->
+	<div class="poll-panel">
+		<fieldset>
+			<h4 class="poll-title">{L_PREVIEW}{L_COLON} {POLL_QUESTION}</h4>
+
+			<p class="poll-info">
+				<!-- IF L_POLL_LENGTH -->{L_POLL_LENGTH}<!-- ENDIF -->{L_MAX_VOTES}
+			</p>
+
+
+			<!-- BEGIN poll_option -->
+				<div class="poll-option">
+					<div class="poll-option-title">
+						<label for="vote_{poll_option.POLL_OPTION_ID}">
+							<!-- IF S_IS_MULTI_CHOICE -->
+								<input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> class="check" /><span class="check"></span>
+							<!-- ELSE -->
+								<input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> class="radio" /><span class="radio"></span>
+							<!-- ENDIF -->
+							<span>{poll_option.POLL_OPTION_CAPTION}</span>
+						</label>
+					</div>
+				</div>
+			<!-- END poll_option -->
+		</fieldset>
+	</div>
+
+<!-- ENDIF -->
+
+<!-- EVENT posting_preview_poll_after -->
+
+<div class="post">
+	<aside class="postprofile">
+		<div>
+			<div class="avatar-container">
+				<!-- IF CURRENT_USER_AVATAR -->
+					<span class="avatar">{CURRENT_USER_AVATAR}</span>
+				<!-- ELSE -->
+					<span class="avatar-none">{CURRENT_USERNAME_SIMPLE}</span>
+				<!-- ENDIF -->
+			</div>
+			{CURRENT_USERNAME_SIMPLE}
+		</div>
+	</aside>
+
+	<article class="postbody">
+		<h3>{L_PREVIEW}{L_COLON} {PREVIEW_SUBJECT}</h3>
+
+		<div class="post-content">{PREVIEW_MESSAGE}</div>
+
+		<!-- IF .attachment -->
+		<dl class="attachbox">
+			<dt>{L_ATTACHMENTS}</dt>
+			<!-- BEGIN attachment -->
+			<dd>{attachment.DISPLAY_ATTACHMENT}</dd>
+			<!-- END attachment -->
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF PREVIEW_SIGNATURE --><div class="post-signature">{PREVIEW_SIGNATURE}</div><!-- ENDIF -->
+	</article>
+</div>

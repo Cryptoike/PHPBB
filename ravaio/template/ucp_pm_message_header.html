@@ -1,0 +1,66 @@
+<!-- IF CUR_FOLDER_NAME --><h3>{CUR_FOLDER_NAME}</h3><!-- ENDIF -->
+
+<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+
+	<!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p>{FOLDER_STATUS}</p><!-- ENDIF -->
+
+	<div class="action-bar-top">
+
+		<!-- IF FOLDER_CUR_MESSAGES neq 0 and not S_VIEW_MESSAGE -->
+			<div>
+				<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+				<div class="dropdown-box-big">
+					<fieldset>
+						<div class="dropdown-header"><h5>{L_DISPLAY}</h5></div>
+						<div class="dropdown-body">{S_SELECT_SORT_DAYS}</div>
+						<div class="dropdown-header"><h5>{L_SORT_BY}</h5></div>
+						<div class="dropdown-body">
+							{S_SELECT_SORT_KEY}{S_SELECT_SORT_DIR}
+						</div>
+						<div class="dropdown-footer"><input type="submit" name="sort" value="{L_GO}" /><input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" /></div>
+					</fieldset>
+				</div>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF U_POST_REPLY_PM or U_POST_NEW_TOPIC or U_FORWARD_PM or U_PRINT_PM -->
+			<div class="buttons">
+				<!-- IF not S_IS_BOT and U_PRINT_PM -->
+					<a class="button-round" href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p"><i class="fa fa-print"></i></a>
+				<!-- ENDIF -->
+				<!-- IF U_POST_REPLY_PM -->
+					<a title="{L_POST_REPLY_PM}" href="{U_POST_REPLY_PM}" class="button icon-button pmreply-icon">
+						<i class="fa fa-reply"></i><span>{L_BUTTON_PM_REPLY}</span>
+					</a>
+				<!-- ELSEIF U_POST_NEW_TOPIC -->
+					<a href="{U_POST_NEW_TOPIC}" accesskey="n" title="{L_UCP_PM_COMPOSE}" class="button icon-button newpm-icon">
+						<i class="fa fa-pencil"></i><span>{L_BUTTON_PM_NEW}</span>
+					</a>
+				<!-- ENDIF -->
+				<!-- IF U_FORWARD_PM -->
+					<a title="{L_POST_FORWARD_PM}" href="{U_FORWARD_PM}" class="button icon-button forwardpm-icon">
+						<i class="fa fa-share"></i><span>{L_BUTTON_PM_FORWARD}</span>
+					</a>
+				<!-- ENDIF -->
+				<!-- IF U_POST_REPLY_PM and S_PM_RECIPIENTS gt 1 -->
+					<a title="{L_REPLY_TO_ALL}" href="{U_POST_REPLY_ALL}" class="button icon-button reply-all">
+						<i class="fa fa-reply-all"></i><span>{L_BUTTON_PM_REPLY_ALL}</span>
+					</a>
+				<!-- ENDIF -->
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF TOTAL_MESSAGES or S_VIEW_MESSAGE -->
+			<div class="pagination">
+				<!-- IF S_VIEW_MESSAGE -->
+					<a href="{U_CURRENT_FOLDER}">{L_RETURN_TO_FOLDER}</a>
+				<!-- ELSEIF FOLDER_CUR_MESSAGES neq 0 -->
+					<!-- IF U_MARK_ALL --><a href="{U_MARK_ALL}" class="mark">{L_PM_MARK_ALL_READ}</a><!-- ENDIF -->
+					{TOTAL_MESSAGES}
+					<!-- IF .pagination -->
+						<!-- INCLUDE pagination.html -->
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+			</div>
+		<!-- ENDIF -->
+	</div>

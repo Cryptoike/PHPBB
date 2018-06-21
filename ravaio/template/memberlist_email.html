@@ -1,0 +1,104 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+	<div class="chunk">
+		<div class="sub-header-title">
+			<!-- IF S_CONTACT_ADMIN-->
+				<h2 class="titlespace">{L_CONTACT_ADMIN}</h2>
+			<!-- ELSEIF S_SEND_USER -->
+				<h2 class="titlespace">{L_SEND_EMAIL_USER}</h2>
+			<!-- ELSE -->
+				<h2 class="titlespace">{L_EMAIL_TOPIC}</h2>
+			<!-- ENDIF -->
+		</div>
+	</div>
+</div>
+
+<form method="post" action="{S_POST_ACTION}" id="post">
+
+	<!-- IF CONTACT_INFO -->
+	<div class="panel">
+		<div class="inner">
+			<div class="postbody">
+				<div class="content">
+					{CONTACT_INFO}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ENDIF -->
+
+<div id="mbrs" class="background-main">
+	<div class="chunk">
+
+		<!-- IF ERROR_MESSAGE --><p class="error">{ERROR_MESSAGE}</p><!-- ENDIF -->
+		<fieldset>
+		<!-- IF S_SEND_USER -->
+			<dl class="form">
+				<dt><span>{L_RECIPIENT}{L_COLON}</span></dt>
+				<dd><strong>{USERNAME_FULL}</strong></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_SUBJECT}{L_COLON}</span></dt>
+				<dd><input class="inputbox autowidth" type="text" name="subject" id="subject" size="50" tabindex="1" value="{SUBJECT}" /></dd>
+			</dl>
+		<!-- ELSEIF S_CONTACT_ADMIN-->
+			<dl class="form">
+				<dt><span>{L_RECIPIENT}{L_COLON}</span></dt>
+				<dd><strong>{L_ADMINISTRATOR}</strong></dd>
+			</dl>
+			<!-- IF not S_IS_REGISTERED -->
+			<dl class="form">
+				<dt><span>{L_SENDER_EMAIL_ADDRESS}{L_COLON}</span></dt>
+				<dd><input class="input" type="text" name="email" id="email" size="50" maxlength="100" tabindex="1" value="{EMAIL}" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_SENDER_NAME}{L_COLON}</span></dt>
+				<dd><input class="input" type="text" name="name" id="name" size="50" tabindex="2" value="{NAME}" /></dd>
+			</dl>
+			<!-- ENDIF -->
+			<dl class="form">
+				<dt><span>{L_SUBJECT}{L_COLON}</span></dt>
+				<dd><input class="input" type="text" name="subject" id="subject" size="50" tabindex="3" value="{SUBJECT}" /></dd>
+			</dl>
+		<!-- ELSE -->
+			<dl class="form">
+				<dt><span>{L_EMAIL_ADDRESS}{L_COLON}</span></dt>
+				<dd><input class="input" type="email" name="email" id="email" size="50" maxlength="100" tabindex="2" value="{EMAIL}" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span>{L_REAL_NAME}{L_COLON}</span></dt>
+				<dd><input class="input" type="text" name="name" id="name" size="50" tabindex="3" value="{NAME}" /></dd>
+			</dl>
+			<dl class="form">
+				<dt><span for="lang">{L_DEST_LANG}{L_COLON}</span><p>{L_DEST_LANG_EXPLAIN}</p></dt>
+				<dd><select name="lang">{S_LANG_OPTIONS}</select></dd>
+			</dl>
+		<!-- ENDIF -->
+		<dl class="form">
+			<dt><span>{L_MESSAGE_BODY}{L_COLON}</span><p>{L_EMAIL_BODY_EXPLAIN}</p></dt>
+			<dd><textarea class="input" name="message" id="message" rows="15" cols="76" tabindex="4">{MESSAGE}</textarea></dd>
+		</dl>
+		<!-- IF S_REGISTERED_USER -->
+		<dl class="form">
+			<dt>&nbsp;</dt>
+			<dd><label for="cc_sender"><input class="check" type="checkbox" name="cc_sender" id="cc_sender" value="1" checked="checked" tabindex="5" /><span class="check"></span><span>{L_CC_SENDER}</span></label></dd>
+		</dl>
+		<!-- ENDIF -->
+		</fieldset>
+
+	</div>
+</div>
+
+<div class="background-deep">
+	<div class="chunk">
+		<fieldset class="actions-submit">
+			<input type="submit" tabindex="6" name="submit" class="button" value="{L_SEND_EMAIL}" />
+		</fieldset>
+	</div>
+{S_FORM_TOKEN}
+</div>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{META}
+		<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,700italic">
+
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600">
+
+		<link rel="stylesheet" href="{T_STYLESHEET_LINK}">
+		<link rel="stylesheet" href="{T_THEME_PATH}/colors.css?assets_version={T_ASSETS_VERSION}">
+		<link rel="stylesheet" href="{T_THEME_PATH}/responsive.css?assets_version={T_ASSETS_VERSION}" />
+
+		<!-- DEFINE $POPUP = 1 -->
+
+		<!-- EVENT simple_header_head_append -->
+
+		{$STYLESHEETS}
+
+		<!-- EVENT simple_header_stylesheets_after -->
+
+	</head>
+
+	<body id="phpbb" class="nojs {S_CONTENT_DIRECTION} {BODY_CLASS}">
+
+		<!-- EVENT simple_header_body_before -->
+
+		<div id="wrap">
+			<a id="top" class="anchor" accesskey="t"></a>
+			<div id="page-body" role="main">
