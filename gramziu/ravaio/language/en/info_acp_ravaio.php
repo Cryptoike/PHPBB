@@ -71,6 +71,8 @@ $lang = array_merge($lang, array(
 	'ACP_RA_BACK_TO_TOP'			=> 'Display back to top floating button',
 	'ACP_RA_BACK_TO_TOP_EXP'		=> 'This button will be visible after scrolling down your page.',
 
+	'ACP_RA_CUSTOM_CSS'				=> 'Set your custom CSS rules here',
+
 	'ACP_RAVAIO_LOG_GENERAL'		=> 'General style configuration updated successfully.',
 	'ACP_RAVAIO_LOG_GENERAL_EXP'	=> '<strong>Altered general style configuration</strong>',
 	/* General - End */
@@ -80,6 +82,9 @@ $lang = array_merge($lang, array(
 	
 	'ACP_RA_HEAD_INDEX_BG'			=> 'Header background on front page',
 	'ACP_RA_HEAD_INDEX_EXP'			=> 'This will take effect only if standard or small site descriptin option is enabled.',
+
+	'ACP_RA_DARK'					=> 'Dark preset',
+	'ACP_RA_DARK_EXP'				=> 'Control over tables and menus preset usefull for sites with dark backgrounds.',
 
 	'ACP_RA_HEAD_OTHER_BG'			=> 'Header background on pages other than front page',
 	'ACP_RA_HEAD_OTHER_EXP'			=> 'Set it to transparent if you want to see header background image.',
@@ -95,8 +100,12 @@ $lang = array_merge($lang, array(
 	'ACP_RA_S_ACCENT'				=> 'Secondary background accent',
 	'ACP_RA_S_ACCENT_B'				=> 'Secondary background accent darken',
 
+	'ACP_RA_BG_F'					=> 'First level background',
+	'ACP_RA_BG_S'					=> 'Second level background',
+
 	'ACP_RA_TXT_COLOURS'			=> 'Text colours',
 
+	'ACP_RA_T'						=> 'Text color',
 	'ACP_RA_T_ACCENT'				=> 'Text color accent',
 	'ACP_RA_T_ACCENT_B'				=> 'Text color accent darken',
 
@@ -105,11 +114,20 @@ $lang = array_merge($lang, array(
 	/* Colours - End */
 
 	/* Header - Begin */
-	'ACP_RA_LOGO_TYPE'				=> 'Logo type',
-	'ACP_RA_LOGO_TEXT'				=> 'Text logo',
-	'ACP_RA_LOGO_TEXT_EXP'			=> 'Set your logo text - this will take effect only if text logo is enabled.',
-	'ACP_RA_SITE_DESC'				=> 'Site description on front page',
-	'ACP_RA_SITE_DESC_EXP'			=> 'Standard and small site description will allow you to set separate header background on fron page.',
+	'ACP_RA_LOGO_TYPE'					=> 'Logo type',
+	'ACP_RA_LOGO_TEXT'					=> 'Text logo',
+	'ACP_RA_LOGO_TEXT_EXP'				=> 'Set your logo text - this will take effect only if text logo is enabled.',
+	'ACP_RA_SITE_DESC'					=> 'Site description on front page',
+	'ACP_RA_SITE_DESC_EXP'				=> 'Standard and small site description will allow you to set separate header background on front page.',
+	'ACP_RA_SITE_DESC_STANDARD'			=> 'Standard',
+	'ACP_RA_SITE_DESC_SMALL'			=> 'Small',
+	'ACP_RA_SITE_DESC_TEXT_ALIGN'		=> 'Site description text align',
+	'ACP_RA_SITE_DESC_REF_POINT'		=> 'Align site description from its center',
+	'ACP_RA_SITE_DESC_REF_POINT_EXP'	=> 'This option allows you to place site description in the center.',
+	'ACP_RA_SITE_DESC_POSITION'			=> 'Site description position',
+	'ACP_RA_SITE_DESC_POSITION_EXP'		=> 'Set site description distance from each edge of header box.<br>You can leave some fields blank to achieve desired effect.',
+	'ACP_RA_HEAD_INDEX_TEXT'		=> 'Display head text on index page',
+	'ACP_RA_HEAD_INDEX_TEXT_EXP'	=> 'Show your site name and site description over your head index image.',
 	'ACP_RA_HEAD_TYPE'				=> 'Header type',
 
 	'ACP_RA_HEAD_INDEX_IMG'			=> 'Header image on front page',
@@ -143,9 +161,9 @@ $lang = array_merge($lang, array(
 
 	/* Sidebar - Begin */
 	'ACP_RA_SIDEBAR'					=> 'Enable sidebar',
-	'ACP_RA_SIDEBAR_INDEX'				=> 'Dsiplay sidebar on front page',
-	'ACP_RA_SIDEBAR_CAT'				=> 'Dsiplay sidebar on forum category page',
-	'ACP_RA_SIDEBAR_TOPIC'				=> 'Display sidebar on topic page',
+	'ACP_RA_SIDEBAR_INDEX'				=> 'Display sidebar on front page',
+	'ACP_RA_SIDEBAR_CAT'				=> 'Display sidebar on forum category page',
+	'ACP_RA_SIDEBAR_TOPIC'				=> 'Dssplay sidebar on topic page',
 
 	'ACP_RA_SIDEBAR_BLOCK_NAME'			=> 'Sidebar item title',
 	'ACP_RA_SIDEBAR_BLOCK_NAME_EXP'		=> 'You can use <a href="https://fortawesome.github.io/Font-Awesome/icons">Font Awesome Icon</a> as a title - just paste Font Awesome Icon code here.',

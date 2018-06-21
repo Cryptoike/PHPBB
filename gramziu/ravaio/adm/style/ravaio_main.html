@@ -97,6 +97,14 @@
 					<label><input type="radio" class="radio" name="ra_back_to_top" value="0"<!-- IF RA_BACK_TO_TOP eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 				</dd>
 			</dl>
+			<dl> 
+				<dt>
+					<label for="ra_custom_css">{L_ACP_RA_CUSTOM_CSS}{L_COLON}</label>
+				</dt>
+				<dd>
+					<textarea name="ra_custom_css" rows="15" cols="45">{RA_CUSTOM_CSS}</textarea>
+				</dd>
+			</dl>
 		</fieldset>
 		<fieldset>
 			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
@@ -111,14 +119,67 @@
 	<h1>{L_ACP_RAVAIO_COLOURS}</h1>
 	<p>{L_ACP_RAVAIO_COLOURS_EXP}</p>
 
-	<form id="ravaio_main" method="post" action="{U_ACTION}">
+	<!-- IF S_COLOR_VARIANT -->
+	<form id="ravaio_main" method="post" action="{U_ACTION}" enctype="multipart/form-data">
 		<fieldset>
-			<legend>{L_ACP_RA_BG_COLOURS}</legend>
+			<dl>
+				<dt><label for="ra_head_index_img">Index page header image{L_COLON}</label></dt>
+				<dd>
+					<!-- IF RA_S_HEAD_INDEX_IMG -->
+					<img src="{ROOT_PATH}ext/gramziu/ravaio/assets/{RA_HEAD_INDEX_IMG}" style="max-width: 100%;">
+					<br>
+					<!-- ENDIF -->
+					<input type="file" name="ra_head_index_img" />
+				</dd>
+			</dl>
 			<dl>
 				<dt>
-					<label for="ra_head_index_bg">{L_ACP_RA_HEAD_INDEX_BG}{L_COLON}</label>
+					<label for="ra_s_head_index_img">Disable{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_s_head_index_img" value="0"<!-- IF RA_S_HEAD_INDEX_IMG eq 0 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_s_head_index_img" value="1"<!-- IF RA_S_HEAD_INDEX_IMG eq 1 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset class="quick">
+			<input name="update_index" value="{L_SUBMIT}" class="button1" type="submit">
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+	<form id="ravaio_main" method="post" action="{U_ACTION}" enctype="multipart/form-data">
+		<fieldset>
+			<dl>
+				<dt><label for="ra_head_index_img">Other pages header image{L_COLON}</label></dt>
+				<dd>
+					<!-- IF RA_S_HEAD_OTHER_IMG -->
+					<img src="{ROOT_PATH}ext/gramziu/ravaio/assets/{RA_HEAD_OTHER_IMG}" style="max-width: 100%;">
 					<br>
-					<span>{L_ACP_RA_HEAD_INDEX_EXP}</span>
+					<!-- ENDIF -->
+					<input type="file" name="ra_head_other_img" />
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_s_head_other_img">Disable{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_s_head_other_img" value="0"<!-- IF RA_S_HEAD_OTHER_IMG eq 0 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_s_head_other_img" value="1"<!-- IF RA_S_HEAD_OTHER_IMG eq 1 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset class="quick">
+			<input name="update_other" value="{L_SUBMIT}" class="button1" type="submit">
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+	<form id="ravaio_main" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>Headers</legend>
+			<dl>
+				<dt>
+					<label for="ra_head_index_bg">Index page header color{L_COLON}</label>
 				</dt>
 				<dd>
 					<input type="text" value="{RA_HEAD_INDEX_BG}" name="ra_head_index_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_INDEX_BG};">Preview</span>
@@ -126,9 +187,16 @@
 			</dl>
 			<dl>
 				<dt>
-					<label for="ra_head_other_bg">{L_ACP_RA_HEAD_OTHER_BG}{L_COLON}</label>
-					<br>
-					<span>{L_ACP_RA_HEAD_OTHER_EXP}</span>
+					<label for="ra_head_index_sticky_bg">Index page sticky header color{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_HEAD_INDEX_STICKY_BG}" name="ra_head_index_sticky_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_INDEX_STICKY_BG};">Preview</span>
+				</dd>
+			</dl>
+			<br>
+			<dl>
+				<dt>
+					<label for="ra_head_other_bg">Other pages header color{L_COLON}</label>
 				</dt>
 				<dd>
 					<input type="text" value="{RA_HEAD_OTHER_BG}" name="ra_head_other_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_OTHER_BG};">Preview</span>
@@ -136,73 +204,78 @@
 			</dl>
 			<dl>
 				<dt>
-					<label for="ra_head_bg">{L_ACP_RA_HEAD_BG}{L_COLON}</label>
-					<br>
-					<span>{L_ACP_RA_HEAD_EXP}</span>
+					<label for="ra_head_other_sticky_bg">Other pages sticky header color{L_COLON}</label>
 				</dt>
 				<dd>
-					<input type="text" value="{RA_HEAD_BG}" name="ra_head_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_BG};">Preview</span>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_sub_head_bg">{L_ACP_RA_SUB_HEAD_BG}{L_COLON}</label>
-					<br>
-					<span>{L_ACP_RA_SUB_HEAD_BG_EXP}</span>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_SUB_HEAD_BG}" name="ra_sub_head_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_SUB_HEAD_BG};">Preview</span>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_m_accent">{L_ACP_RA_M_ACCENT}{L_COLON}</label>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_M_ACCENT}" name="ra_m_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_M_ACCENT};">Preview</span>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_m_accent_b">{L_ACP_RA_M_ACCENT_B}{L_COLON}</label>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_M_ACCENT_B}" name="ra_m_accent_b" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_M_ACCENT_B};">Preview</span>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_s_accent">{L_ACP_RA_S_ACCENT}{L_COLON}</label>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_S_ACCENT}" name="ra_s_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_S_ACCENT};">Preview</span>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_s_accent_b">{L_ACP_RA_S_ACCENT_B}{L_COLON}</label>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_S_ACCENT_B}" name="ra_s_accent_b" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_S_ACCENT_B};">Preview</span>
+					<input type="text" value="{RA_HEAD_OTHER_STICKY_BG}" name="ra_head_other_sticky_bg" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_HEAD_OTHER_STICKY_BG};">Preview</span>
 				</dd>
 			</dl>
 		</fieldset>
 		<fieldset>
-			<legend>{L_ACP_RA_TXT_COLOURS}</legend>
+			<legend>Accents</legend>
 			<dl>
 				<dt>
-					<label for="ra_t_accent">{L_ACP_RA_T_ACCENT}{L_COLON}</label>
+					<label for="ra_main_accent">Main accent{L_COLON}</label>
 				</dt>
 				<dd>
-					<input type="text" value="{RA_T_ACCENT}" name="ra_t_accent" maxlength="27" size="24" class="colour-field-txt" /><span class="colour-preview" style="color: {RA_T_ACCENT};">Preview</span>
+					<input type="text" value="{RA_MAIN_ACCENT}" name="ra_main_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_MAIN_ACCENT};">Preview</span>
 				</dd>
 			</dl>
 			<dl>
 				<dt>
-					<label for="ra_t_accent_b">{L_ACP_RA_T_ACCENT_B}{L_COLON}</label>
+					<label for="ra_secondary_accent">Secondary accent{L_COLON}</label>
 				</dt>
 				<dd>
-					<input type="text" value="{RA_T_ACCENT_B}" name="ra_t_accent_b" maxlength="27" size="24" class="colour-field-txt" /><span class="colour-preview" style="color: {RA_T_ACCENT_B};">Preview</span>
+					<input type="text" value="{RA_SECONDARY_ACCENT}" name="ra_secondary_accent" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_SECONDARY_ACCENT};">Preview</span>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>Text</legend>
+			<dl>
+				<dt>
+					<label for="ra_main_text">Main text{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_MAIN_TEXT}" name="ra_main_text" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="color: {RA_MAIN_TEXT};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_secondary_text">Secondary text{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_SECONDARY_TEXT}" name="ra_secondary_text" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="color: {RA_SECONDARY_TEXT};">Preview</span>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>Backgrounds</legend>
+			<dl>
+				<dt>
+					<label for="ra_site_background">Site background{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_SITE_BACKGROUND}" name="ra_site_background" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_SITE_BACKGROUND};">Preview</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_main_background">Main background{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_MAIN_BACKGROUND}" name="ra_main_background" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_MAIN_BACKGROUND};">Preview</span>
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>Borders</legend>
+			<dl>
+				<dt>
+					<label for="ra_main_border">Main border{L_COLON}</label>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_MAIN_BORDER}" name="ra_main_border" maxlength="27" size="24" class="colour-field-bg" /><span class="colour-preview" style="background-color: {RA_MAIN_BORDER};">Preview</span>
 				</dd>
 			</dl>
 		</fieldset>
@@ -215,9 +288,106 @@
 			{S_FORM_TOKEN}
 		</fieldset>
 	</form>
+	<!-- ELSE -->
+		<style>
+			.variants {
+				margin-bottom: 60px;
+			}
+
+			.variant {
+				display: block;
+				margin: 0;
+				padding: 10px;
+				border-top: 1px solid #D7D7D7;
+				border-right: 1px solid #CCCCCC;
+				border-bottom: 1px solid #CCCCCC;
+				border-left: 1px solid #D7D7D7;
+				background-color: #FFFFFF;
+				position: relative;
+				border-radius: 3px;
+			}
+		</style>
+		<div class="variants">
+			<!-- BEGIN color_variants -->
+				<a href="{color_variants.URL}" class="variant">{color_variants.NAME}</a>
+			<!-- END color_variants -->
+		</div>
+
+		<form id="ravaio_main" method="post" action="{U_ACTION}">
+			<fieldset>
+				<legend>Color variants</legend>
+				<dl>
+					<dt>
+						<label for="ra_s_variants">Enable color variants{L_COLON}</label>
+					</dt>
+					<dd>
+						<label><input type="radio" class="radio" name="ra_s_variants" value="1"<!-- IF RA_S_VARIANTS eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+						<label><input type="radio" class="radio" name="ra_s_variants" value="0"<!-- IF RA_S_VARIANTS eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+					</dd>
+				</dl>
+				<!-- BEGIN color_variants -->
+					<dl>
+						<dt>
+							<label for="ra_variant_enabled[{color_variants.INDEX}]">{color_variants.NAME} variant{L_COLON}</label>
+						</dt>
+						<dd>
+							<label><input type="radio" class="radio" name="ra_variant_enabled[{color_variants.INDEX}]" value="1"<!-- IF color_variants.STATUS eq 1 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+							<label><input type="radio" class="radio" name="ra_variant_enabled[{color_variants.INDEX}]" value="0"<!-- IF color_variants.STATUS eq 0 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+						</dd>
+					</dl>
+				<!-- END color_variants -->
+				<dl>
+					<dt>
+						<label for="ra_variant_default">Default variant{L_COLON}</label>
+					</dt>
+					<dd>
+						<!-- BEGIN color_variants -->
+							<label><input type="radio" class="radio" name="ra_variant_default" value="{color_variants.INDEX}"<!-- IF RA_VARIANT_DEFAULT eq color_variants.INDEX --> checked="checked"<!-- ENDIF --> /> {color_variants.NAME}</label>
+						<!-- END color_variants -->
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						Variants naming{L_COLON}
+					</dt>
+					<dd>
+						<!-- BEGIN color_variants -->
+							<input value="{color_variants.NAME}" name="ra_color_variants[{color_variants.INDEX}]" maxlength="255" size="40" type="text">
+							<br />
+						<!-- END color_variants -->
+					</dd>
+				</dl>
+			</fieldset>
+			<fieldset>
+				<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
+				<p class="submit-buttons">
+					<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+					<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
 <!-- ELSEIF S_HEADER -->
 	<h1>{L_ACP_RAVAIO_HEADER}</h1>
 	<p>{L_ACP_RAVAIO_HEADER_EXP}</p>
+
+	<form id="ravaio_main" method="post" action="{U_ACTION}" enctype="multipart/form-data">
+		<fieldset>
+			<dl>
+				<dt><label for="ra_head_index_img">Logo image{L_COLON}</label></dt>
+				<dd>
+					<img src="{ROOT_PATH}ext/gramziu/ravaio/assets/{RA_LOGO}" style="max-width: 100%; max-height: 100px;">
+					<br>
+					<input type="file" name="ra_logo" />
+				</dd>
+			</dl>
+		</fieldset>
+		<fieldset class="quick">
+			<input name="update_logo" value="{L_SUBMIT}" class="button1" type="submit">
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
 
 	<form id="ravaio_main" method="post" action="{U_ACTION}">
 		<fieldset>
@@ -229,6 +399,17 @@
 				<dd>
 					<label><input type="radio" class="radio" name="ra_logo_type" value="1"<!-- IF RA_LOGO_TYPE eq 1 --> checked="checked"<!-- ENDIF --> /> Text</label>
 					<label><input type="radio" class="radio" name="ra_logo_type" value="0"<!-- IF RA_LOGO_TYPE eq 0 --> checked="checked"<!-- ENDIF --> /> Image</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>Logo size(width x height){L_COLON}</label>
+					<br>
+					<span>Those values are replaced when uploading new logo</span>
+				</dt>
+				<dd>
+					<input type="text" value="{RA_LOGO_WIDTH}" name="ra_logo_width" maxlength="7" size="5" /> x 
+					<input type="text" value="{RA_LOGO_HEIGHT}" name="ra_logo_height" maxlength="7" size="5" />
 				</dd>
 			</dl>
 			<dl>
@@ -248,9 +429,66 @@
 					<span>{L_ACP_RA_SITE_DESC_EXP}</span>
 				</dt>
 				<dd>
-					<label><input type="radio" class="radio" name="ra_site_desc" value="1"<!-- IF RA_SITE_DESC eq 1 --> checked="checked"<!-- ENDIF --> /> Standard</label>
-					<label><input type="radio" class="radio" name="ra_site_desc" value="2"<!-- IF RA_SITE_DESC eq 2 --> checked="checked"<!-- ENDIF --> /> Small</label>
-					<label><input type="radio" class="radio" name="ra_site_desc" value="0"<!-- IF RA_SITE_DESC eq 0 --> checked="checked"<!-- ENDIF --> /> Disabled</label>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="1"<!-- IF RA_SITE_DESC eq 1 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_SITE_DESC_STANDARD}</label>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="2"<!-- IF RA_SITE_DESC eq 2 --> checked="checked"<!-- ENDIF --> /> {L_ACP_RA_SITE_DESC_SMALL}</label>
+					<label><input type="radio" class="radio" name="ra_site_desc" value="0"<!-- IF RA_SITE_DESC eq 0 --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_index_text">{L_ACP_RA_SITE_DESC_TEXT_ALIGN}{L_COLON}</label>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_site_desc_text_align" value="1"<!-- IF RA_SITE_DESC_TEXT_ALIGN eq 1 --> checked="checked"<!-- ENDIF --> /> Left</label>
+					<label><input type="radio" class="radio" name="ra_site_desc_text_align" value="0"<!-- IF RA_SITE_DESC_TEXT_ALIGN eq 0 --> checked="checked"<!-- ENDIF --> /> Center</label>
+					<label><input type="radio" class="radio" name="ra_site_desc_text_align" value="2"<!-- IF RA_SITE_DESC_TEXT_ALIGN eq 2 --> checked="checked"<!-- ENDIF --> /> Right</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_index_text">{L_ACP_RA_SITE_DESC_REF_POINT}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_SITE_DESC_REF_POINT_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_site_desc_ref_point" value="0"<!-- IF RA_SITE_DESC_REF_POINT eq 0 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_site_desc_ref_point" value="1"<!-- IF RA_SITE_DESC_REF_POINT eq 1 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>{L_ACP_RA_SITE_DESC_POSITION}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_SITE_DESC_POSITION_EXP}</span>
+				</dt>
+				<dd>
+					<span style="display: inline-block; text-align: center;" id="ra_side_desc_position">
+						<span style="display: inline-block;">
+							Top<br /><input type="text" value="{RA_SITE_DESC_POS_TOP}" name="ra_site_desc_pos_top" maxlength="7" size="5" data-pos="top" />
+						</span>
+						<br />
+						<span style="display: inline-block;">
+							Left<br /><input type="text" value="{RA_SITE_DESC_POS_LEFT}" name="ra_site_desc_pos_left" maxlength="7" size="5" data-pos="left" />
+						</span>
+						<span style="display: inline-block;">
+							Right<br /><input type="text" value="{RA_SITE_DESC_POS_RIGHT}" name="ra_site_desc_pos_right" maxlength="7" size="5" data-pos="right" />
+						</span>
+						<br />
+						<span style="display: inline-block;">
+							Bottom<br /><input type="text" value="{RA_SITE_DESC_POS_BOTTOM}" name="ra_site_desc_pos_bottom" maxlength="7" size="5" data-pos="bottom" />
+						</span>
+					</span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="ra_head_index_text">{L_ACP_RA_HEAD_INDEX_TEXT}{L_COLON}</label>
+					<br>
+					<span>{L_ACP_RA_HEAD_INDEX_TEXT_EXP}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" name="ra_head_index_text" value="0"<!-- IF RA_HEAD_INDEX_TEXT eq 0 --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="ra_head_index_text" value="1"<!-- IF RA_HEAD_INDEX_TEXT eq 1 --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 				</dd>
 			</dl>
 			<dl>
@@ -262,27 +500,14 @@
 					<label><input type="radio" class="radio" name="ra_head_type" value="0"<!-- IF RA_HEAD_TYPE eq 0 --> checked="checked"<!-- ENDIF --> /> Sticky</label>
 				</dd>
 			</dl>
-			<dl>
-				<dt>
-					<label for="ra_head_index_img">{L_ACP_RA_HEAD_INDEX_IMG}{L_COLON}</label>
-					<br>
-					<span>{L_ACP_RA_HEAD_INDEX_IMG_EXP}</span>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_HEAD_INDEX_IMG}" name="ra_head_index_img" maxlength="255" size="40" />
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<label for="ra_head_other_img">{L_ACP_RA_HEAD_OTHER_IMG}{L_COLON}</label>
-					<br>
-					<span>{L_ACP_RA_HEAD_OTHER_IMG_EXP}</span>
-				</dt>
-				<dd>
-					<input type="text" value="{RA_HEAD_OTHER_IMG}" name="ra_head_other_img" maxlength="255" size="40" />
-				</dd>
-			</dl>
 		</fieldset>
+		<div style="border-radius: 3px; border-top: 3px dashed #D7D7D7; border-right: 3px dashed #CCCCCC; border-bottom: 3px dashed #CCCCCC; border-left: 3px dashed #D7D7D7; background-color: #FFF; height: 448px; position: relative;">
+			<div style="position: absolute; left: 0; right: 0; top: 0; height: 56px; background-color: #D7D7D7;"></div>
+			<div id="ra_site_desc_pos_preview">
+				<span>{SITENAME}</span><br />
+				<span>{SITE_DESCRIPTION}</span>
+			</div>
+		</div>
 		<fieldset>
 			<legend>{L_ACP_RAVAIO_SUBMIT}</legend>
 			<p class="submit-buttons">
@@ -636,3 +861,73 @@
 <!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->
+
+<!-- IF S_HEADER -->
+	<script>
+		var position = [
+			'top',
+			'left',
+			'right',
+			'bottom'
+		],
+			text_align = $('input[name="ra_site_desc_text_align"]:checked').val(),
+			text_align_map = [
+			'center',
+			'left',
+			'right'
+		],
+			reference_point = $('input[name="ra_site_desc_ref_point"]:checked').val(),
+			reference_point_map = [
+				'',
+				'none'
+		];
+
+		$('#ra_side_desc_position input').each(function() {
+			position[$(this).data('pos')] = $(this).val();
+		});
+
+		updatePreviewStyle();
+
+		$('#ra_side_desc_position input').on('input', function() {
+			position[$(this).data('pos')] = $(this).val();
+
+			updatePreviewStyle();
+		});
+
+		$('input[name="ra_site_desc_text_align"]').on('change', function() {
+			if($(this).prop('checked')) {
+				text_align = $(this).val();
+
+				updatePreviewStyle();
+			}
+		});
+
+		$('input[name="ra_site_desc_ref_point"]').on('change', function() {
+			if($(this).prop('checked')) {
+				reference_point = $(this).val();
+
+				updatePreviewStyle();
+			}
+		});
+
+		function updatePreviewStyle() {
+			$('#ra_site_desc_pos_preview').css({
+				top: position['top'],
+				left: position['left'],
+				right: position['right'],
+				bottom: position['bottom'],
+				textAlign: text_align_map[text_align],
+				transform: reference_point_map[reference_point]
+			});
+		};
+	</script>
+
+	<style>
+		#ra_site_desc_pos_preview {
+			position: absolute;
+			text-align: center;
+			transition: all 0.3s ease;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	</style>
+<!-- ENDIF -->

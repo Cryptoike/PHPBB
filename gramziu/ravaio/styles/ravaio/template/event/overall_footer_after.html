@@ -30,10 +30,10 @@
 <!-- IF not RA_HEAD_TYPE -->
 	<script>
 		$(document).ready(function(){
-			$('#wrap-header, #wrap-header-index').sticky({topSpacing:0});
+			$('#wrap-header, #wrap-header-index').sticky();
 		});
 	</script>
-	<!-- INCLUDEJS jquery.sticky.js -->
+	<!-- INCLUDEJS jquery.sticky.min.js -->
 <!-- ENDIF -->
 <!-- IF RA_BACK_TO_TOP -->
 	<script>
@@ -44,7 +44,7 @@
 			}, 400);
 		});
 
-		$(document).scroll(function() {
+		$(window).on('scroll load', function() {
 			var y = $(this).scrollTop();
 			if (y > 164) {
 				$('#back-to-top').addClass('btt-visible');
@@ -54,7 +54,7 @@
 
 			var wrapFooter = $('#wrap-footer').offset().top;
 			var windowHeight = $( window ).height();
-			if (y > wrapFooter - windowHeight + 36) {
+			if (y > wrapFooter - windowHeight + 42) {
 				$('#back-to-top').addClass('btt-docked');
 			} else {
 				$('#back-to-top').removeClass('btt-docked');
@@ -62,3 +62,114 @@
 		});
 	</script>
 <!-- ENDIF -->
+<!-- IF RA_S_VARIANTS -->
+	<script>
+		var variant_list = {RA_VARIANT_LIST},
+			theme_variant,
+			theme_variant_radio;
+
+		if (variant_list.length >= 2) {
+			jQuery.each(variant_list, function() {
+				theme_variant = $('<label>', {
+					id: 'theme-variant-' + $(this)[1],
+					class: 'theme-variant',
+					text: $(this)[0]
+				});
+
+				theme_variant_radio = $('<input>', {
+					value: $(this)[1],
+					type: 'radio',
+					name: 'ra_variant'
+				});
+
+				theme_variant.prepend(theme_variant_radio);
+				$('#theme-variants').append(theme_variant);
+			});
+
+			$('.theme-variant').click(function() {
+				$(this).children('input').attr('checked', 'checked');
+				$('#theme-variants').submit();
+			});
+		} else {
+			$('#theme-variants').parents('.sidebar-block').remove();
+		}
+	</script>
+<!-- ENDIF -->
+<script>
+	$(function() {
+
+		var sidebarRecentPostDiv = $("#sidebar-recent-topics");
+
+		if (sidebarRecentPostDiv.length) {
+
+			var contentWrap = document.createElement("div");
+			contentWrap.className = ("sidebar-recent-content loading");
+			sidebarRecentPostDiv.append(contentWrap);
+
+			$.ajax({url: '{{ path('phpbb_feed_topics') }}', success: function (data) {
+				sidebarRecentPostDiv.removeClass('loading');
+				$('.sidebar-recent-content').removeClass('loading');
+
+				$(data).find("entry").each(function (i) {
+					var el = $(this);
+					var entryWrap = document.createElement("div");
+
+					var entryTitle = document.createElement("a");
+					var entryAuthor = document.createElement("span");
+					var entryCategory = document.createElement("span");
+
+					entryTitle.className = ("sidebar-recent-title");
+					entryAuthor.className = ("sidebar-recent-author");
+					entryCategory.className = ("sidebar-recent-category");
+
+					function cutText(name) {
+						if (name == "title") {
+							var elementText = el.find(name).text();
+							elementText = elementText.substring(elementText.indexOf("•") + 2);
+							elementText = unescapeHTML(elementText);
+						} else if (name == "category") {
+							var elementText = el.find(name).attr("label");
+							elementText = unescapeHTML(elementText);
+						} else {
+							var elementText = el.find(name).text();
+							elementText = unescapeHTML(elementText);
+						}
+
+						return elementText;
+					};
+
+					// Based on: http://stackoverflow.com/questions/1787322/htmlspecialchars-equivalent-in-javascript/4835406#comment36196953_4835406
+					function unescapeHTML(text) {
+						var map = {
+							'&amp;': '&',
+							'&lt;': '<',
+							'&gt;': '>',
+							'&quot;': '"',
+							'&#039;': "'"
+						};
+
+						return text.replace(/&+[ampltgquo039]+;/g, function(m) { return map[m]; });
+					}
+
+					entryTitle.textContent = cutText("title");
+					entryAuthor.textContent = "{L_POST_BY_AUTHOR} " + unescapeHTML(el.find("author").text()) + " ";
+					entryCategory.textContent = "{L_IN} " + cutText("category");
+					entryURL = el.find("id").text();
+
+					$(entryTitle).attr("href", entryURL);
+
+					$(entryWrap).append(entryTitle);
+					$(entryWrap).append(entryAuthor);
+					$(entryWrap).append(entryCategory);
+
+					$(contentWrap).append(entryWrap);
+
+					if (++i >= 6) {
+						return false;
+					}
+				});
+			}, cache: false
+			});
+		}
+	});
+</script>

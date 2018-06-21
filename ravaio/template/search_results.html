@@ -97,6 +97,7 @@
 									<h4><!-- IF searchresults.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}" width="{searchresults.TOPIC_ICON_IMG_WIDTH}" height="{searchresults.TOPIC_ICON_IMG_HEIGHT}" /><!-- ENDIF --><a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a></h4><!-- IF searchresults.S_TOPIC_UNAPPROVED or searchresults.S_POSTS_UNAPPROVED --><a class="topic-unapproved-icon" href="{searchresults.U_MCP_QUEUE}"><i class="fa fa-exclamation-triangle"></i></a><!-- ENDIF --><!-- IF searchresults.S_TOPIC_DELETED --><a class="topic-deleted-icon" href="{searchresults.U_MCP_QUEUE}"><i class="fa fa-trash-o"></i></a><!-- ENDIF --><!-- IF searchresults.S_TOPIC_REPORTED --><a class="topic-reported-icon" href="{searchresults.U_MCP_REPORT}"><i class="fa fa-flag-o"></i></a><!-- ENDIF --><!-- IF .searchresults.pagination --><ul class="pagination-small"><!-- BEGIN pagination --><!-- IF searchresults.pagination.S_IS_PREV --><!-- ELSEIF searchresults.pagination.S_IS_CURRENT --><li class="active"><span>{searchresults.pagination.PAGE_NUMBER}</span></li><!-- ELSEIF searchresults.pagination.S_IS_ELLIPSIS --><li class="ellipsis"><span>{L_ELLIPSIS}</span></li><!-- ELSEIF searchresults.pagination.S_IS_NEXT --><!-- ELSE --><li><a href="{searchresults.pagination.PAGE_URL}">{searchresults.pagination.PAGE_NUMBER}</a></li><!-- ENDIF --><!-- END pagination --></ul><!-- ENDIF -->
 
 									<p>
+										<!-- EVENT topiclist_row_topic_title_after -->
 										<!-- IF searchresults.S_HAS_POLL --><i class="fa fa-bar-chart" title="{L_TOPIC_POLL}"></i><!-- ENDIF -->
 										<!-- IF searchresults.ATTACH_ICON_IMG --><i class="fa fa-floppy-o" title="{L_TOTAL_ATTACHMENTS}"></i><!-- ENDIF -->
 										{L_POST_BY_AUTHOR} {searchresults.TOPIC_AUTHOR_FULL}, {searchresults.FIRST_POST_TIME} {L_IN} <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a>
@@ -147,7 +148,11 @@
 					<div>
 						<!-- EVENT search_results_postprofile_before -->
 						<div class="avatar-container" data-toggle="dropdown" aria-expanded="true">
+							<!-- IF searchresults.POSTER_AVATAR -->
+								<span class="avatar">{searchresults.POSTER_AVATAR}</span>
+							<!-- ELSE -->
 							<span class="avatar-none">{searchresults.POST_AUTHOR_FULL}</span>
+							<!-- ENDIF -->
 						</div>
 						{searchresults.POST_AUTHOR_FULL}
 						<!-- EVENT search_results_postprofile_after -->
@@ -162,6 +167,7 @@
 						
 						<li>{L_FORUM}{L_COLON} <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a></li>
 						<li>{L_TOPIC}{L_COLON} <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></li>
+						<!-- EVENT search_results_topic_title_after -->
 						<li>{L_REPLIES}{L_COLON} <strong>{searchresults.TOPIC_REPLIES}</strong></li>
 						<li>{L_VIEWS}{L_COLON} <strong>{searchresults.TOPIC_VIEWS}</strong></li>
 

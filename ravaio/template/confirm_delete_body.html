@@ -6,7 +6,7 @@
 		<!-- IF not S_SOFTDELETED and S_ALLOWED_DELETE and S_ALLOWED_SOFTDELETE -->
 			<br><label>
 				<strong>{L_DELETE_PERMANENTLY}{L_COLON}</strong><br>
-				<input class="check" id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /><span class="check"></span><span><!-- IF S_TOPIC_MODE -->{L_DELETE_TOPIC_PERMANENTLY}<!-- ELSE -->{L_DELETE_POST_PERMANENTLY}<!-- ENDIF --></span>
+				<input class="check" id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /><span class="check"></span><span><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></span>
 			</label><br><br>
 		<!-- ENDIF -->
 
@@ -48,7 +48,7 @@
 				<dd>
 					<label for="delete_permanent">
 						<input class="check" id="delete_permanent" name="delete_permanent" type="checkbox" value="1" {S_CHECKED_PERMANENT} /><span class="check"></span>
-						<!-- IF S_TOPIC_MODE --><span>{L_DELETE_TOPIC_PERMANENTLY}</span><!-- ELSE --><span>{L_DELETE_POST_PERMANENTLY}</span><!-- ENDIF -->
+						<span><!-- IF S_TOPIC_MODE -->{DELETE_TOPIC_PERMANENTLY_EXPLAIN}<!-- ELSE -->{DELETE_POST_PERMANENTLY_EXPLAIN}<!-- ENDIF --></span>
 					</label>
 				</dd>
 			</dl>
