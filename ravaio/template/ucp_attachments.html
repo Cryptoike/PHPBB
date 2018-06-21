@@ -16,20 +16,13 @@
 			<div>
 				<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
 
-				<div class="dropdown-box-big">
-					<div class="dropdown-header">
-						<h5>{L_SORT_BY}</h5>
-					</div>
-					<div class="dropdown-body">
-							<select name="sk" id="sk">{S_SORT_OPTIONS}</select></label> 							
-					</div>
-					<div class="dropdown-body">
-						<select name="sd" id="sd">{S_ORDER_SELECT}</select>
-					</div>
-					<div class="dropdown-footer">
-						<input type="submit" name="sort" value="{L_SORT}" />
+				<div class="dropdown-box">
+					<fieldset class="display-options">
+						<label for="sk">{L_SORT_BY}{L_COLON} <select name="sk" id="sk">{S_SORT_OPTIONS}</select></label> 
+						<label><select name="sd" id="sd">{S_ORDER_SELECT}</select></label>
+						<input class="button" type="submit" name="sort" value="{L_SORT}" />
 						{S_FORM_TOKEN}
-					</div>
+					</fieldset>
 				</div>
 			</div>
 		</div>

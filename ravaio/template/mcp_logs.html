@@ -16,7 +16,18 @@
 			</div>
 		</div>
 		<!-- IF .log -->
-			<!-- INCLUDE display_options.html -->
+			<div>
+				<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+				<div class="dropdown-box-big">
+					<fieldset class="display-options">
+						<div class="dropdown-header"><h5>{L_DISPLAY_POSTS}</h5></div>
+						<div class="dropdown-body">{S_SELECT_SORT_DAYS}</div>
+						<div class="dropdown-header"><h5>{L_SORT_BY}</h5></div>
+						<div class="dropdown-body">{S_SELECT_SORT_KEY}{S_SELECT_SORT_DIR}</label>
+							<div class="dropdown-footer"><input type="submit" name="sort" value="{L_GO}" /></div>
+					</fieldset>
+				</div>
+			</div>
 		<!-- ENDIF -->
 	</div>
 

@@ -2,12 +2,11 @@
 <html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="robots" content="noindex" />
 {META}
 <title>{SITENAME} &bull; {PAGE_TITLE}</title>
 
-<link href="{T_THEME_PATH}/print.min.css" rel="stylesheet" type="text/css" />
+<link href="{T_THEME_PATH}/print.css" rel="stylesheet">
 <!-- EVENT viewtopic_print_head_append -->
 </head>
 <body id="phpbb">
@@ -23,15 +22,15 @@
 	</div>
 
 	<div id="page-body">
-		<div class="page-number page-number-top">{PAGE_NUMBER}</div>
+		<div class="page-number">{PAGE_NUMBER}</div>
 		<!-- BEGIN postrow -->
-			<hr />
 			<div class="post">
 				<h3>{postrow.POST_SUBJECT}</h3>
 				<div class="date">{L_POSTED}{L_COLON} <strong>{postrow.POST_DATE}</strong></div>
 				<div class="author">{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR}</strong></div>
 				<div class="content">{postrow.MESSAGE}</div>
 			</div>
+			<hr />
 		<!-- END postrow -->
 	</div>
 

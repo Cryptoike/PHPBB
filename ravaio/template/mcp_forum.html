@@ -8,7 +8,29 @@
 <form method="post" id="mcp" action="{S_MCP_ACTION}">
 
 	<div class="action-bar-top">
-		<!-- INCLUDE display_options.html -->
+		<div>
+			<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+			<div class="dropdown-box-big">
+				<fieldset class="display-options">
+					<div class="dropdown-header">
+						<h5>{L_DISPLAY_TOPICS}</h5>
+					</div>
+					<div class="dropdown-body">
+						{S_SELECT_SORT_DAYS}
+					</div>
+					<div class="dropdown-header">
+						<h5>{L_SORT_BY}</h5>
+					</div>
+					<div class="dropdown-body">
+						{S_SELECT_SORT_KEY}
+						{S_SELECT_SORT_DIR}
+					</div>
+					<div class="dropdown-footer">
+						<input type="submit" name="sort" value="{L_GO}" />
+					</div>
+				</fieldset>
+			</div>
+		</div>
 		<div class="pagination">
 			<!-- IF .pagination --> 
 				<!-- INCLUDE pagination.html -->
@@ -42,8 +64,6 @@
 					<!-- IF topicrow.S_TOPIC_REPORTED --><a class="topic-reported-icon" href="{topicrow.U_MCP_REPORT}"><i class="fa fa-flag-o"></i></a><!-- ENDIF -->
 					<!-- IF topicrow.S_MOVED_TOPIC and S_CAN_DELETE -->&nbsp;<a href="{topicrow.U_DELETE_TOPIC}" class="topictitle">[ {L_DELETE_SHADOW_TOPIC} ]</a><!-- ENDIF -->
 					<br>
-
-					<!-- EVENT topiclist_row_topic_title_after -->
 
 					<!-- IF .topicrow.pagination -->
 						<ul class="pagination-small">
@@ -102,8 +122,10 @@
 		<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
 		<!-- IF S_CAN_MAKE_NORMAL --><option value="make_normal">{L_MAKE_NORMAL}</option><!-- ENDIF -->
 		<!-- IF S_CAN_MAKE_STICKY --><option value="make_sticky">{L_MAKE_STICKY}</option><!-- ENDIF -->
-		<!-- IF S_CAN_MAKE_ANNOUNCE --><option value="make_announce">{L_MAKE_ANNOUNCE}</option><!-- ENDIF -->
-		<!-- IF S_CAN_MAKE_ANNOUNCE_GLOBAL --><option value="make_global">{L_MAKE_GLOBAL}</option><!-- ENDIF -->
+		<!-- IF S_CAN_MAKE_ANNOUNCE -->
+			<option value="make_announce">{L_MAKE_ANNOUNCE}</option>
+			<option value="make_global">{L_MAKE_GLOBAL}</option>
+		<!-- ENDIF -->
 	</select><input class="button" type="submit" value="{L_SUBMIT}" />
 	<div class="button-multiple"><a href="#" onclick="marklist('mcp', 'topic_id_list', true); return false;">{L_MARK_ALL}</a><a href="#" onclick="marklist('mcp', 'topic_id_list', false); return false;">{L_UNMARK_ALL}</a></div>
 	<!-- ENDIF -->

@@ -13,12 +13,24 @@
 	<dt><span>{L_CONFIRM_CODE}{L_COLON}</span><br><p>{L_RECAPTCHA_EXPLAIN}</p></dt>
 	<dd class="captcha">
 		<br>
+		<script>
+		var RecaptchaOptions = {
+			lang : '{LA_RECAPTCHA_LANG}',
+			theme : 'white',
+			tabindex : <!-- IF $CAPTCHA_TAB_INDEX -->{$CAPTCHA_TAB_INDEX}<!-- ELSE -->10<!-- ENDIF -->
+		};
+		</script>
+		<script src="{RECAPTCHA_SERVER}/challenge?k={RECAPTCHA_PUBKEY}{RECAPTCHA_ERRORGET}"></script>
+
 		<noscript>
-			<div>{L_RECAPTCHA_NOSCRIPT}</div>
+		<div>
+			<object data="{RECAPTCHA_SERVER}/noscript?k={RECAPTCHA_PUBKEY}{RECAPTCHA_ERRORGET}" type="text/html" height="300" width="500"></object><br />
+			<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+			<input type="hidden" name="recaptcha_response_field" value="manual_challenge" />
+		</div>
 		</noscript>
 
-		<script src="{RECAPTCHA_SERVER}.js?hl={LA_RECAPTCHA_LANG}" async defer></script>
-		<div class="g-recaptcha" data-sitekey="{RECAPTCHA_PUBKEY}" data-tabindex="<!-- IF $CAPTCHA_TAB_INDEX -->{$CAPTCHA_TAB_INDEX}<!-- ELSE -->10<!-- ENDIF -->"></div>
+		<a href="http://www.google.com/intl/{LA_RECAPTCHA_LANG}/policies/" target="_blank" class="recaptcha-responsive" style="display: none"><img alt="" width="71" height="36" src="{RECAPTCHA_SERVER}/img/clean/logo.png"></a>
 	</dd>
 	</dl>
 <!-- ELSE -->

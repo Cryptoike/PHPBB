@@ -1,4 +1,4 @@
-<div id="topicreview" class="topicreview">
+<div id="topicreview">
 <script type="text/javascript">
 // <![CDATA[
 	bbcodeEnabled = {S_BBCODE_ALLOWED};
@@ -14,14 +14,11 @@
 	<div class="post <!-- IF topic_review_row.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF topic_review_row.POST_ID == REPORTED_POST_ID --> reported<!-- ENDIF -->">
 	<!-- ENDIF -->
 
-		<aside class="postprofile" id="profile{topic_review_row.POST_ID}"<!-- IF topic_review_row.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
+		<aside class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
+
 			<div>
 				<div class="avatar-container">
-					<!-- IF topic_review_row.POSTER_AVATAR -->
-						<!-- IF topic_review_row.U_POST_AUTHOR --><a href="{topic_review_row.U_POST_AUTHOR}" class="avatar">{topic_review_row.POSTER_AVATAR}</a><!-- ELSE --><span class="avatar">{topic_review_row.POSTER_AVATAR}</span><!-- ENDIF -->
-					<!-- ELSE -->
-						<span class="avatar-none">{topic_review_row.POST_AUTHOR}</span>
-					<!-- ENDIF -->
+					<span class="avatar-none">{topic_review_row.POST_AUTHOR_FULL}</span>
 				</div>
 				{topic_review_row.POST_AUTHOR_FULL}
 			</div>
@@ -46,7 +43,6 @@
 			<!-- ENDIF -->
 
 			<!-- IF (topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE) or topic_review_row.U_MCP_DETAILS -->
-			<!-- EVENT posting_topic_review_row_post_details_before -->
 			<ul class="post-actions">
 				<!-- IF topic_review_row.U_MCP_DETAILS -->
 					<li>
@@ -54,7 +50,7 @@
 							<span>{L_POST_DETAILS}</span>
 						</a>
 					</li><!-- ENDIF --><!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE --><li>
-						<a href="#postingbox" onclick="addquote({topic_review_row.POST_ID}, '{topic_review_row.POSTER_QUOTE}', '{LA_WROTE}, {post_id:{topic_review_row.POST_ID},time:{topic_review_row.POST_TIME},user_id:{topic_review_row.USER_ID}}');" title="{L_QUOTE} {topic_review_row.POST_AUTHOR}">
+						<a href="#postingbox" onclick="addquote({topic_review_row.POST_ID}, '{topic_review_row.POSTER_QUOTE}', '{LA_WROTE}');" title="{L_QUOTE} {topic_review_row.POST_AUTHOR}">
 							<span>{L_QUOTE} {topic_review_row.POST_AUTHOR}</span>
 						</a>
 					</li><!-- ENDIF --><!-- IF not S_IS_BOT --><li class="right post-date">
@@ -62,7 +58,6 @@
 					</li>
 				<!-- ENDIF -->
 			</ul>
-			<!-- EVENT posting_topic_review_row_post_details_after -->
 			<!-- ENDIF -->
 		</article>
 	</div>

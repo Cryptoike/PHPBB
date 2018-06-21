@@ -49,7 +49,20 @@
 			<button type="submit" name="filter"><i class="fa fa-search"></i></button><div><input type="search" name="keywords" value="{S_KEYWORDS}" placeholder="{L_SEARCH_KEYWORDS}" /></div>
 		</div>
 	</div>
-	<!-- INCLUDE display_options.html -->
+	<div>
+		<span class="button-round" data-toggle="dropdown"><i class="fa fa-filter"></i></span>
+		<div class="dropdown-box-big">
+			<fieldset>
+				<div class="dropdown-header"><h5>{L_DISPLAY_LOG}</h5></div>
+				<div class="dropdown-body">{S_SELECT_SORT_DAYS}</div>
+				<div class="dropdown-header"><h5>{L_SORT_BY}</h5></div>
+				<div class="dropdown-body">
+					{S_SELECT_SORT_KEY}{S_SELECT_SORT_DIR}
+				</div>
+				<div class="dropdown-footer"><input type="submit" name="sort" value="{L_GO}" /></div>
+			</fieldset>
+		</div>
+	</div>
 </div>
 
 <table class="table">
