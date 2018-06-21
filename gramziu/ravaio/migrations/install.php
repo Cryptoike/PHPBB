@@ -49,12 +49,6 @@ class install extends \phpbb\db\migration\migration
 					'PRIMARY_KEY'	=> 'position'
 				)
 			),
-
-			'add_columns' => array(
-				$this->table_prefix . 'users' => array(
-					'ra_variant'	=> array('UINT:1', 9),
-				),
-			)
 		);
 	}
 
@@ -74,66 +68,23 @@ class install extends \phpbb\db\migration\migration
 			array('config.add', array('ra_poster_width', '98px')),
 			array('config.add', array('ra_back_to_top', '1')),
 
-			array('config_text.add', array('ra_custom_css', '#theme-variant-0:before {
-	background-color: #EBEBEB;
-}
+			array('config.add', array('ra_head_index_bg', 'transparent')),
+			array('config.add', array('ra_head_other_bg', '#1976D2')),
+			array('config.add', array('ra_head_bg', '#1976D2')),
+			array('config.add', array('ra_sub_head_bg', '#2C3940')),
+			array('config.add', array('ra_m_accent', '#1976D2')),
+			array('config.add', array('ra_m_accent_b', '#12579B')),
+			array('config.add', array('ra_s_accent', '#455A64')),
+			array('config.add', array('ra_s_accent_b', '#2C3940')),
+			array('config.add', array('ra_t_accent', '#455A64')),
+			array('config.add', array('ra_t_accent_b', '#2C3940')),
 
-#theme-variant-1:before {
-	background-color: #455A64;
-}
-
-#theme-variant-2:before {
-	background-color: #2F2F2F;
-}')),
-
-			array('config.add', array('ra_color_variants', 'a:3:{i:0;s:4:"Main";i:1;s:9:"Secondary";i:2;s:8:"Tertiary";}')),
-
-			array('config.add', array('ra_main_accent', 'a:3:{i:0;s:7:"#1976D2";i:1;s:7:"#1976D2";i:2;s:7:"#1976D2";}')),
-
-			array('config.add', array('ra_secondary_accent', 'a:3:{i:0;s:7:"#455A64";i:1;s:7:"#374C56";i:2;s:7:"#444444";}')),
-
-			array('config.add', array('ra_main_text', 'a:3:{i:0;s:7:"#FAFAFA";i:1;s:7:"#FAFAFA";i:2;s:7:"#FAFAFA";}')),
-
-			array('config.add', array('ra_secondary_text', 'a:3:{i:0;s:7:"#5A5A5A";i:1;s:7:"#CCCCCC";i:2;s:7:"#CCCCCC";}')),
-
-			array('config.add', array('ra_site_background', 'a:3:{i:0;s:7:"#F8F8F8";i:1;s:7:"#263238";i:2;s:7:"#2A2A2A";}')),
-
-			array('config.add', array('ra_main_background', 'a:3:{i:0;s:7:"#FFFFFF";i:1;s:7:"#2E3A40";i:2;s:7:"#2F2F2F";}')),
-
-			array('config.add', array('ra_main_border', 'a:3:{i:0;s:7:"#EAEAEA";i:1;s:7:"#222D32";i:2;s:7:"#222222";}')),
-
-			array('config.add', array('ra_head_index_bg', 'a:3:{i:0;s:11:"transparent";i:1;s:11:"transparent";i:2;s:11:"transparent";}')),
-			array('config.add', array('ra_head_other_bg', 'a:3:{i:0;s:7:"#1976D2";i:1;s:7:"#1976D2";i:2;s:7:"#1976D2";}')),
-			array('config.add', array('ra_head_index_sticky_bg', 'a:3:{i:0;s:7:"#1976D2";i:1;s:7:"#1976D2";i:2;s:7:"#1976D2";}')),
-			array('config.add', array('ra_head_other_sticky_bg', 'a:3:{i:0;s:7:"#1976D2";i:1;s:7:"#1976D2";i:2;s:7:"#1976D2";}')),
-
-			array('config.add', array('ra_head_index_img', 'a:3:{i:0;s:23:"ra_head_index_img_0.png";i:1;s:23:"ra_head_index_img_1.png";i:2;s:23:"ra_head_index_img_2.png";}')),
-			array('config.add', array('ra_head_other_img', 'a:3:{i:0;s:23:"ra_head_other_img_0.png";i:1;s:23:"ra_head_other_img_1.png";i:2;s:23:"ra_head_other_img_2.png";}')),
-
-			array('config.add', array('ra_s_head_index_img', 'a:3:{i:0;i:1;i:1;i:1;i:2;i:1;}')),
-			array('config.add', array('ra_s_head_other_img', 'a:3:{i:0;i:1;i:1;i:1;i:2;i:1;}')),
-
-			array('config.add', array('ra_main_background_darken', 'a:3:{i:0;s:18:"rgb(249, 249, 249)";i:1;s:15:"rgb(41, 52, 58)";i:2;s:15:"rgb(41, 41, 41)";}')),
-
-			array('config.add', array('ra_variant_default', 0)),
-			array('config.add', array('ra_variant_enabled', 'a:3:{i:0;i:1;i:1;i:1;i:2;i:1;}')),
-			array('config.add', array('ra_s_variants', 1)),
-
-			array('config.add', array('ra_logo', 'site_logo.svg')),
 			array('config.add', array('ra_logo_type', 0)),
-			array('config.add', array('ra_logo_width', '26px')),
-			array('config.add', array('ra_logo_height', '36px')),
 			array('config.add', array('ra_logo_text', 'Your logo')),
 			array('config.add', array('ra_site_desc', 1)),
-			array('config.add', array('ra_site_desc_text_align', 0)),
-			array('config.add', array('ra_site_desc_ref_point', 0)),
-			array('config.add', array('ra_site_desc_pos_top', '50%')),
-			array('config.add', array('ra_site_desc_pos_left', '50%')),
-			array('config.add', array('ra_site_desc_pos_right', 'auto')),
-			array('config.add', array('ra_site_desc_pos_bottom', 'auto')),
 			array('config.add', array('ra_head_type', 0)),
-
-			array('config.add', array('ra_site_desc_pos_prepared', 'top: 50%; left: 50%; right: auto; bottom: auto; text-align: center;')),
+			array('config.add', array('ra_head_index_img', 'bg_cover.jpg')),
+			array('config.add', array('ra_head_other_img', '')),
 
 			array('config.add', array('ra_sidebar', 1)),
 			array('config.add', array('ra_sidebar_index', 1)),
@@ -143,12 +94,11 @@ class install extends \phpbb\db\migration\migration
 			array('config.add', array('ra_foot_type', 0)),
 			array('config.add', array('ra_rc_posts', 1)),
 			array('config.add', array('ra_rc_posts_num', 4)),
-			array('config.add', array('ra_foot_text', 'Powered by &lt;a href=&quot;https://www.phpbb.com/&quot;&gt;phpBB&lt;/a&gt;® Forum Software © phpBB Limited&lt;span class=&quot;rside&quot;&gt;Ravaio Theme by &lt;a href=&quot;https://themeforest.net/user/Gramziu/&quot;&gt;Gramziu&lt;/a&gt;&lt;/span&gt;')),
+			array('config.add', array('ra_foot_text', 'Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited<span class="rside">Ravaio Theme by <a href="http://themeforest.net/user/Gramziu/">Gramziu</a>')),
 
 			array('config.add', array('ra_footer_blocks', 1)),
 			array('config.add', array('ra_footer_blocks_count', 2)),
-
-			array('config.add', array('ra_head_index_text', 0)),
+			
 
 			array('module.add', array(
 				'acp',
@@ -180,61 +130,14 @@ class install extends \phpbb\db\migration\migration
 	{
 		$sample_ra_header_menu = array(
 			array(
-				'name'		=> 'Menu',
+				'name'		=> '&lt;i class=&quot;fa fa-shopping-basket&quot;&gt;&lt;/i&gt;',
 				'url'		=> '#',
-				'content'	=> '&lt;ul class=&quot;dropdown-box&quot;&gt;
-	&lt;li&gt;
-		&lt;a href=&quot;#&quot;&gt;
-			&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-			Example
-		&lt;/a&gt;
-	&lt;/li&gt;
-	&lt;li&gt;
-		&lt;a href=&quot;#&quot;  class=&quot;w-drop&quot;&gt;
-			&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-			Example
-		&lt;/a&gt;
-		&lt;ul class=&quot;dropdown-box&quot;&gt;
-			&lt;li&gt;
-				&lt;a href=&quot;#&quot;  class=&quot;w-drop&quot;&gt;
-					&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-					Example
-				&lt;/a&gt;
-				&lt;ul class=&quot;dropdown-box&quot;&gt;
-					&lt;li&gt;
-						&lt;a href=&quot;#&quot;&gt;
-							&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-							Example
-						&lt;/a&gt;
-					&lt;/li&gt;
-				&lt;/ul&gt;
-			&lt;/li&gt;
-			&lt;li&gt;
-				&lt;a href=&quot;#&quot;&gt;
-					&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-					Example
-				&lt;/a&gt;
-			&lt;/li&gt;
-			&lt;li&gt;
-				&lt;a href=&quot;#&quot;&gt;
-					&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-					Example
-				&lt;/a&gt;
-			&lt;/li&gt;
-		&lt;/ul&gt;
-	&lt;/li&gt;
-	&lt;li&gt;
-		&lt;a href=&quot;#&quot;&gt;
-			&lt;i class=&quot;fa fa-tachometer&quot;&gt;&lt;/i&gt;
-			Example
-		&lt;/a&gt;
-	&lt;/li&gt;
-&lt;/ul&gt;',
+				'content'	=> '',
 				'mega'		=> 0,
 				'position'	=> 1
 			),
 			array(
-				'name'		=> '&lt;i class=&quot;fa fa-shopping-basket&quot;&gt;&lt;/i&gt;&lt;span&gt;Menu #2&lt;/span&gt;',
+				'name'		=> 'Dropdown',
 				'url'		=> '#',
 				'content'	=> '&lt;div class=&quot;dropdown-mega&quot;&gt;
 	&lt;div class=&quot;chunk-inner&quot;&gt;
@@ -315,14 +218,9 @@ class install extends \phpbb\db\migration\migration
 
 		$sample_ra_sidebar = array(
 			array(
-				'name'		=> 'Recent topics',
- 				'content'	=> '&lt;div id=&quot;sidebar-recent-topics&quot; class=&quot;loading&quot;&gt;&lt;/div&gt;',
+				'name'		=> 'Ravaio',
+ 				'content'	=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 				'position'	=> 1
-			),
-			array(
-				'name'		=> 'Theme variants',
- 				'content'	=> '&lt;form method=&quot;post&quot; id=&quot;theme-variants&quot;&gt;&lt;/form&gt;',
-				'position'	=> 2
 			)
 		);
 

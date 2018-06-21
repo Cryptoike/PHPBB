@@ -2,7 +2,7 @@
 	"name": "gramziu/ravaio",
 	"type": "phpbb-extension",
 	"description": "Ravaio Style Configuration",
-	"version": "2.2.6",
+	"version": "2.1.0",
 	"license": "ThemeForest",
 	"authors": [{
 			"name": "Gramziu",

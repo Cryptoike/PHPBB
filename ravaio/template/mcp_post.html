@@ -38,11 +38,7 @@
 <aside class="postprofile">
 	<div>
 		<div class="avatar-container">
-			<!-- IF POSTER_AVATAR -->
-				<span class="avatar">{POSTER_AVATAR}</span>
-			<!-- ELSE -->
-				<span class="avatar-none">{POST_AUTHOR}</span>
-			<!-- ENDIF -->
+			<span class="avatar-none">{POST_AUTHOR}</span>
 		</div>
 	</div>
 </aside>
@@ -276,12 +272,6 @@
 		</tbody>
 		</table>
 
-		<div class="pagination">
-			<!-- IF .pagination --> 
-				<!-- INCLUDE pagination.html -->
-			<!-- ENDIF -->
-		</div>
-
 		<table class="table">
 		<thead>
 		<tr>
@@ -304,17 +294,6 @@
 		</table>
 
 		<p><a href="{U_LOOKUP_ALL}#ip">{L_LOOKUP_ALL}</a></p>
-
-		<!-- IF .pagination_ips --> 
-		<div class="pagination">
-			<ul><!-- BEGIN pagination_ips --><!-- IF pagination_ips.S_IS_PREV --><li class="previous"><a href="{pagination_ips.PAGE_URL}" rel="prev" role="button"><i class="fa fa-chevron-left"></i></a></li><!-- ELSEIF pagination_ips.S_IS_CURRENT --><li class="active"><span>{pagination_ips.PAGE_NUMBER}</span></li><!-- ELSEIF pagination_ips.S_IS_ELLIPSIS --><li class="ellipsis" role="separator"><span>{L_ELLIPSIS}</span></li><!-- ELSEIF pagination_ips.S_IS_NEXT --><li class="next"><a href="{pagination_ips.PAGE_URL}" rel="next" role="button"><i class="fa fa-chevron-right"></i></a></li><!-- ELSE --><li><a href="{pagination_ips.PAGE_URL}" role="button">{pagination_ips.PAGE_NUMBER}</a></li><!-- ENDIF --><!-- END pagination_ips --></ul><!-- IF BASE_URL and TOTAL_PAGES > 6 --><div class="page-jump">
-					<a href="#" title="{L_JUMP_TO_PAGE_CLICK}" data-toggle="dropdown">{PAGE_NUMBER}</a>
-					<ul class="dropdown-box">
-						<li class="page-jump-form"><input type="number" name="page-number" min="1" max="999999" title="{L_JUMP_PAGE}" class="input" data-per-page="{PER_PAGE}" data-base-url="{BASE_URL|e('html_attr')}" data-start-name="{START_NAME}" placeholder="{L_JUMP_TO_PAGE}" /><input class="button" value="{L_GO}" type="button" /></li>
-					</ul>
-				</div><!-- ENDIF -->
-		</div>
-		<!-- ENDIF -->
 	<!-- ENDIF -->
 
 <!-- ENDIF -->

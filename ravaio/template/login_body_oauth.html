@@ -1,25 +1,8 @@
-{% spaceless %}
-	{% for oauth in loops.oauth %}
-		<a
-			href="{{ oauth.REDIRECT_URL }}"
-			class="button"
-			{% if oauth.SERVICE_NAME == 'Bitly' %}
-				style="background-color: #EE6123;"
-			{% elseif oauth.SERVICE_NAME == 'Facebook' %}
-				style="background-color: #4267B2;"
-			{% elseif oauth.SERVICE_NAME == 'Google' %}
-				style="background-color: #4285F4;"
-			{% elseif oauth.SERVICE_NAME == 'Twitter' %}
-				style="background-color: #1DA1F3;"
-			{% endif %}
-		>
-			{% if oauth.SERVICE_NAME in ['Facebook', 'Google', 'Twitter'] %}
-				<i class="fa fa-{{ oauth.SERVICE_NAME|lower }}"></i>
-			{% endif %}
-			<span>
-				{{ oauth.SERVICE_NAME }}
-			</span>
-		</a>
-	{% endfor %}
-{% endspaceless %}
-<br><br>
+<div class="content">
+	<!-- BEGIN oauth -->
+	<dl>
+		<dt>&nbsp;</dt>
+		<dd><a href="{oauth.REDIRECT_URL}" class="button2">{oauth.SERVICE_NAME}</a></dd>
+	</dl>
+	<!-- END oauth -->
+</div>

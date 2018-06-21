@@ -7,7 +7,6 @@ services:
         arguments:
             - @template
             - @config
-            - @config_text
             - @dbal.conn
             - @request
             - @auth

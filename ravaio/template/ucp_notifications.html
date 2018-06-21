@@ -12,6 +12,7 @@
 					<!-- BEGIN notification_methods -->
 						<th class="table-mark">{notification_methods.NAME}</th>
 					<!-- END notification_methods -->
+					<th class="table-mark">{L_NOTIFICATIONS}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,8 +28,9 @@
 							<!-- IF notification_types.EXPLAIN --><br />&nbsp; &nbsp;{notification_types.EXPLAIN}<!-- ENDIF -->
 						</td>
 						<!-- BEGIN notification_methods -->
-							<td class="table-mark"><label for="{notification_types.TYPE}_{notification_methods.METHOD}"><input class="check" type="checkbox" name="{notification_types.TYPE}_{notification_types.notification_methods.METHOD}" id="{notification_types.TYPE}_{notification_types.notification_methods.METHOD}"<!-- IF notification_types.notification_methods.AVAILABLE and notification_types.notification_methods.SUBSCRIBED --> checked="checked"<!-- ENDIF --><!-- IF not notification_types.notification_methods.AVAILABLE --> disabled="disabled"<!-- ENDIF --> /><span class="check"></span></label></td>
+							<td class="table-mark"><label for="{notification_types.TYPE}_{notification_methods.METHOD}"><input class="check" type="checkbox" name="{notification_types.TYPE}_{notification_methods.METHOD}" id="{notification_types.TYPE}_{notification_methods.METHOD}"<!-- IF notification_methods.SUBSCRIBED --> checked="checked"<!-- ENDIF --> /><span class="check"></span></label></td>
 						<!-- END notification_methods -->
+						<td class="table-mark"><label for="{notification_types.TYPE}_notification"><input class="check" type="checkbox" name="{notification_types.TYPE}_notification" id="{notification_types.TYPE}_notification"<!-- IF notification_types.SUBSCRIBED --> checked="checked"<!-- ENDIF --> /><span class="check"></span></label></td>
 					</tr>
 				<!-- ENDIF -->
 			<!-- END notification_types -->

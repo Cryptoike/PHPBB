@@ -1,47 +1,20 @@
 <!-- IF RA_BACK_TO_TOP -->
-	<a id="back-to-top" href="#phpbb"><i class="fa fa-angle-up"></i></a>
+	<a id="back-to-top" href="#phpBB"><i class="fa fa-angle-up"></i></a>
 <!-- ENDIF -->
 <!-- IF RA_RC_POSTS and (.ra_posts == 4 or .ra_posts == 8) -->
 	<div class="chunk-inner">
-		<!-- BEGIN ra_posts(0,3) -->
+		<!-- BEGIN ra_posts -->
 			<div class="chunk-25 rc-posts">
 				<a href="{ra_posts.URL}" class="rc-link">
 					<div class="rc-posts-out">
-						<!-- IF ra_posts.AVATAR --><div class="rc-avatar">{ra_posts.AVATAR}</div><!-- ENDIF -->
-						<div class="rc-title">{ra_posts.TITLE}</div>
+						<div class="rc-author">{ra_posts.POSTER}</div>
 						<div class="rc-content">{ra_posts.TEXT}</div>
-						<div class="rc-details">
-							<span class="rc-author">{ra_posts.POSTER}</span>,
-							<span class="rc-time">{ra_posts.TIME}</span>
-						</div>
+						<div class="rc-time">{ra_posts.TIME}</div>
 					</div>
 				</a>
 			</div>
 		<!-- END ra_posts -->
 		<div class="clear"></div>
-		<!-- IF .ra_posts == 4 -->
-			<hr class="rc-hr">
-		<!-- ENDIF -->
+		<hr class="rc-hr">
 	</div>
-	<!-- IF .ra_posts == 8 -->
-		<div class="chunk-inner">
-			<!-- BEGIN ra_posts(4,7) -->
-				<div class="chunk-25 rc-posts">
-					<a href="{ra_posts.URL}" class="rc-link">
-						<div class="rc-posts-out">
-							<!-- IF ra_posts.AVATAR --><div class="rc-avatar">{ra_posts.AVATAR}</div><!-- ENDIF -->
-							<div class="rc-title">{ra_posts.TITLE}</div>
-							<div class="rc-content">{ra_posts.TEXT}</div>
-							<div class="rc-details">
-								<span class="rc-author">{ra_posts.POSTER}</span>,
-								<span class="rc-time">{ra_posts.TIME}</span>
-							</div>
-						</div>
-					</a>
-				</div>
-			<!-- END ra_posts -->
-			<div class="clear"></div>
-			<hr class="rc-hr">
-		</div>
-	<!-- ENDIF -->
 <!-- ENDIF -->

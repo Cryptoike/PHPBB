@@ -1,4 +1,4 @@
-// Sticky Plugin v1.0.4 for jQuery
+// Sticky Plugin v1.0.3 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
@@ -33,8 +33,7 @@
       center: false,
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
-      responsiveWidth: false,
-      zIndex: 'auto'
+      responsiveWidth: false
     },
     $window = $(window),
     $document = $(document),
@@ -60,8 +59,7 @@
               .css({
                 'width': '',
                 'position': '',
-                'top': '',
-                'z-index': ''
+                'top': ''
               });
             s.stickyElement.parent().removeClass(s.className);
             s.stickyElement.trigger('sticky-end', [s]);
@@ -89,8 +87,7 @@
             s.stickyElement
               .css('width', newWidth)
               .css('position', 'fixed')
-              .css('top', newTop)
-              .css('z-index', s.zIndex);
+              .css('top', newTop);
 
             s.stickyElement.parent().addClass(s.className);
 
@@ -120,14 +117,12 @@
             s.stickyElement
               .css('position', 'absolute')
               .css('top', '')
-              .css('bottom', 0)
-              .css('z-index', '');
+              .css('bottom', 0);
           } else {
             s.stickyElement
               .css('position', 'fixed')
               .css('top', newTop)
-              .css('bottom', '')
-              .css('z-index', s.zIndex);
+              .css('bottom', '');
           }
         }
       }
@@ -152,21 +147,18 @@
     },
     methods = {
       init: function(options) {
+        var o = $.extend({}, defaults, options);
         return this.each(function() {
-          var o = $.extend({}, defaults, options);
           var stickyElement = $(this);
 
           var stickyId = stickyElement.attr('id');
+          var stickyHeight = stickyElement.outerHeight();
           var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
           var wrapper = $('<div></div>')
             .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
 
-          stickyElement.wrapAll(function() {
-            if ($(this).parent("#" + wrapperId).length == 0) {
-                    return wrapper;
-            }
-});
+          stickyElement.wrapAll(wrapper);
 
           var stickyWrapper = stickyElement.parent();
 
@@ -178,50 +170,14 @@
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
+          stickyWrapper.css('height', stickyHeight);
+
           o.stickyElement = stickyElement;
           o.stickyWrapper = stickyWrapper;
           o.currentTop    = null;
 
           sticked.push(o);
-
-          methods.setWrapperHeight(this);
-          methods.setupChangeListeners(this);
         });
-      },
-
-      setWrapperHeight: function(stickyElement) {
-        var element = $(stickyElement);
-        var stickyWrapper = element.parent();
-        if (stickyWrapper) {
-          stickyWrapper.css('height', element.outerHeight());
-        }
-      },
-
-      setupChangeListeners: function(stickyElement) {
-        if (window.MutationObserver) {
-          var mutationObserver = new window.MutationObserver(function(mutations) {
-            if (mutations[0].addedNodes.length || mutations[0].removedNodes.length) {
-              methods.setWrapperHeight(stickyElement);
-            }
-          });
-          mutationObserver.observe(stickyElement, {subtree: true, childList: true});
-        } else {
-          if (window.addEventListener) {
-            stickyElement.addEventListener('DOMNodeInserted', function() {
-              methods.setWrapperHeight(stickyElement);
-            }, false);
-            stickyElement.addEventListener('DOMNodeRemoved', function() {
-              methods.setWrapperHeight(stickyElement);
-            }, false);
-          } else if (window.attachEvent) {
-            stickyElement.attachEvent('onDOMNodeInserted', function() {
-              methods.setWrapperHeight(stickyElement);
-            });
-            stickyElement.attachEvent('onDOMNodeRemoved', function() {
-              methods.setWrapperHeight(stickyElement);
-            });
-          }
-        }
       },
       update: scroller,
       unstick: function(options) {
@@ -244,8 +200,7 @@
                 'width': '',
                 'position': '',
                 'top': '',
-                'float': '',
-                'z-index': ''
+                'float': ''
               })
             ;
           }

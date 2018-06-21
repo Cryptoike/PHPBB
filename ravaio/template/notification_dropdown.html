@@ -3,18 +3,18 @@
 		<h5>{L_NOTIFICATIONS}</h5>
 		<a href="{U_NOTIFICATION_SETTINGS}"><i class="fa fa-cog"></i></a>
 		<!-- IF NOTIFICATIONS_COUNT -->
-			<a id="mark_all_notifications" href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read"><i class="fa fa-check"></i></a>
+			<a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notification.mark_all_read"><i class="fa fa-check"></i></a>
 		<!-- ENDIF -->
 	</div>
 
-	<ul class="dropdown-body" id="notification_list">
+	<ul class="dropdown-body">
 		<!-- IF not .notifications -->
 			<li class="no_notifications">
 				{L_NO_NOTIFICATIONS}
 			</li>
 		<!-- ENDIF -->
 		<!-- BEGIN notifications -->
-			<li<!-- IF notifications.UNREAD --> class="unread"<!-- ENDIF --><!-- IF notifications.STYLING --> class="{notifications.STYLING}"<!-- ENDIF -->>
+			<li<!-- IF notifications.STYLING --> class="{notifications.STYLING}"<!-- ENDIF -->>
 				<!-- IF notifications.URL -->
 					<a class="notification-block" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
 				<!-- ELSE -->

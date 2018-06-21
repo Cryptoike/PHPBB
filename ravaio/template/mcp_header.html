@@ -21,30 +21,33 @@
 				<ul>
 					<!-- BEGIN l_block1 -->
 					<li class="tab<!-- IF l_block1.S_SELECTED --> activetab<!-- ENDIF -->">
-						<a class="tab-link" href="{l_block1.U_TITLE}">{l_block1.L_TITLE}</a>
-						<ul class="tab-content<!-- IF not l_block1.S_SELECTED --> tab-content-hidden<!-- ENDIF -->">
-							<!-- BEGIN l_block1.l_block2 -->
-								<!-- IF l_block1.l_block2.S_SELECTED -->
-									<li id="active-subsection"><a href="{l_block1.l_block2.U_TITLE}">
-										<span>{l_block1.l_block2.L_TITLE}
-								<!-- IF l_block1.l_block2.ADD_ITEM -->
-											({l_block1.l_block2.ADD_ITEM})
-								<!-- ENDIF -->
-										</span></a>
-									</li>
-								<!-- ELSE -->
-									<li>
-										<a href="{l_block1.l_block2.U_TITLE}">
+						<a href="{l_block1.U_TITLE}">{l_block1.L_TITLE}</a>
+					
+						<!-- IF l_block1.S_SELECTED -->
+							<ul>
+								<!-- BEGIN l_block2 -->
+									<!-- IF l_block1.l_block2.S_SELECTED -->
+										<li id="active-subsection"><a href="{l_block1.l_block2.U_TITLE}">
 											<span>{l_block1.l_block2.L_TITLE}
-												<!-- IF l_block1.l_block2.ADD_ITEM -->
-														({l_block1.l_block2.ADD_ITEM})
-												<!-- ENDIF -->
-											</span>
-										</a>
-									</li>
-								<!-- ENDIF -->
-							<!-- END l_block1.l_block2 -->
-						</ul>
+									<!-- IF l_block1.l_block2.ADD_ITEM -->
+											 ({l_block1.l_block2.ADD_ITEM})
+									<!-- ENDIF -->
+											</span></a>
+										</li>
+									<!-- ELSE -->
+										<li>
+											<a href="{l_block1.l_block2.U_TITLE}">
+												<span>{l_block1.l_block2.L_TITLE}
+													<!-- IF l_block1.l_block2.ADD_ITEM -->
+														 ({l_block1.l_block2.ADD_ITEM})
+													<!-- ENDIF -->
+												</span>
+											</a>
+										</li>
+									<!-- ENDIF -->
+								<!-- END l_block2 -->
+							</ul>
+						<!-- ENDIF -->
 					</li>
 					<!-- END l_block1 -->
 				</ul>

@@ -4,26 +4,88 @@
 
 <div id="<!-- IF RA_ENABLE --><!-- IF RA_SITE_DESC eq 1 -->site-desc-full<!-- ELSEIF RA_SITE_DESC eq 2 -->site-desc-small<!-- ELSE -->site-desc-hidden<!-- ENDIF --><!-- ELSE -->site-desc-full<!-- ENDIF -->">
 	<div class="chunk">
-		<!-- IF not RA_HEAD_INDEX_TEXT -->
 		<div id="page-description">
 			<h1>{SITENAME}</h1>
 			<h2>{SITE_DESCRIPTION}</h2>
 		</div>
-		<!-- ENDIF -->
 	</div>
 </div>
 
-<!-- EVENT ra_sub_header_after -->
-
 <div id="main-index" class="background-main">
-<div id="mbrs">
 
 	<!-- EVENT ra_index_body_before -->
 
 	<div class="chunk">
 
+			<!-- Texte d'intro -->
+            <div class="intro">
+            	<p>
+                 L'association Cani-Seniors est reconnue d'intérêt général<br/>
+et a pour but le sauvetage, l'accueil et le placement de chiens âgés.<br/>
+Merci à tous ceux et toutes celles qui participent à la vie de l'association.<br/>
+<i>L'Equipe cani-seniors</i>
+            	</p>
+        	</div>
+        	<!-- Texte d'intro -->
+            
+            <!-- 3 Cols -->
+            <div id="tree-cols">
+            	<div class="one">
+                		<h3 class="donate">Les Dons</h3>
+<p>
+<span class="green">Cani-Seniors</span> est habilitée à recevoir des dons et à délivrer des reçus qui permettent au donateur de bénéficier d'une <span class="green">réduction d'impôt</span> d'un montant en principe <span class="green">égal à 66%</span> de la somme versée dans la limite de <span class="green">20%</span> du revenu imposable. 
+</p>
+
+<!-- Liens pour dons -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_donations">
+<input type="hidden" name="business" value="assocaniseniors@gmail.com">
+<input type="hidden" name="lc" value="FR">
+<input type="hidden" name="item_name" value="Cani-Seniors">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="currency_code" value="EUR">
+<input type="hidden" name="bn" value="PP-DonationsBF:paypal.png:NonHostedGuest">
+<input type="image" src="http://www.cani-seniors.org/styles/ravaio/theme/images/paypal.png" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
+<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+</form>
+<a id="butt" class="chq" target="_blank" href="http://www.cani-seniors.org/styles/ravaio/theme/images/cheque.jpg" target="_blank">Chèque</a>
+<a id="butt" class="wire"  target="_blank" href="http://www.cani-seniors.org/styles/ravaio/theme/images/rib.jpg" target="_blank">Virement</a>
+<!-- Liens pour dons -->
+
+<p>
+Des dons peuvent être effectués d'une manière plus globale, sans être destinés à un chien en particulier. <span class="green">Tout l'argent récolté est utilisé en priorité pour les budgets « nourriture » et « soins vétérinaires »</span>. <i>(Poste très lourd sur des animaux âgés)</i>.
+</p>
+                </div>
+                <div class="two">
+                <h3 class="adress">coordonnées</h3>
+<p><span class="green">CANI SENIORS</span><br/>
+<b>BP 20335<br/>
+ANDEVILLE<br/>
+60543 MERU CEDEX</b><br/><br/>
+
+Nous vous rappelons que tous les courriers doivent impérativement être adressés au siège social.<br/><br/>
+
+Votre contact : <span class="green">Sandrine RAULT</span>  • <b>07 60 93 35 46</b><br/>
+
+</p>
+<a id="butt" href="http://www.cani-seniors.org/memberlist.php?mode=contactadmin">Nous contacter</a>
+                </div>
+                <div class="tree">
+                <h3 class="posts">Les posts</h3>
+<p>
+<span class="green">La lecture des posts est très simple</span>, lorsqu'un sujet ci-dessous vous intéresse, cliquer dessus.
+Vous retrouverez le post dans son intégralité. 
+</p>
+<p>
+Pour revenir ici, il suffit de cliquer sur “<span class="green">Accueil</span>” dans le Menu Principal.
+</p>
+                </div>
+            </div>
+            <!-- 3 Cols -->
+
 	<div class="forumlist-main">
-		<div class="forumlist-main-inner">
+            
+        <div class="forumlist-main-inner">
 			<!-- EVENT ra_index_markforums_before -->
 			
 			<!-- INCLUDE forumlist_body.html -->
@@ -49,8 +111,6 @@
 					</p>
 				</div>
 			<!-- ENDIF -->
-
-			<!-- EVENT index_body_birthday_block_before -->
 
 			<!-- IF S_DISPLAY_BIRTHDAY_LIST and .birthdays -->
 				<div class="box-normal">
@@ -86,7 +146,6 @@
 
 	<!-- EVENT ra_index_body -->
 
-</div>
 </div>
 
 <!-- IF not RA_STAT_POS or RA_FOOTER_BLOCKS -->

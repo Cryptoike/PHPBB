@@ -1,6 +1,6 @@
 <ul><!-- BEGIN pagination --><!-- IF pagination.S_IS_PREV --><li class="previous"><a href="{pagination.PAGE_URL}" rel="prev" role="button"><i class="fa fa-chevron-left"></i></a></li><!-- ELSEIF pagination.S_IS_CURRENT --><li class="active"><span>{pagination.PAGE_NUMBER}</span></li><!-- ELSEIF pagination.S_IS_ELLIPSIS --><li class="ellipsis" role="separator"><span>{L_ELLIPSIS}</span></li><!-- ELSEIF pagination.S_IS_NEXT --><li class="next"><a href="{pagination.PAGE_URL}" rel="next" role="button"><i class="fa fa-chevron-right"></i></a></li><!-- ELSE --><li><a href="{pagination.PAGE_URL}" role="button">{pagination.PAGE_NUMBER}</a></li><!-- ENDIF --><!-- END pagination --></ul><!-- IF BASE_URL and TOTAL_PAGES > 6 --><div class="page-jump">
 		<a href="#" title="{L_JUMP_TO_PAGE_CLICK}" data-toggle="dropdown">{PAGE_NUMBER}</a>
 		<ul class="dropdown-box">
-			<li class="page-jump-form"><input type="number" name="page-number" min="1" max="999999" title="{L_JUMP_PAGE}" class="input" data-per-page="{PER_PAGE}" data-base-url="{BASE_URL|e('html_attr')}" data-start-name="{START_NAME}" placeholder="{L_JUMP_TO_PAGE}" /><input class="button" value="{L_GO}" type="button" /></li>
+			<li class="page-jump-form"><input type="number" name="page-number" min="1" maxlength="6" title="{L_JUMP_PAGE}" class="input" data-per-page="{PER_PAGE}" data-base-url="{BASE_URL|e('html_attr')}" data-start-name="{START_NAME}" placeholder="{L_JUMP_TO_PAGE}" /><input class="button" value="{L_GO}" type="button" /></li>
 		</ul>
 	</div><!-- ENDIF -->
